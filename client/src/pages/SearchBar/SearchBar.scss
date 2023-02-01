@@ -1,0 +1,44 @@
+.searchBarBox {
+    .searchBarText {
+        legend {
+            display: none;
+        }
+
+        fieldset {
+            border: none;
+        }
+
+        input {
+            width: 400px;
+            height: 18px;
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: left;
+            border-top: 1px solid #000000;
+            border-left: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-radius: 10px;
+            padding: 10px;
+            margin-left: 15px;
+        }
+    }
+
+    .searchBarButton {
+        background: #34251F;
+        color: #ffffff;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        height: 40px;
+        width: 100px;
+    }
+
+}
