@@ -28,6 +28,20 @@
         }
     }
 
+    .searchBarSelect {
+        background: #E3CBB3;
+        width: 150px;
+        color: #000000;
+
+        .MuiPaper-root{
+            background:#E3CBB3 ;
+        }
+
+        .searchBarMenu {
+            background: #E3CBB3 ;
+        }
+    }
+
     .searchBarButton {
         background: #34251F;
         color: #ffffff;

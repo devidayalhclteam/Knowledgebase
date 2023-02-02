@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Provider } from "react-redux";
-import store from "./store";
+import React, { Suspense, PureComponent } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 import AppRoutes from './AppRoutes';
 import './App.scss';
 
-function App() {
-
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {AppRoutes.map((route) => {
-            const { element, ...rest } = route;
-            return <Route key={route.path} {...rest} element={element} />;
-          })}
-        </Routes>
-      </BrowserRouter>
-    </Provider>
-  );
+export default class App extends PureComponent {
+  render() {
+    return (
+      <Layout>
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            {AppRoutes.map((route) => {
+              const { element, ...rest } = route;
+              return <Route key={route.path} {...rest} element={element} />;
+            })}
+          </Routes>
+        </Suspense>
+      </Layout>
+    );
+  }
 }
-
-export default App;

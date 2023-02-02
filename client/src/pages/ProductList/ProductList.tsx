@@ -5,9 +5,7 @@ import "./ProductList.scss";
 export default function ProductList() {
   return (
     <div className="productListContainer">
-      <Grid className="productListGrid">
-        ProductList
-      </Grid>
+     product list
     </div>
   )
 }
