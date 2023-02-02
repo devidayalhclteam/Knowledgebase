@@ -1,14 +1,49 @@
-.productHomeContainer {
+.productHome {
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
-    padding: 0px;
     width: 100%;
 
-    .productHomeGrid {
+    .productHomeContainer {
         background: #EEDDCC;
         height: 400px;
         width: 100%;
-        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        .productHomeGrid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            padding: 10px 30px;
+
+            .productHomeText {
+                font-family: 'Frank Ruhl Libre';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 78px;
+                line-height: 78px;
+                text-transform: capitalize;
+                color: #34251F;
+            }
+
+            .productHomeButton {
+                background: #34251F;
+                border-radius: 2px;
+                margin-top: 60px;             
+            }
+
+            .MuiButton-label {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 900;
+                font-size: 18px;
+                line-height: 32px;
+                text-transform: uppercase;
+                color: #FFFFFF;
+            }
+        }
     }
 }

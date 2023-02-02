@@ -1,16 +1,26 @@
 import React from 'react';
-import { Container, Box, Grid } from '@material-ui/core';
+import { Container, Box, Grid, Typography, Button } from '@material-ui/core';
 import "./ProductHome.scss";
 
 export default function ProductHome() {
     return (
-        <div className="productHomeContainer">
-            <Grid className="productHomeGrid" container spacing={2}>
-                <Grid item xs={6}> item
+        <div className="productHome">
+            <div className="productHomeContainer">
+                <Grid container className='productHomeGrid' spacing={2}>
+                    <Grid item xs={12} sm={5} md={5} >
+                        <Typography className="productHomeText">
+                            Find the best Product for you
+                        </Typography>
+                        <Button variant="contained" className="productHomeButton" >
+                            Know More...
+                        </Button>
+                    </Grid>
+
+                    <Grid item xs={12} sm={4} md={4}>
+                        <img alt='heroImage' src='' />
+                    </Grid>
                 </Grid>
-                <Grid item xs={3}> item
-                </Grid>
-            </Grid>
+            </div>
         </div>
     )
 }

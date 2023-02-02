@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
-import { TextField, Box, Select, MenuItem, Button, InputLabel } from '@material-ui/core';
+import { TextField, Box, Select, MenuItem, Button,  } from '@material-ui/core';
+import  { Input,InputAdornment} from "@mui/material"
+import Search from "@mui/icons-material/Search";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories } from "./SearchBarSlice";
 import categoriesSelector from "./SearchBarSelector";
@@ -18,15 +20,21 @@ export default function SearchBar() {
 
     return (
         <Box sx={{ minWidth: 120 }} className='searchBarBox'>
-            <TextField id="outlined-basic" variant="outlined" className="searchBarText" />
+          <Input
+            className="searchBarText"
+            placeholder="Search..."
+            startAdornment={
+              <InputAdornment position="end" className='searchBarIcon'>
+                <Search fontSize="medium" name="search" />
+              </InputAdornment>
+            }
+          />
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 className='searchBarSelect'
                 label="All Category"
             >
                 {(categories || []).map((category: any) => {
-                    return (<MenuItem key={category.rowKey} value={category.id}  className='searchBarMenu'>
+                    return (<MenuItem key={category.rowKey} value={category.id} className='searchBarMenu'>
                         {category.name}
                     </MenuItem>)
                 })}
