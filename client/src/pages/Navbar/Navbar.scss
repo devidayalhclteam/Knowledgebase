@@ -1,12 +1,24 @@
 .appBar {
+    padding: 15px;
 
-    .navLink {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 900;
-        font-size: 16px;
-        letter-spacing: 0.115em;
-        text-transform: uppercase;
-        color: #34251F;
+
+
+    .MuiButtonBase-root {
+        float: left;
+        padding: 6px 10px;
+    }
+
+    .nav-link {
+        padding-top: 19px !important; 
+
+        .navLink {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 900;
+            font-size: 14px;
+            letter-spacing: 0.115em;
+            text-transform: uppercase;
+            color: #34251F;
+        }
     }
 }

@@ -1,11 +1,9 @@
 .productHome {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
 
     .productHomeContainer {
         background: #EEDDCC;
-        height: 400px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -17,29 +15,36 @@
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            padding: 10px 30px;
+            padding: 35px 30px;
 
             .productHomeText {
                 font-family: 'Frank Ruhl Libre';
                 font-style: normal;
                 font-weight: 700;
-                font-size: 78px;
-                line-height: 78px;
+                font-size: 4rem;
+                line-height: 4rem;
                 text-transform: capitalize;
                 color: #34251F;
+                width: 400px;
+            }
+
+            .productHomeSubText {
+                width: 310px;
+                font-size: 1rem;
+                padding: 20px 0 0;
             }
 
             .productHomeButton {
                 background: #34251F;
                 border-radius: 2px;
-                margin-top: 60px;             
+                margin-top: 60px;
             }
 
             .MuiButton-label {
                 font-family: 'Lato';
                 font-style: normal;
                 font-weight: 900;
-                font-size: 18px;
+                font-size: 14px;
                 line-height: 32px;
                 text-transform: uppercase;
                 color: #FFFFFF;
