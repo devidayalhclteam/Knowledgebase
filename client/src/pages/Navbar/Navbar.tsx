@@ -14,7 +14,7 @@ export default function Navbar() {
                 <Toolbar >
                     {NavbarList.map(({ name, path }) => {
                         return (
-                            <MenuItem key={name} onClick={() => navigate(path)}>
+                            <MenuItem key={name} onClick={() => navigate(path)} >
                                 <Typography className="navLink">
                                     {name}
                                 </Typography>

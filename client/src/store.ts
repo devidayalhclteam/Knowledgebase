@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import SearchBarSlice from "./pages/SearchBar/SearchBarSlice";
+import HomeSlice from "./pages/Home/HomeSlice";
 
 const homeCombineReducers = combineReducers({
-  searchBar: SearchBarSlice
+  searchBar: SearchBarSlice,
+  home: HomeSlice,
 });
 
 const rootReducer = combineReducers({

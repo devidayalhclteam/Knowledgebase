@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { Category } from "./SearchBarSlice";
 
 const categoriesState = (state: any) => state.home.searchBar;
 
