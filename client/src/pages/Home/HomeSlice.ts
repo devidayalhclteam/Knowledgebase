@@ -6,7 +6,8 @@ export interface Home {
 }
 
 const initialState: Home = {
-    displayView:"productList"
+    // displayView:"productList",
+    displayView:"productHome"
 };
 
 const homeSlice = createSlice({

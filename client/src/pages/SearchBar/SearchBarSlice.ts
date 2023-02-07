@@ -33,7 +33,7 @@ export const getCategories = createAsyncThunk(
     "home/getCategories",
     async () => {
         try {
-            const response = await axios.get("/api/category/category");
+            const response = await axios.get("/api/table/category/category");
             return response.data;
         } catch (error) {
             console.log(error);

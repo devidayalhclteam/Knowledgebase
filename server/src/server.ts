@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, } from 'express';
 import categoryRoute from "./routes/category.route";
+import productImageRoute from "./routes/product.route";
 
 const app: Express = express();
 const port = 5000;
@@ -10,7 +11,8 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, this is PWD api endpoint');
 });
 
-app.use("/api/category", categoryRoute);
+app.use("/api/table/category", categoryRoute);
+app.use("/api/blob/product", productImageRoute);
 
 /** Error handling */
 app.use((req: Request, res: Response) => {

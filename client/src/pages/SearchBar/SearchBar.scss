@@ -1,10 +1,12 @@
 .searchBarBox {
     border: 2px solid #000;
     border-radius: 10px;
-    color: #0D0D0D;
-    padding-left: 40px;
+    float: left;
+    width: auto;
 
     .searchBarText {
+        float: left;
+
         legend {
             display: none;
         }
@@ -14,17 +16,15 @@
         }
 
         input {
-            width: 400px;
-            height: 18px;
+            min-width: 240px;
+            height: 30px;
             font-family: 'Lato';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
             line-height: 18px;
             text-align: left;
-            margin-left: 15px;
-            padding: 10px;
-            border: none;
+            padding: 5px 10px;
         }
 
         .searchBarIcon {
@@ -36,11 +36,14 @@
             line-height: 18px;
         }
 
-
+        &:before,
+        &:after,
+        &:hover::before {
+            border: none;
+        }
     }
 
     .css-q0jhri-MuiInputBase-root-MuiInput-root {
-        border: 1px solid #000000;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         border-right: none;
@@ -55,7 +58,8 @@
         font-weight: 400;
         font-size: 14px;
         padding: 8px;
-        min-height: 14px;
+        float: left;
+        height: 40px;
 
         .searchBarMenu {}
     }
@@ -69,13 +73,18 @@
         font-size: 16px;
         line-height: 19px;
         text-align: center;
-        height: 41px;
+        height: 40px;
         width: 100px;
+        border: none;
+        float: left;
         border-radius: 0;
         margin: 0;
-        float: right;
-        border-top-right-radius: 7px;
+        text-transform: capitalize;
         border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
     }
 
+    .searchBarButton:hover {
+        background: #2F80ED;
+    }
 }
