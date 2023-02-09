@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <Navbar />
+      {/* <Navbar /> */}
       {displayView === "productHome" && <ProductHome />}
       {displayView === "productList" && <ProductList />}
       {displayView === "productDetails" && <ProductDetails />}

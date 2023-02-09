@@ -1,5 +1,6 @@
 import express, { Express, Request, Response, } from 'express';
 import categoryRoute from "./routes/category.route";
+import productsRoute from "./routes/products.route";
 import productImageRoute from "./routes/product.route";
 
 const app: Express = express();
@@ -13,6 +14,8 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use("/api/table/category", categoryRoute);
 app.use("/api/blob/product", productImageRoute);
+
+app.use("/api/products", productsRoute);
 
 /** Error handling */
 app.use((req: Request, res: Response) => {

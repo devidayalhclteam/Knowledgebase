@@ -1,0 +1,212 @@
+.dashboard {
+    padding: 15px;
+    display: flex;
+    background: #F7F8FA;
+
+    .dashboardContainer {
+
+        .dashboardLeftContainer {
+            background: #FAFBFC;
+            border-radius: 20px 20px 0px 0px;
+            padding: 15px 0px;
+
+            .topContainer {
+                padding: 10px 15px;
+                width: 100%;
+                float: left;
+                background: #FAFBFC;
+
+                .addProductButton {
+                    float: right;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 6px 20px 6px 15px;
+                    background: #E3CBB3;
+                    border-radius: 20px;
+                }
+            }
+
+            .filterContainer {
+                background: #FFFFFF;
+                width: 100%;
+                float: left;
+                padding: 10px 15px;
+                border-bottom: 1px solid #F2F3F5;
+                border-top: 1px solid #F2F3F5;
+            }
+
+            .productList {
+                background: #FFFFFF;
+                display: flex;
+                flex-direction: row;
+                flex: 100;
+                padding: 10px 15px;
+
+                .cardContainer {
+                    padding: 5px;
+
+                    .prodCard {
+                        background: #FAFBFC;
+                        border-radius: 10px;
+                        text-align: center;
+                        padding-bottom: 15px;
+                        position: relative;
+
+                        .productHeading {
+                            color: #6B7A99;
+                            font-family: 'Lato';
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+
+                        .cardContainer {
+                            span {
+                                text-align: center;
+                                margin: 0 auto;
+                            }
+                        }
+
+                        .imageContainer {
+                            position: absolute;
+                            right: 10px;
+                            top: 10px;
+                            z-index: 99;
+                            display: flex;
+                            flex-direction: column;
+
+                            button {
+                                background: none;
+                                padding: 0;
+                                border: none;
+                                box-shadow: none;
+                            }
+
+                            img {
+                                padding: 5px;
+                                margin-bottom: 5px;
+                                cursor: pointer;
+                            }
+
+                            button.editBtn img {
+                                width: 18px;
+                            }
+
+                            button.deleteBtn img {
+                                width: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+.addProductModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #ffffff;
+    box-shadow: 24;
+    padding: 10px;
+
+    .addProdHeading {
+        font-family: 'Lato';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: left;
+        letter-spacing: 0.02em;
+        color: #2F2F2F;
+        margin-bottom: 15px;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+
+
+        .formLabel {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 26px;
+            letter-spacing: 0.02em;
+            color: #2F2F2F;
+            margin-top: 15px;
+        }
+
+        .formLabel span {
+            width: 100%;
+            float: left;
+        }
+
+        .formLabel:first-child {
+            margin-top: 0;
+        }
+
+        input,
+        textarea,
+        #category {
+            border: 1px solid #ECECEC;
+            border-radius: 8px;
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #1C1C1C;
+            padding: 5px 10px;
+            min-height: 32px;
+        }
+
+        input:focus,
+        input:hover,
+        textarea:focus,
+        textarea:hover {
+            border: 1px solid #1976d2;
+        }
+
+        .MuiInput-underline:before,
+        .MuiInput-underline:after {
+            display: none;
+        }
+
+        textarea {
+            min-height: 80px;
+            max-height: 80px;
+        }
+
+        .MuiInput-underline:hover:not(.Mui-disabled):before,
+        .MuiInput-underline:hover:after {
+            border: none;
+        }
+
+        .css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+            border-width: 1px;
+        }
+
+        .submit {
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            color: #FFFFFF;
+            background: #000000;
+            text-transform: capitalize;
+
+        }
+    }
+}
