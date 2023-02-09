@@ -4,6 +4,7 @@ import Navbar from '../Navbar/Navbar';
 import ProductList from '../ProductList/ProductList';
 import ProductDetails from '../ProductDetails/ProductDetails';
 import ProductHome from '../ProductHome/ProductHome';
+import Footer from '../Footer/Footer';
 import HomeSelector from "./HomeSelector";
 import type {  AppDispatch } from "../../store";
 
@@ -17,6 +18,7 @@ export default function Home() {
       {displayView === "productHome" && <ProductHome />}
       {displayView === "productList" && <ProductList />}
       {displayView === "productDetails" && <ProductDetails />}
+      <Footer />
     </React.Fragment>
   )
 }

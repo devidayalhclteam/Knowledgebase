@@ -5,5 +5,8 @@ const getProductImage = (req: Request, res: Response) => {
     return ProductService.getProductImage(req, res);
 };
 
+const addProductImage = (req: Request, res: Response) => {
+    return ProductService.addProductImage(req, res);
+};
 
-export default { getProductImage,  };
+export default { getProductImage, addProductImage };

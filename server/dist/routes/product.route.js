@@ -7,5 +7,6 @@ const express_1 = __importDefault(require("express"));
 const controllers_1 = require("../controllers");
 const router = express_1.default.Router();
 router.route("/product")
-    .get(controllers_1.ProductController.getProductImage);
+    .get(controllers_1.ProductController.getProductImage)
+    .post(controllers_1.ProductController.addProductImage);
 exports.default = router;

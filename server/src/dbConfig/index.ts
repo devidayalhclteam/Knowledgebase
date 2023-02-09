@@ -1,5 +1,5 @@
 const { TableClient, AzureSASCredential } = require("@azure/data-tables");
-const { BlobServiceClient } = require("@azure/storage-blob");
+const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");
 
 const accName = "devgurukulstorage";
 const acckey = "DCbw972fOatlWpJIUTtZOJUcTAwGb4nPscJ+wEACS1QPMoDHbdcPgbwWDZCAr3y8smWOw30WIb48+AStSYrh6Q==";
@@ -24,5 +24,7 @@ const containerClient = blobServiceClient.getContainerClient(containerName);
 export const blobService = () => {
     return containerClient;
 }
-
-
+////////
+const sharedKeyCred = new StorageSharedKeyCredential(accName, acckey)
+const blobServClient1 = new BlobServiceClient(`https://${accName}.blob.core.windows.net`, sharedKeyCred)
+export const containerClient1 = blobServClient1.getContainerClient(containerName)

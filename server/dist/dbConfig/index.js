@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.blobService = exports.clientWithSAS = void 0;
+exports.containerClient1 = exports.blobService = exports.clientWithSAS = void 0;
 const { TableClient, AzureSASCredential } = require("@azure/data-tables");
-const { BlobServiceClient } = require("@azure/storage-blob");
+const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");
 const accName = "devgurukulstorage";
 const acckey = "DCbw972fOatlWpJIUTtZOJUcTAwGb4nPscJ+wEACS1QPMoDHbdcPgbwWDZCAr3y8smWOw30WIb48+AStSYrh6Q==";
 const tableName = "categories";
@@ -20,3 +20,7 @@ const blobService = () => {
     return containerClient;
 };
 exports.blobService = blobService;
+////////
+const sharedKeyCred = new StorageSharedKeyCredential(accName, acckey);
+const blobServClient1 = new BlobServiceClient(`https://${accName}.blob.core.windows.net`, sharedKeyCred);
+exports.containerClient1 = blobServClient1.getContainerClient(containerName);
