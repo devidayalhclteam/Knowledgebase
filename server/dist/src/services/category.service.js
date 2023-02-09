@@ -18,12 +18,12 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../constants");
 const dbConfig_1 = require("../dbConfig");
-const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, e_1, _b, _c;
     try {
         let data = [];
         try {
-            for (var _d = true, _e = __asyncValues((0, dbConfig_1.clientWithSAS)("products").listEntities()), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
+            for (var _d = true, _e = __asyncValues(dbConfig_1.clientWithSAS.listEntities()), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
                 _c = _f.value;
                 _d = false;
                 try {
@@ -48,24 +48,26 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-const postProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = yield (0, dbConfig_1.clientWithSAS)("products").createEntity(req.body);
-        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+        // const data = await clientWithSAS("categories").createEntity(req.body);
+        // res.status(200).send({ status: Status.SUCCESS, data });
     }
     catch (error) {
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log("req.body", req.body);
-        const rowKey = req.body.rowKey; //req.body
-        const data = yield (0, dbConfig_1.clientWithSAS)("products").deleteEntity("product", rowKey);
-        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+        // const rowKey = "a4319198-507b-4dc1-ac3c-121013925993"     
+        // const data = await clientWithSAS("categories").deleteEntity(
+        //     "category",
+        //     rowKey
+        // );
+        // res.status(200).send({ status: Status.SUCCESS, data });
     }
     catch (error) {
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-exports.default = { getProducts, postProducts, deleteProduct };
+exports.default = { getCategories, postCategory, deleteCategory, };
