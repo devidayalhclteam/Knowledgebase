@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const fileUpload = require('express-fileupload');
 const category_route_1 = __importDefault(require("./routes/category.route"));
+const products_route_1 = __importDefault(require("./routes/products.route"));
 const product_route_1 = __importDefault(require("./routes/product.route"));
 const app = (0, express_1.default)();
 const port = 5000;
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 });
 app.use("/api/table/category", category_route_1.default);
 app.use("/api/blob/product", product_route_1.default);
+app.use("/api/products", products_route_1.default);
 /** Error handling */
 app.use((req, res) => {
     const error = new Error('not found');
