@@ -4,6 +4,7 @@ const Home = React.lazy(() => import("./pages/Home/Home"));
 const AboutUs = React.lazy(() => import("./pages/AboutUs/AboutUs"));
 const Forum = React.lazy(() => import("./pages/Forum/Forum"));
 const Blogs = React.lazy(() => import("./pages/Blogs/Blogs"));
+const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 
 interface Route {
   index?: boolean;
@@ -28,6 +29,10 @@ const AppRoutes: Route[] = [
   {
     path: "/blogs",
     element: <Blogs />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />
   },
 
 ];

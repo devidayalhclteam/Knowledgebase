@@ -5,7 +5,7 @@ import "./ProductList.scss";
 export default function ProductList() {
   return (
     <div className="productListContainer">
-     product list
+      product list
     </div>
   )
 }
