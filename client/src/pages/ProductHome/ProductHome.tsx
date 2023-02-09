@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { Container, Box, Grid, Typography, Button, Paper, Card, CardContent, CardActions } from '@material-ui/core';
-import Carousel from 'react-material-ui-carousel'
 import { useSelector, useDispatch } from "react-redux";
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import { getProductImages } from "./ProductHomeSlice";
 import productImagesSelector from "./ProductHomeSelector";
 import type { AppDispatch } from "../../store";
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import "./ProductHome.scss";
 
 export default function ProductHome() {
