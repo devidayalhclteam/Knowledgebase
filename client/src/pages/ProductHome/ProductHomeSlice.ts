@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { blobService } from "../../dbConfig"
 
 export interface ProductHome {
     isLoading: boolean,
@@ -8,18 +9,22 @@ export interface ProductHome {
 
 const initialState: ProductHome = {
     isLoading: false,
-    productImagesResponse: []
+    productImagesResponse: [],
 };
 
 export const getProductImages = createAsyncThunk(
     "home/getProductImages",
     async () => {
+        let data = [];
+        const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/";
+
         try {
-            const response = await axios.get("/api/blob/product/product");
-            return response.data;
-        } catch (error) {
-            console.log(error);
-            return error;
+            for await (let blob of blobService.listBlobsFlat({ prefix: "productImage/" })) {
+                data.push(`${baseUrl}${blob.name}`);
+            }
+            return { status: 'success', data }
+        } catch (error: any) {
+            return { status: 'error', error }
         }
     }
 );

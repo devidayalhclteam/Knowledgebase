@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const fileUpload = require('express-fileupload');
 const category_route_1 = __importDefault(require("./routes/category.route"));
 const products_route_1 = __importDefault(require("./routes/products.route"));
-const product_route_1 = __importDefault(require("./routes/product.route"));
 const app = (0, express_1.default)();
 const port = 5000;
 app.use(express_1.default.json());
@@ -16,7 +15,6 @@ app.get('/', (req, res) => {
     res.send('Hello, this is PWD api endpoint');
 });
 app.use("/api/table/category", category_route_1.default);
-app.use("/api/blob/product", product_route_1.default);
 app.use("/api/products", products_route_1.default);
 /** Error handling */
 app.use((req, res) => {

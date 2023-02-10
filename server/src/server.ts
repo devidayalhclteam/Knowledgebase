@@ -2,7 +2,6 @@ import express, { Express, Request, Response, } from 'express';
 const fileUpload = require('express-fileupload');
 import categoryRoute from "./routes/category.route";
 import productsRoute from "./routes/products.route";
-import productImageRoute from "./routes/product.route";
 
 const app: Express = express();
 const port = 5000;
@@ -15,7 +14,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use("/api/table/category", categoryRoute);
-app.use("/api/blob/product", productImageRoute);
 
 app.use("/api/products", productsRoute);
 

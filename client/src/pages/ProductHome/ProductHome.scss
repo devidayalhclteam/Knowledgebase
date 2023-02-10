@@ -101,7 +101,7 @@
 
                 .slick-prev:before,
                 .slick-next:before {
-                    color: #C4C4C4;
+                    color: #000000;
                 }
 
                 .slick-slide {
@@ -115,7 +115,7 @@
     .listedProductContainer {
         background: #413531;
         width: 100%;
-        height: 400px;
+        height: 450px;
 
         .listedProductGrid {
             justify-content: center;
@@ -163,6 +163,23 @@
                     //     background-color: #413531;
                     // }
 
+                }
+
+                .listedProductButton {
+                    font-family: 'Lato';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 17px;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: #FFFFFF;
+                    margin-top: 25px;
+                    padding: 10px;
+                }
+
+                .MuiButton-outlined {
+                    border: 1px solid #FFFFFF;
                 }
             }
         }
