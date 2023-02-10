@@ -16,10 +16,10 @@ export const getProductImages = createAsyncThunk(
     "home/getProductImages",
     async () => {
         let data = [];
-        const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/";
+        const baseUrl = "https://HCLknowledebase.azureedge.net/";
 
         try {
-            for await (let blob of blobService.listBlobsFlat({ prefix: "productImage/" })) {
+            for await (let blob of blobService.listBlobsFlat()) {
                 data.push(`${baseUrl}${blob.name}`);
             }
             return { status: 'success', data }
