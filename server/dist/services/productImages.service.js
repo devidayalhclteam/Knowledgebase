@@ -18,18 +18,17 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../constants");
 const dbConfig_1 = require("../dbConfig");
-const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/productImage/";
-const getProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProductImages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, e_1, _b, _c;
     try {
         let data = [];
         try {
-            for (var _d = true, _e = __asyncValues((0, dbConfig_1.blobService)().listBlobsFlat({ prefix: "productImage/" })), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
+            for (var _d = true, _e = __asyncValues((0, dbConfig_1.clientWithSAS)("productImages").listEntities()), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
                 _c = _f.value;
                 _d = false;
                 try {
-                    const blob = _c;
-                    data.push(`${baseUrl}${blob.name}`);
+                    const entity = _c;
+                    data.push(entity);
                 }
                 finally {
                     _d = true;
@@ -49,19 +48,4 @@ const getProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-const addProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        console.log(req.files.file);
-        if (!req.files) {
-            res.status(400).send({ status: constants_1.Status.ERROR, error: "No file uploaded" });
-        }
-        let file = req.files.file;
-        const blockBlobClient = dbConfig_1.containerClient1.getBlockBlobClient(file.name);
-        yield blockBlobClient.upload(file, file.size);
-        res.status(200).send({ status: constants_1.Status.SUCCESS, });
-    }
-    catch (error) {
-        res.status(500).send({ status: constants_1.Status.ERROR, error });
-    }
-});
-exports.default = { getProductImage, addProductImage };
+exports.default = { getProductImages };

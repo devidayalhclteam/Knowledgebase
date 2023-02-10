@@ -1,0 +1,23 @@
+.footerGrid {
+    background-color: #121212;
+    height: 56px;
+    display: flex;
+    align-items: center;
+
+    .footerGridItem {
+
+        .footerText {
+            justify-content: center;
+            font-family: 'Spartan';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 18px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+        }
+    }
+}

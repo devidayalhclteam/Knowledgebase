@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import SearchBarSlice from "./pages/SearchBar/SearchBarSlice";
 import HomeSlice from "./pages/Home/HomeSlice";
+import ProductHomeSlice from "./pages/ProductHome/ProductHomeSlice";
 import DashboardSlice from "./pages/Dashboard/DashboardSlice";
 
 const homeCombineReducers = combineReducers({
   searchBar: SearchBarSlice,
   home: HomeSlice,
+  productHome: ProductHomeSlice
 });
 
 const dashboardReducers = combineReducers({
