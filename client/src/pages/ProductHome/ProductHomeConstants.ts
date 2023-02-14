@@ -35,8 +35,52 @@ const listedProductSettings = {
     centerMode: true,
 }
 
+const blogs = [
+    {
+        name: "tolong letak gamber",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet , Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet , Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber1",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    },
+    {
+        name: "tolong letak gamber2",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+        imageUrl: ""
+    }
+]
+
 export {
     productHomeSettings,
     topProductSettings,
     listedProductSettings,
+    blogs
 };

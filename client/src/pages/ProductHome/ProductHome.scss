@@ -5,11 +5,13 @@
     .productHomeContainer {
         background: #EEDDCC;
         width: 100%;
-        height: 400px;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
 
         .productHomeCarousel {
             width: 100%;
-            position: relative;
 
             .MuiPaper-elevation1 {
                 box-shadow: none;
@@ -24,6 +26,9 @@
             }
 
             .productHomeGrid {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -62,6 +67,11 @@
                     text-transform: uppercase;
                     color: #FFFFFF;
                 }
+
+                .productHomeImage {
+                    width: 250px;
+                    height: 200px;
+                }
             }
 
         }
@@ -69,7 +79,11 @@
 
     .topProductContainer {
         width: 100%;
-        height: 400px;
+        min-height: 500px;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
 
         .topProductGrid {
             justify-content: center;
@@ -85,6 +99,16 @@
                 text-transform: capitalize;
                 color: #34251F;
             }
+
+            .topProductSubText {
+                font-family: 'Lato';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                text-align: center;
+                color: #34251F;
+                margin: 10px 0;
+            }
         }
 
         .topProductCarouselGrid {
@@ -95,8 +119,44 @@
                 width: 80%;
 
                 .topProductCard {
-                    height: 250px;
+                    height: 350px;
                     background: #C4C4C4;
+                    display: flex;
+                    flex-direction: column !important;
+
+                    .topProductCardContent {
+                        justify-content: center;
+                        background: #C4C4C4;
+
+                        .topProductImage {
+                            height: 250px;
+                        }
+                    }
+
+                    .topProductCardActions {
+                        justify-content: center;
+                        flex-direction: column;
+
+                        .topProductName {
+                            background: #FFFFFF;
+                            padding: 10px 30px;
+                            width: 300px;
+                            border-radius: 0;
+
+                            .topProductText {
+                                font-family: 'Lato';
+                                font-style: normal;
+                                font-weight: 900;
+                                font-size: 18px;
+                                text-align: center;
+                                text-transform: uppercase;
+                                color: #34251F;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                    }
                 }
 
                 .slick-prev:before,
@@ -115,13 +175,16 @@
     .listedProductContainer {
         background: #413531;
         width: 100%;
-        height: 450px;
+        min-height: 500px;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
 
         .listedProductGrid {
             justify-content: center;
             align-items: center;
             padding: 20px 40px;
-
 
             .listedProductGridItem {
                 padding: 0 10px;
@@ -149,20 +212,39 @@
                 .listedProductCarousel {
 
                     .listedProductCard {
-                        height: 250px;
-                        background: #C4C4C4;
+                        height: 350px;
+                        background: #FFFFFF;
+                        display: flex;
+                        flex-direction: column !important;
+
+                        .listedProductCardContent {
+                            justify-content: center;
+                            background: #C4C4C4;
+
+                            .listedProductImage {
+                                height: 200px;
+                            }
+                        }
+
+                        .listedProductCardActions {
+                            justify-content: center;
+                            flex-direction: column;
+
+                            .listedProductName {
+                                font-family: 'Frank Ruhl Libre';
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 18px;
+                                line-height: 23px;
+                                color: #34251F;
+                                margin-top: 14px;
+                            }
+                        }
                     }
 
                     .slick-slide {
                         padding: 0 10px;
                     }
-
-                    // .slick-dots li button:before {
-                    //     width: 13px;
-                    //     height: 13px;
-                    //     background-color: #413531;
-                    // }
-
                 }
 
                 .listedProductButton {
@@ -180,6 +262,105 @@
 
                 .MuiButton-outlined {
                     border: 1px solid #FFFFFF;
+                }
+            }
+        }
+    }
+
+    .blogContainer {
+        width: 100%;
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+
+        .blogTileGrid {
+            padding: 30px 80px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .blogTileGridItem {
+                padding: 0 10px;
+                justify-self: flex-start;
+
+
+                .blogTitle {
+                    font-family: 'Spartan';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 22px;
+                    line-height: 25px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    color: #121212;
+                    text-align: center;
+                }
+            }
+
+            .blogLinkGridItem {
+                padding: 0 10px;
+                justify-self: flex-end;
+
+                .blogLink {
+                    font-family: 'Spartan';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 13px;
+                    letter-spacing: 0.06em;
+                    color: #121212;
+                    text-align: right;
+                    float: right;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .blogGrid {
+            justify-content: center;
+            padding: 30px 40px;
+
+            .blogGridItem {
+                width: 300px;
+                padding: 10px;
+
+                .blogCard {
+                    height: 320px;
+
+                    .blogCardContent {
+                        height: 180px;
+
+                        .blogImage {}
+                    }
+
+                    .blogCardActions {
+                        flex-direction: column;
+
+                        .blogName {
+                            font-family: 'Spartan';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 14px;
+                            letter-spacing: 0.06em;
+                            text-transform: uppercase;
+                            color: #121212;
+                            white-space: wrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        .blogDesc {
+                            font-family: 'Spartan';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            color: #121212;
+                            white-space: wrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
                 }
             }
         }
