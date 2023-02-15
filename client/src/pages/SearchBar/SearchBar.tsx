@@ -20,6 +20,7 @@ export default function SearchBar() {
   return (
     <Box sx={{ minWidth: 120 }} className='searchBarBox'>
       <Input
+      aria-label='Search'
         className="searchBarText"
         placeholder="Search..."
         startAdornment={
@@ -31,15 +32,16 @@ export default function SearchBar() {
       <Select
         className='searchBarSelect'
         label="All Category"
-
       >
         {(categories || []).map((category: any) => {
-          return (<MenuItem key={category.rowKey} value={category.id} className='searchBarMenu'>
-            {category.name}
-          </MenuItem>)
+          return (
+            <MenuItem key={category.rowKey} value={category.id}
+              className='searchBarMenu' tabIndex="0">
+              {category.name}
+            </MenuItem>)
         })}
       </Select>
-      <Button variant='contained' className='searchBarButton'>Search</Button>
+      <Button variant='contained' className='searchBarButton' aria-label='Search' >Search</Button>
     </Box>
 
   )

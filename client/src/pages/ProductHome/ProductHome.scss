@@ -4,11 +4,8 @@
 
     .productHomeContainer {
         background: #EEDDCC;
-        width: 100%;
-        min-height: 400px;
+        height: 450px;
         display: flex;
-        flex-direction: column;
-        height: fit-content;
 
         .productHomeCarousel {
             width: 100%;
@@ -28,6 +25,7 @@
             .productHomeGrid {
                 width: 100%;
                 display: flex;
+                height: fit-content;
                 align-items: center;
                 justify-content: center;
                 flex-direction: row;
@@ -360,6 +358,20 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .scrollContainer {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 10px;
+
+        .scrollButton {
+            background: #34251F;
+
+            .scrollIcon {
+                color: #FFFFFF;
             }
         }
     }

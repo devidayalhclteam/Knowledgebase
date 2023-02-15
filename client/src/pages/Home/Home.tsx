@@ -12,6 +12,8 @@ export default function Home() {
   const { displayView } = useSelector(HomeSelector);
   const dispatch = useDispatch<AppDispatch>();
 
+  console.log("🚀 ~ file: Home.tsx:13 ~ Home ~ displayView", displayView)
+
   return (
     <React.Fragment>
       {/* <Navbar /> */}

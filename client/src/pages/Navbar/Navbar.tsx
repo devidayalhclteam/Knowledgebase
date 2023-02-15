@@ -11,26 +11,24 @@ export default function Navbar() {
 
     return (
         <AppBar position="static" color="transparent" className='appBar' >
-            <Container maxWidth="xl">
-                <Toolbar >
-                    <Grid container spacing={2}>
-                        <Grid item xs={4} md={4} sm={4} className="nav-link">
-                            {NavbarList.map(({ name, path }) => {
-                                return (
-                                    <MenuItem key={name} onClick={() => navigate(path)}>
-                                        <Typography className="navLink">
-                                            {name}
-                                        </Typography>
-                                    </MenuItem>)
-                            })}
-                        </Grid>
-                        <Grid item xs={6} md={6} sm={6} className="search-bar">
-                            <SearchBar />
-                        </Grid>
-                        <Grid item xs={2} md={2} sm={2} className="profile"></Grid>
+            <Toolbar >
+                <Grid container spacing={2}>
+                    <Grid item xs={4} md={4} sm={4} className="nav-link">
+                        {NavbarList.map(({ name, path }) => {
+                            return (
+                                <MenuItem key={name} onClick={() => navigate(path)} tabIndex="0" arial-label={name}>
+                                    <Typography className="navLink">
+                                        {name}
+                                    </Typography>
+                                </MenuItem>)
+                        })}
                     </Grid>
-                </Toolbar>
-            </Container>
+                    <Grid item xs={6} md={6} sm={6} className="search-bar">
+                        <SearchBar />
+                    </Grid>
+                    <Grid item xs={2} md={2} sm={2} className="profile"></Grid>
+                </Grid>
+            </Toolbar>
         </AppBar>
     )
 }
