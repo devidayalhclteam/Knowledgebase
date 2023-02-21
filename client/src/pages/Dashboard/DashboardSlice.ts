@@ -164,7 +164,6 @@ const productsSlice = createSlice({
             return { ...state, isLoading: true };
         })
         builder.addCase(getProducts.fulfilled, (state: Products, { payload }) => {
-            console.log("payload", payload);
             return { ...state, productResponse: payload, isLoading: false };
         })
         builder.addCase(getProducts.rejected, (state: Products) => {

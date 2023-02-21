@@ -5,11 +5,13 @@ import { blobService } from "../../dbConfig"
 export interface ProductHome {
     isLoading: boolean,
     productImagesResponse: []
+    imagesTableResponse: []
 }
 
 const initialState: ProductHome = {
     isLoading: false,
     productImagesResponse: [],
+    imagesTableResponse: []
 };
 
 export const getProductImages = createAsyncThunk(
@@ -29,6 +31,17 @@ export const getProductImages = createAsyncThunk(
     }
 );
 
+export const getImagesTable = createAsyncThunk("home/getImagesTable",
+    async () => {
+        try {
+            const response = await axios.get("/api/table/productImages/productImages");
+            return response.data;
+        } catch (error) {
+            return error;
+        }
+    }
+);
+
 const productImagesSlice = createSlice({
     name: "productImages",
     initialState,
@@ -41,6 +54,16 @@ const productImagesSlice = createSlice({
             return { ...state, productImagesResponse: payload.data, isLoading: false };
         })
         builder.addCase(getProductImages.rejected, (state: any) => {
+            return { ...state, isLoading: false };
+        })
+
+        builder.addCase(getImagesTable.pending, (state: any) => {
+            return { ...state, isLoading: true };
+        })
+        builder.addCase(getImagesTable.fulfilled, (state: any, { payload }) => {
+            return { ...state, imagesTableResponse: payload.data, isLoading: false };
+        })
+        builder.addCase(getImagesTable.rejected, (state: any) => {
             return { ...state, isLoading: false };
         })
     }

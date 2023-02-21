@@ -13,6 +13,7 @@ type Prod = {
     isActive: boolean;
     timestamp: string;
     etag: string;
+    imageUrl1: string;
 }
 
 const productImagesState = (state: any) => state.home.productHome;
@@ -20,7 +21,17 @@ const dashboardSelect = (state: any) => state.dashboard.dashboard;
 
 const productHomeSelector = createSelector(productImagesState, dashboardSelect,
     (state: any, dashboardState: any) => {
-        const products: Prod[] = dashboardState.productResponse.data || [];
+
+        const products: Prod[] = dashboardState.productResponse.data?.map((productA: any) => {
+            let productB = state.imagesTableResponse.find((x: any) => x.productId === productA.productId);
+
+            if (productB) {
+                const { imageUrl1 } = productB;
+                return { ...productA, imageUrl1 }
+            } else {
+                return { ...productA };
+            }
+        }) || [];
 
         const categories = [...new Set(products.map((product: Prod) => product.categoryId))];
 
@@ -30,10 +41,9 @@ const productHomeSelector = createSelector(productImagesState, dashboardSelect,
                 (prev: Prod, current: Prod) => prev.rating > current.rating ? prev : current);
             return topRated;
         })
-        
 
         const newListedProducts = products.slice().sort((productA: Prod, productB: Prod) =>
-            new Date(productB.timestamp).getTime() - new Date(productA.timestamp).getTime()).slice(0, 5);
+            new Date(productB.timestamp).getTime() - new Date(productA.timestamp).getTime()).slice(0, 10);
 
         return {
             // isLoading: state.isLoading,
@@ -42,6 +52,7 @@ const productHomeSelector = createSelector(productImagesState, dashboardSelect,
             topRatedProducts,
             newListedProducts,
             isLoading: dashboardState.isLoading,
+            imagesTableResponse: state.imagesTableResponse,
         }
     }
 )
