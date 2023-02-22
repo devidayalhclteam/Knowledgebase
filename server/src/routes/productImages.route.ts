@@ -8,5 +8,4 @@ router.route("/productImages")
   .post(productImagesController.postProductImage)
   .delete(productImagesController.deleteProductImage);
 
-
 export default router;

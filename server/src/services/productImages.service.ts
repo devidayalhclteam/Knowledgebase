@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Status } from "../constants";
-import { clientWithSAS, blobService } from "../dbConfig"
+import { clientWithSAS } from "../dbConfig"
 import { Category } from "../models";
 
 const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/productImage/"
