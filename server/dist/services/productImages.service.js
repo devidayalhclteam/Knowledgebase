@@ -21,15 +21,18 @@ const dbConfig_1 = require("../dbConfig");
 const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/productImage/";
 const getProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, e_1, _b, _c;
+    console.log("req", req);
+    let files = req;
+    console.log("files", files);
     try {
         let data = [];
         try {
-            for (var _d = true, _e = __asyncValues((0, dbConfig_1.blobService)().listBlobsFlat({ prefix: "productImage/" })), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
+            for (var _d = true, _e = __asyncValues((0, dbConfig_1.clientWithSAS)("productImages").listEntities()), _f; _f = yield _e.next(), _a = _f.done, !_a;) {
                 _c = _f.value;
                 _d = false;
                 try {
-                    const blob = _c;
-                    data.push(`${baseUrl}${blob.name}`);
+                    const entity = _c;
+                    data.push(entity);
                 }
                 finally {
                     _d = true;
@@ -54,12 +57,13 @@ const postProductImage = (req, res) => __awaiter(void 0, void 0, void 0, functio
         console.log("req", req);
         let files = req;
         console.log("files", files);
-        // const blockBlobClient = blobService().getBlockBlobClient(files[0].name);
-        // await blockBlobClient.uploadBrowserData(files[0], {
-        //     onProgress: (ev: any) => {
-        //         console.log(`you have upload ${ev.loadedBytes} bytes`);
-        //     }
-        // });
+        try {
+            const data = yield (0, dbConfig_1.clientWithSAS)("productImages").createEntity(req.body);
+            res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+        }
+        catch (error) {
+            res.status(500).send({ status: constants_1.Status.ERROR, error });
+        }
     }
     catch (error) {
         res.status(500).send({ status: constants_1.Status.ERROR, error });
@@ -67,10 +71,10 @@ const postProductImage = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 const deleteProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log("req", req);
         console.log("req.body", req.body);
-        yield (0, dbConfig_1.blobService)().getBlockBlobClient("testFile.png").delete();
-        console.log(`you have deleted testFile.png  bytes`);
+        const rowKey = req.body.rowKey; //req.body
+        const data = yield (0, dbConfig_1.clientWithSAS)("productImages").deleteEntity("productImage", rowKey);
+        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
     }
     catch (error) {
         res.status(500).send({ status: constants_1.Status.ERROR, error });

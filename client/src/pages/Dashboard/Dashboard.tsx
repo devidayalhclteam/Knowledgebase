@@ -1,40 +1,42 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { BlobServiceClient } from '@azure/storage-blob';
 import {
-    getProducts, addProducts, deleteProduct, setProductKey, setProductFormData,
-    setProductRating, toggleAddProductModal, resetProductForm
+    getProducts, setStateValue, deleteProduct, deleteImage, setProductKey, toggleAddProductModal, resetProductForm, getProductImages, deleteProductImages
 } from "./DashboardSlice";
 import dashboardSelector from "./DashboardSelector";
-import type { RootState, AppDispatch } from "../../store";
+import type { AppDispatch } from "../../store";
 import {
-    Container, Box, Grid, Typography, Button, Modal, Backdrop, Fade, TextField,
-    MenuItem, InputLabel
+    Container, Grid, Typography, Button, Modal, Backdrop, Fade, TextField, Input,
 } from '@material-ui/core';
-// import uuid from "uuid";
 import { v4 as uuidv4 } from "uuid";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import Rating from '@mui/material/Rating';
+import AddProduct from "./AddProduct";
 import Edit from "../../images/edit.png";
 import Delete from "../../images/delete.png";
+import ProductsImage from "../../images/products.png";
+import FilterImage from "../../images/filter.png";
+import SearchImage from "../../images/search.png";
 import "./Dashboard.scss";
-import { log } from 'console';
+import { displayAlert } from '../../components/Alert/AlertSlice';
 
 export default function Dashboard() {
-    const { products, productForm, isModalOpen } = useSelector(dashboardSelector);
-    const { productName, categoryId, description, externalProductLink, rating, productId, rowKey } = productForm;
-    console.log("productForm", productForm);
+    const { products, productImages, isModalOpen, selectedProducts, currentIndex, isDeleteProductSuccessful } = useSelector(dashboardSelector);
     const dispatch = useDispatch<AppDispatch>();
-
-    const [value, setValue] = React.useState<any | null>(2);
 
     useEffect(() => {
         dispatch(getProducts());
+        dispatch(getProductImages());
     }, []);
+
+    useEffect(() => {
+        getSelectedProducts();
+    }, [products, currentIndex]);
 
     useEffect(() => {
         let productKey: any = uuidv4();
@@ -43,43 +45,62 @@ export default function Dashboard() {
             dispatch(resetProductForm());
     }, [isModalOpen]);
 
-    const handleModal = (data: any) => {
+    useEffect(() => {
+        console.log("inside isDeleteProductSuccessful", isDeleteProductSuccessful);
+        if (isDeleteProductSuccessful === 'success') {
+            console.log("Inside isDeleteProductSuccessful");
+            dispatch(
+                displayAlert({
+                    severity: "success",
+                    title: "Success",
+                    message: "Product deleted successfully"
+                })
+            );
+            dispatch(getProducts());
+        }
+
+    }, [isDeleteProductSuccessful]);
+
+    const getSelectedProducts = () => {
+        let selectedProducts = !!products && products.slice(0, currentIndex * 12);
+        dispatch(setStateValue(["selectedProducts", selectedProducts]));
+    }
+
+    const getImage = (prodId: any) => {
+        let imageData = !!productImages && productImages.filter((img: any) => {
+            if (img.productId === prodId) {
+                return img.imageUrl1
+            }
+        })
+
+        let imageUrl = !!imageData && imageData[0]?.imageUrl1;
+        return !!imageUrl && imageUrl;
+    }
+
+    const handleModal = (data: boolean) => {
         dispatch(toggleAddProductModal(data))
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
-        dispatch(setProductFormData(e))
-    }
-
-    const handleRating = (e: any) => {
-        console.log(e.target);
-        console.log(e.target.value);
-        dispatch(setProductRating(e))
-    }
-
-    const isFormValid = () => {
-        return true;
-    }
-
-    const handleSubmit = () => {
-        // if (isFormValid()) {
-        //     // let productKey: any = uuidv4();
-        //     // dispatch(setProductKey(productKey))
-        //     // dispatch(addProducts(productForm));
-        // }
-
-        // let productKey: any = uuidv4();
-        // dispatch(setProductKey(productKey));
-        dispatch(addProducts(productForm));
-    }
-
     const handleDelete = (rowKey: any) => {
-        console.log("rowKey", rowKey);
-        let deletePayload = {
-            "rowKey": rowKey,
-            "partitionKey": "product"
-        }
         dispatch(deleteProduct(rowKey));
+        let productTableRowKey = productImages.filter((data: any) => data.productId === rowKey);
+        let imageName = (productTableRowKey[0].imageUrl1).split('/');
+        console.log(imageName.slice(-1));
+        dispatch(deleteProductImages(productTableRowKey[0].rowKey))
+        dispatch(deleteImage(imageName.slice(-1)));
+    }
+
+    const loadMore = () => {
+        dispatch(setStateValue(["currentIndex", currentIndex + 1]));
+    }
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let searchValue = e.target.value;
+        let searchProduct = !!products && products.filter((product: any) => {
+            return product.productName.toLowerCase().match(new RegExp(searchValue, 'g'))
+        })
+        !!searchProduct && dispatch(setStateValue(["selectedProducts", searchProduct]));
+        !searchValue.length && getSelectedProducts();
     }
 
     return (
@@ -88,21 +109,33 @@ export default function Dashboard() {
                 <Container className='dashboardContainer'>
                     <Grid item xs={12} md={9} sm={9} className='dashboardLeftContainer'>
                         <Grid item xs={12} md={12} sm={12} className='topContainer'>
+                            <div className='productsLabel'>
+                                <img src={ProductsImage} />
+                                <span>Products</span>
+                            </div>
                             <Button variant="contained" className="addProductButton" onClick={() => handleModal(true)} >
                                 <ControlPointIcon /> <span> Add Product</span>
                             </Button>
                         </Grid>
                         <Grid item xs={12} md={12} sm={12} className='filterContainer'>
                             <Button variant="contained" className="addProductButton" >
-                                <span> Filter</span>
+                                <img src={FilterImage} /> <span>Filter</span>
                             </Button>
+                            <div className='filterSearch'>
+                                <img src={SearchImage} />
+                                <Input
+                                    className="searchBarText"
+                                    placeholder="Search..."
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e)}
+                                />
+                            </div>
+
                         </Grid>
                         <Grid item xs={12} md={12} sm={12} className='productList' spacing={2}>
                             {
-                                !!products && products.map((product: any, index: number) => {
-                                    console.log("product", product);
-                                    console.log("product", product.rowKey);
+                                !!selectedProducts && selectedProducts.map((product: any, index: number) => {
                                     let rowkey = product.rowKey;
+                                    let imageUrl = product?.productId && getImage(product.productId);
                                     return (
                                         <Grid item xs={3} md={3} sm={3} className="cardContainer">
                                             <Card className="prodCard" key={index}>
@@ -113,8 +146,8 @@ export default function Dashboard() {
                                                     <Button variant="contained" className='deleteBtn' onClick={() => handleDelete(rowkey)} >
                                                         <img src={Delete} alt="Delete" />
                                                     </Button>
-
                                                 </div>
+                                                <div className='productImage'>{!!imageUrl && <img src={imageUrl} ></img>}</div>
                                                 <CardMedia
                                                     sx={{ height: 140 }}
                                                     image="/static/images/cards/contemplative-reptile.jpg"
@@ -137,10 +170,13 @@ export default function Dashboard() {
                                 })
                             }
                         </Grid>
+                        <Grid item xs={12} md={12} sm={12} className="loadMore">
+                            <Button className='loadMoreBtn' onClick={() => loadMore()}>Load More</Button>
+                        </Grid>
                     </Grid>
                     <Grid item xs={12} md={3} sm={3} className="dashboardRightContainer"></Grid>
                 </Container>
-            </Grid>
+            </Grid >
 
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -154,85 +190,8 @@ export default function Dashboard() {
                 }}
             >
                 <Fade in={isModalOpen}>
-                    <Grid className='addProductModal'>
-                        <Typography className='addProdHeading'>Add Product*</Typography>
-                        <Box component="form">
-                            <Grid item xs={8} md={8} sm={8}>
-                                <InputLabel className="formLabel">Category</InputLabel>
-                                <Select
-                                    required
-                                    fullWidth
-                                    labelId="demo-simple-select-label"
-                                    id="category"
-                                    value={categoryId}
-                                    name="categoryId"
-                                    onChange={(e: SelectChangeEvent) => handleChange(e)}
-                                >
-                                    <MenuItem value="3418b48e-d2d7-4177-8d1a-808320d74e7a">Mental Health</MenuItem>
-                                    <MenuItem value="5cafcfa3-9903-4b7f-ac3e-c133908406f8">Vision</MenuItem>
-                                    <MenuItem value="a4319198-507b-4dc1-ac3c-121013925993">Neurodiversity</MenuItem>
-                                    <MenuItem value="c1119198-300w-4dc1-ac3c-121013925111">Learning</MenuItem>
-                                    <MenuItem value="c37a5a96-95b2-4c94-a6a1-f0b798f1ab9e">Mobility</MenuItem>
-                                    <MenuItem value="d5019198-507b-4dc1-ac3c-121013925992">Hearing</MenuItem>
-                                </Select>
-
-                                <InputLabel className="formLabel">Product Name</InputLabel>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="standard-required"
-                                    defaultValue="Hello World"
-                                    variant="standard"
-                                    name="productName"
-                                    value={productName}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                                />
-
-
-                                <InputLabel className="formLabel">Describe the Product</InputLabel>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="description"
-                                    placeholder="Placeholder"
-                                    name="description"
-                                    value={description}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                                    multiline
-                                />
-
-                                <InputLabel className="formLabel">External Website Link</InputLabel>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="outlined-textarea"
-                                    placeholder="Placeholder"
-                                    name="externalProductLink"
-                                    value={externalProductLink}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                                />
-
-                                <InputLabel className="formLabel">
-                                    <span>Rate product</span>
-                                    <span>Your overall rating of this product</span>
-                                </InputLabel>
-                                <Rating
-                                    name="rating"
-                                    value={rating}
-                                    onChange={(e: any) => handleRating(e)}
-                                />
-                            </Grid>
-                            <Grid item xs={4} md={4} sm={4}>
-                                {/* <Button variant="contained" className="knowMore" >
-                                    <span> Know More</span>
-                                </Button> */}
-                                <Button variant="contained" className="submit" onClick={() => handleSubmit()} >
-                                    <span> Submit</span>
-                                </Button>
-                            </Grid>
-                        </Box>
-                    </Grid>
-                </Fade>
+                    <AddProduct />
+                </Fade >
             </Modal >
 
         </>

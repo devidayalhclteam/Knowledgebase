@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const controllers_1 = require("../controllers");
 const router = express_1.default.Router();
-router.route("/product")
-    .get(controllers_1.ProductController.getProductImage)
-    .post(controllers_1.ProductController.postProductImage)
-    .delete(controllers_1.ProductController.deleteProductImage);
+router.route("/productImages")
+    .get(controllers_1.productImagesController.getProductImage)
+    .post(controllers_1.productImagesController.postProductImage)
+    .delete(controllers_1.productImagesController.deleteProductImage);
 exports.default = router;
