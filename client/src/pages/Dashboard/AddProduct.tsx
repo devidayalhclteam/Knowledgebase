@@ -13,7 +13,7 @@ import "./Dashboard.scss";
 export default function AddProduct() {
     const dispatch = useDispatch<AppDispatch>();
     const [file, setFile] = useState<any>()
-    const { productForm, productImage, productImageTable, isDisabledSubmitBtn, isAddProductSuccessful, isDeleteProductSuccessful } = useSelector(dashboardSelector);
+    const { productForm, categories, productImage, productImageTable, isDisabledSubmitBtn, isAddProductSuccessful, isDeleteProductSuccessful } = useSelector(dashboardSelector);
     const { productName, categoryId, description, externalProductLink, rating } = productForm;
     const { imageFile } = productImage;
 
@@ -28,7 +28,7 @@ export default function AddProduct() {
             );
             dispatch(getProducts());
             dispatch(getProductImages());
-            dispatch(toggleAddProductModal(false))
+            dispatch(toggleAddProductModal(false));
         }
 
     }, [isAddProductSuccessful]);
@@ -79,12 +79,9 @@ export default function AddProduct() {
                             name="categoryId"
                             onChange={(e: SelectChangeEvent) => handleChange(e)}
                         >
-                            <MenuItem value="3418b48e-d2d7-4177-8d1a-808320d74e7a">Mental Health</MenuItem>
-                            <MenuItem value="5cafcfa3-9903-4b7f-ac3e-c133908406f8">Vision</MenuItem>
-                            <MenuItem value="a4319198-507b-4dc1-ac3c-121013925993">Neurodiversity</MenuItem>
-                            <MenuItem value="c1119198-300w-4dc1-ac3c-121013925111">Learning</MenuItem>
-                            <MenuItem value="c37a5a96-95b2-4c94-a6a1-f0b798f1ab9e">Mobility</MenuItem>
-                            <MenuItem value="d5019198-507b-4dc1-ac3c-121013925992">Hearing</MenuItem>
+                            {!!categories?.data  && categories.data.map((category: any) => {
+                                return <MenuItem value={category.id}>{category.name}</MenuItem>
+                            })}
                         </Select>
 
                         <InputLabel className="formLabel">Product Name</InputLabel>

@@ -17,6 +17,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
 
     return {
         products: state.productResponse.data,
+        categories: state.categoryResponse,
         productImage: state.productImage,
         currentIndex: state.currentIndex,
         selectedProducts: state.selectedProducts,

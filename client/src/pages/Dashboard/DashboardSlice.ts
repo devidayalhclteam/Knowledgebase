@@ -268,6 +268,19 @@ export const deleteImage = createAsyncThunk(
     }
 );
 
+export const getCategories = createAsyncThunk(
+    "home/getCategories",
+    async () => {
+        try {
+            const response = await axios.get("/api/table/category/category");
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return error;
+        }
+    }
+);
+
 // interface Products extends Request {    file: any;}
 
 const productsSlice = createSlice({
@@ -312,6 +325,15 @@ const productsSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder.addCase(getCategories.pending, (state: any) => {
+            return { ...state, isLoading: true };
+        })
+        builder.addCase(getCategories.fulfilled, (state: any, { payload }) => {
+            return { ...state, categoryResponse: payload, isLoading: false };
+        })
+        builder.addCase(getCategories.rejected, (state: any) => {
+            return { ...state, isLoading: false };
+        })
         builder.addCase(getProducts.pending, (state: Products) => {
             return { ...state, isLoading: true };
         })

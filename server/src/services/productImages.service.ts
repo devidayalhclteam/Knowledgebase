@@ -6,9 +6,7 @@ import { Category } from "../models";
 const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/productImage/"
 
 const getProductImage = async (req: Request, res: Response) => {
-    console.log("req", req);
     let files = req;
-    console.log("files", files);
     try {
         let data: any[] = [];
         for await (const entity of clientWithSAS("productImages").listEntities()) {
@@ -22,11 +20,6 @@ const getProductImage = async (req: Request, res: Response) => {
 
 const postProductImage = async (req: Request, res: Response) => {
     try {
-
-        console.log("req", req);
-        let files = req;
-        console.log("files", files);
-
         try {
             const data = await clientWithSAS("productImages").createEntity(req.body);
             res.status(200).send({ status: Status.SUCCESS, data });
@@ -41,7 +34,6 @@ const postProductImage = async (req: Request, res: Response) => {
 
 const deleteProductImage = async (req: Request, res: Response) => {
     try {
-        console.log("req.body", req.body);
         const rowKey = req.body.rowKey;      //req.body
 
         const data = await clientWithSAS("productImages").deleteEntity(

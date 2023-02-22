@@ -6,7 +6,6 @@ const getProducts = (req: Request, res: Response) => {
 };
 
 const postProducts = (req: Request, res: Response) => {
-    console.log("post");
     return ProductsService.postProducts(req, res);
 }
 
@@ -14,5 +13,4 @@ const deleteProduct = (req: Request, res: Response) => {
     return ProductsService.deleteProduct(req, res);
 }
 
-// export default { getProducts, postProducts, deleteProducts };
 export default { getProducts, postProducts, deleteProduct };

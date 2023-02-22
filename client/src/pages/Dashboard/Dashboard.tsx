@@ -24,6 +24,7 @@ import FilterImage from "../../images/filter.png";
 import SearchImage from "../../images/search.png";
 import "./Dashboard.scss";
 import { displayAlert } from '../../components/Alert/AlertSlice';
+import { getCategories } from '../SearchBar/SearchBarSlice';
 
 export default function Dashboard() {
     const { products, productImages, isModalOpen, selectedProducts, currentIndex, isDeleteProductSuccessful } = useSelector(dashboardSelector);
@@ -32,6 +33,7 @@ export default function Dashboard() {
     useEffect(() => {
         dispatch(getProducts());
         dispatch(getProductImages());
+        dispatch(getCategories());
     }, []);
 
     useEffect(() => {
