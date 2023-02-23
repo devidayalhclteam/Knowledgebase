@@ -2,9 +2,10 @@ import { createSelector } from "@reduxjs/toolkit";
 
 const categoriesState = (state: any) => state.home.searchBar;
 
-const categoriesSelector = createSelector(categoriesState, (state: any) => ({
+const searchBarSelector = createSelector(categoriesState, (state: any) => ({
     categories: state.categoryResponse.data,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    searchForm: state.searchForm
 }));
 
-export default categoriesSelector;
+export default searchBarSelector;

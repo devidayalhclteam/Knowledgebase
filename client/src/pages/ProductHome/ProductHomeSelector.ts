@@ -1,4 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
+import { blogs } from "./ProductHomeConstants";
 
 type Prod = {
     partitionKey: string;
@@ -45,6 +46,9 @@ const productHomeSelector = createSelector(productImagesState, dashboardSelect,
         const newListedProducts = products.slice().sort((productA: Prod, productB: Prod) =>
             new Date(productB.timestamp).getTime() - new Date(productA.timestamp).getTime()).slice(0, 10);
 
+        const blogsPrimary = !!blogs.length && blogs.slice(0, 3) || [];
+        const blogsSecondary = !!blogs.length && blogs.length > 3 && blogs.slice(3) || [];
+
         return {
             // isLoading: state.isLoading,
             productImages: state.productImagesResponse,
@@ -53,6 +57,8 @@ const productHomeSelector = createSelector(productImagesState, dashboardSelect,
             newListedProducts,
             isLoading: dashboardState.isLoading,
             imagesTableResponse: state.imagesTableResponse,
+            blogsPrimary,
+            blogsSecondary
         }
     }
 )

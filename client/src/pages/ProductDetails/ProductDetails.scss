@@ -1,0 +1,74 @@
+.productDetails {
+    width: 100%;
+
+    .productDetailsGrid {
+        justify-content: center;
+
+        .productDetailsGridItem {
+            padding: 20px;
+
+            .productDetailsName {
+                font-family: 'Public Sans';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 2.25rem;
+                line-height: 48px;
+                letter-spacing: -0.03em;
+                color: #000000;
+            }
+
+            .productDetailsLink {
+                background: #0D0D0D;
+                border: 1px solid #0D0D0D;
+                font-family: 'Public Sans';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 1rem;
+                line-height: 22px;
+                text-align: center;
+                letter-spacing: -0.4px;
+                color: #FFFFFF;
+                border-radius: 0;
+                padding: 14px 20px;
+                width: 200px;
+            }
+
+            .productDetailsDescGrid {
+                height: 250px;
+
+                .productDetailsDesc {
+                    font-family: 'Spartan';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 0.875rem;
+                    line-height: 22px;
+                    color: #121212;
+                }
+            }
+
+            .divider {
+                width: 100%;
+                border: 2px solid #E6E6E6;
+            }
+
+            .productDetailsRateGrid {
+                display: flex;
+                justify-content: center;
+
+                .productDetailsRate {
+                    width: 250px;
+                    padding: 14px 20px;
+                    border-radius: 0;
+                    font-family: 'Lato';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    line-height: 22px;
+                    text-align: center;
+                    letter-spacing: -0.4px;
+                    color: #0D0D0D;
+                }
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Typography, Button, Paper, Card, CardContent, CardActions, Link } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import Slider from 'react-slick';
-import { Rating, Fab } from '@mui/material';
+import { Rating, Fab, Box } from '@mui/material';
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { getProductImages, getImagesTable } from "./ProductHomeSlice";
 import { getProducts } from "../Dashboard/DashboardSlice";
@@ -14,11 +14,10 @@ import 'slick-carousel/slick/slick-theme.css'
 import "./ProductHome.scss";
 
 export default function ProductHome() {
-    const { products, topRatedProducts, newListedProducts } = useSelector(productHomeSelector);
+    const { products, topRatedProducts, newListedProducts, blogsPrimary, blogsSecondary } = useSelector(productHomeSelector);
+    // console.log("🚀 ~ file: ProductHome.tsx:18 ~ ProductHome ~ products:", products)
     const dispatch = useDispatch<AppDispatch>();
-    const [state, setState] = useState(false);
-
-    // console.log(" useSelector(productHomeSelector)", useSelector(productHomeSelector))
+    const [seeAll, setSeeAll] = useState(false);
 
     useEffect(() => {
         dispatch(getProductImages());
@@ -27,18 +26,18 @@ export default function ProductHome() {
     }, []);
 
     const handleSeeAll = () => {
-        setState(!state);
+        setSeeAll(!seeAll);
     }
 
     return (
-        <Grid className="productHome" >
+        <Box className="productHome" >
             <Grid container className="productHomeContainer">
                 <Slider {...productHomeSettings} className='productHomeCarousel'>
-                    {!!products.length && 
-                         products.map((product: any) => {
+                    {!!products.length &&
+                        products.map((product: any) => {
                             return (
                                 <Paper key={product.productId}>
-                                    <Grid container className='productHomeGrid'>
+                                    <Grid container spacing={2} className='productHomeGrid'>
                                         <Grid item xs={12} sm={5} md={5} >
                                             <Typography className="productHomeText">
                                                 Find the best Product for you
@@ -46,12 +45,12 @@ export default function ProductHome() {
                                             <Typography className="productHomeSubText">
                                                 {product.shortDescription}
                                             </Typography>
-                                            <Button variant="contained" className="productHomeButton"
+                                            <Button variant="contained" className="productHomeButton" tabIndex="0"
                                                 onClick={() => window.open(`${product.externalProductLink}`, "_blank")}>
                                                 Know More...
                                             </Button>
                                         </Grid>
-                                        <Grid item xs={12} sm={4} md={4}>
+                                        <Grid item xs={12} sm={3} md={3}>
                                             <img alt='heroImage' src={product.imageUrl1} className='productHomeImage' />
                                         </Grid>
                                     </Grid>
@@ -63,7 +62,7 @@ export default function ProductHome() {
 
             <Grid className="topProductContainer">
                 <Grid container className='topProductGrid'>
-                    <Grid item xs={12} sm={8} md={8} >
+                    <Grid item xs={12} sm={9} md={9} >
                         <Typography className="topProductText">
                             Top Products
                         </Typography>
@@ -72,27 +71,29 @@ export default function ProductHome() {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container className='topProductCarouselGrid'>
-                    <Slider {...topProductSettings} className='topProductCarousel'>
-                        {!!topRatedProducts.length
-                            && topRatedProducts.map((product: any) => {
-                                return (
-                                    <Card key={product.productId} className='topProductCard'>
-                                        <CardContent className='topProductCardContent'>
-                                            <img className='topProductImage'
-                                                src={product.imageUrl1} alt={product.productName} />
-                                        </CardContent>
-                                        <CardActions className='topProductCardActions'>
-                                            <Button variant='contained' size="medium" className='topProductName'>
-                                                <Typography className='topProductText'>
-                                                    {product.productName}
-                                                </Typography>
-                                            </Button>
-                                        </CardActions>
-                                    </Card>
-                                )
-                            })}
-                    </Slider>
+                <Grid container className="topProductCarouselGrid">
+                    <Grid item xs={12} sm={9} md={9} >
+                        <Slider {...topProductSettings} className='topProductCarousel'>
+                            {!!topRatedProducts.length
+                                && topRatedProducts.map((product: any) => {
+                                    return (
+                                        <Card key={product.productId} className='topProductCard'>
+                                            <CardContent className='topProductCardContent'>
+                                                <img className='topProductImage'
+                                                    src={product.imageUrl1} alt={product.productName} />
+                                            </CardContent>
+                                            <CardActions className='topProductCardActions'>
+                                                <Button variant='contained' size="medium" className='topProductName' tabIndex="0">
+                                                    <Typography className='topProductText'>
+                                                        {product.productName}
+                                                    </Typography>
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                    )
+                                })}
+                        </Slider>
+                    </Grid>
                 </Grid>
             </Grid>
 
@@ -142,11 +143,11 @@ export default function ProductHome() {
                         <Link className='blogLink' underline="none" onClick={handleSeeAll} > SEE ALL</Link>
                     </Grid>
                 </Grid>
-                <Grid container className='blogGrid' spacing={3}>
-                    {!!blogs.length && blogs.slice(0, 3).map((blog: any) => {
+                <Grid container className='blogGrid' >
+                    {blogsPrimary.map((blog: any) => {
                         return (
                             <Grid key={blog.productId} item xs={12} sm={4} md={4} className='blogGridItem'>
-                                <Card className='blogCard'>
+                                <Card className='blogCard' key={blog.productId}>
                                     <CardContent className='blogCardContent'>
                                         <img className='blogImage'
                                             src={blog.imageUrl} alt={blog.name} />
@@ -163,7 +164,7 @@ export default function ProductHome() {
                             </Grid>
                         )
                     })}
-                    {state && !!blogs.length && blogs.length > 3 && blogs.slice(3).map((blog: any, index) => {
+                    {seeAll && blogsSecondary.map((blog: any, index) => {
                         return (
                             <Grid key={`${blog.name}${index}`} item xs={12} sm={4} md={4} className='blogGridItem'>
                                 <Card className='blogCard'>
@@ -200,8 +201,6 @@ export default function ProductHome() {
                     <KeyboardArrowUp className='scrollIcon' />
                 </Fab>
             </Grid>
-
-
-        </Grid>
+        </Box >
     )
 }

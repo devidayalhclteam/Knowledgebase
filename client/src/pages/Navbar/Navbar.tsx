@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppBar, Typography, Toolbar, MenuItem, Container } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, MenuItem } from '@material-ui/core';
 import Grid from '@mui/material/Grid';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar';
 import NavbarList from './NavbarList';
 import "./Navbar.scss";
@@ -16,7 +16,7 @@ export default function Navbar() {
                     <Grid item xs={4} md={4} sm={4} className="nav-link">
                         {NavbarList.map(({ name, path }) => {
                             return (
-                                <MenuItem key={name} onClick={() => navigate(path)} tabIndex="0" arial-label={name}>
+                                <MenuItem key={name} onClick={() => navigate(path)} tabIndex={0} arial-label={name}>
                                     <Typography className="navLink">
                                         {name}
                                     </Typography>

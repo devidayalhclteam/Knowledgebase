@@ -3,11 +3,15 @@ import SearchBarSlice from "./pages/SearchBar/SearchBarSlice";
 import HomeSlice from "./pages/Home/HomeSlice";
 import ProductHomeSlice from "./pages/ProductHome/ProductHomeSlice";
 import DashboardSlice from "./pages/Dashboard/DashboardSlice";
+import ProductListSlice from "./pages/ProductList/ProductListSlice";
+import ProductDetailsSlice from "./pages/ProductDetails/ProductDetailsSlice";
 
 const homeCombineReducers = combineReducers({
   searchBar: SearchBarSlice,
   home: HomeSlice,
-  productHome: ProductHomeSlice
+  productHome: ProductHomeSlice,
+  productList: ProductListSlice,
+  productDetails: ProductDetailsSlice
 });
 
 const dashboardReducers = combineReducers({

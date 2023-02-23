@@ -6,6 +6,36 @@ const productHomeSettings = {
     autoplay: true,
     draggable: false,
     pauseOnFocus: true,
+    arrows: false,
+    responsive: [
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        }
+    ]
 }
 
 const topProductSettings = {
@@ -19,6 +49,35 @@ const topProductSettings = {
     swipe: true,
     adaptiveHeight: true,
     centerMode: true,
+    responsive: [
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        }
+    ]
 }
 
 const listedProductSettings = {
@@ -33,6 +92,35 @@ const listedProductSettings = {
     swipe: true,
     adaptiveHeight: true,
     centerMode: true,
+    responsive: [
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 900,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        },
+        {
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                infinite: true,
+            }
+        }
+    ]
 }
 
 const blogs = [

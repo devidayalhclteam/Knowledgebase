@@ -1,10 +1,10 @@
 .productHome {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
 
     .productHomeContainer {
         background: #EEDDCC;
-        height: 450px;
+        min-height: 450px;
+        height: fit-content;
         display: flex;
 
         .productHomeCarousel {
@@ -58,8 +58,8 @@
                     font-family: 'Lato';
                     font-style: normal;
                     font-weight: 900;
-                    font-size: 14px;
-                    line-height: 32px;
+                    font-size: 0.875rem;
+                    line-height: 2rem;
                     text-transform: uppercase;
                     color: #FFFFFF;
                 }
@@ -74,12 +74,10 @@
     }
 
     .topProductContainer {
-        width: 100%;
-        min-height: 500px;
-        padding: 20px 0;
+        min-height: 450px;
+        height: fit-content;
         display: flex;
         flex-direction: column;
-        height: fit-content;
 
         .topProductGrid {
             justify-content: center;
@@ -100,22 +98,32 @@
                 font-family: 'Lato';
                 font-style: normal;
                 font-weight: 400;
-                font-size: 20px;
+                font-size: 1.25rem;
                 text-align: center;
                 color: #34251F;
-                margin: 10px 0;
             }
         }
 
         .topProductCarouselGrid {
+            min-height: 450px;
+            height: fit-content;
+            display: flex;
             justify-content: center;
             align-items: center;
 
             .topProductCarousel {
-                width: 80%;
+
+                .slick-prev:before,
+                .slick-next:before {
+                    color: #000000;
+                }
+
+                .slick-slide {
+                    padding: 0 10px;
+                    width: 22%;
+                }
 
                 .topProductCard {
-                    height: 350px;
                     background: #C4C4C4;
                     display: flex;
                     flex-direction: column !important;
@@ -123,10 +131,16 @@
                     .topProductCardContent {
                         justify-content: center;
                         background: #C4C4C4;
+                        height: 300px;
 
                         .topProductImage {
-                            height: 250px;
+                            height: 100%;
+                            width: 100%;
                         }
+                    }
+
+                    .MuiCardContent-root {
+                        padding: 0;
                     }
 
                     .topProductCardActions {
@@ -136,14 +150,14 @@
                         .topProductName {
                             background: #FFFFFF;
                             padding: 10px 30px;
-                            width: 300px;
+                            width: 90%;
                             border-radius: 0;
 
                             .topProductText {
                                 font-family: 'Lato';
                                 font-style: normal;
                                 font-weight: 900;
-                                font-size: 18px;
+                                font-size: 1.125rem;
                                 text-align: center;
                                 text-transform: uppercase;
                                 color: #34251F;
@@ -153,34 +167,23 @@
                             }
                         }
                     }
-                }
 
-                .slick-prev:before,
-                .slick-next:before {
-                    color: #000000;
-                }
 
-                .slick-slide {
-                    padding: 0 20px;
-                    width: 25%;
                 }
             }
+
         }
     }
 
     .listedProductContainer {
         background: #413531;
-        width: 100%;
-        min-height: 500px;
-        padding: 20px 0;
-        display: flex;
-        flex-direction: column;
+        min-height: 450px;
         height: fit-content;
+        display: flex;
 
         .listedProductGrid {
             justify-content: center;
             align-items: center;
-            padding: 20px 40px;
 
             .listedProductGridItem {
                 padding: 0 10px;
@@ -189,7 +192,7 @@
                     font-family: 'Frank Ruhl Libre';
                     font-style: normal;
                     font-weight: 700;
-                    font-size: 52px;
+                    font-size: 3.25rem;
                     line-height: 67px;
                     text-transform: capitalize;
                     color: #FFFFFF;
@@ -199,13 +202,16 @@
                     font-family: 'Lato';
                     font-style: normal;
                     font-weight: 400;
-                    font-size: 20px;
+                    font-size: 1.25rem;
                     line-height: 180%;
                     text-transform: capitalize;
                     color: #FFFFFF;
                 }
 
                 .listedProductCarousel {
+                    .slick-slide {
+                        padding: 0 10px;
+                    }
 
                     .listedProductCard {
                         height: 350px;
@@ -216,10 +222,16 @@
                         .listedProductCardContent {
                             justify-content: center;
                             background: #C4C4C4;
+                            height: 275px;
 
                             .listedProductImage {
-                                height: 200px;
+                                height: 100%;
+                                width: 100%;
                             }
+                        }
+
+                        .MuiCardContent-root {
+                            padding: 0;
                         }
 
                         .listedProductCardActions {
@@ -230,45 +242,36 @@
                                 font-family: 'Frank Ruhl Libre';
                                 font-style: normal;
                                 font-weight: 700;
-                                font-size: 18px;
+                                font-size: 1.125rem;
                                 line-height: 23px;
                                 color: #34251F;
                                 margin-top: 14px;
                             }
                         }
                     }
-
-                    .slick-slide {
-                        padding: 0 10px;
-                    }
-                }
-
-                .listedProductButton {
-                    font-family: 'Lato';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 14px;
-                    line-height: 17px;
-                    letter-spacing: 0.05em;
-                    text-transform: uppercase;
-                    color: #FFFFFF;
-                    margin-top: 25px;
-                    padding: 10px;
                 }
 
                 .MuiButton-outlined {
                     border: 1px solid #FFFFFF;
+                    color: #FFFFFF;
+                    border-radius: 0;
+                    margin-top: 20px;
+                }
+
+                .MuiButton-label {
+                    padding: 5px 10px;
                 }
             }
         }
     }
 
     .blogContainer {
-        width: 100%;
-        min-height: 500px;
+        min-height: 450px;
+        height: fit-content;
         display: flex;
         flex-direction: column;
-        height: fit-content;
+        justify-content: center;
+        align-items: center;
 
         .blogTileGrid {
             padding: 30px 80px;
@@ -278,14 +281,12 @@
 
             .blogTileGridItem {
                 padding: 0 10px;
-                justify-self: flex-start;
-
 
                 .blogTitle {
                     font-family: 'Spartan';
                     font-style: normal;
                     font-weight: 600;
-                    font-size: 22px;
+                    font-size: 1.375rem;
                     line-height: 25px;
                     letter-spacing: 0.06em;
                     text-transform: uppercase;
@@ -296,13 +297,12 @@
 
             .blogLinkGridItem {
                 padding: 0 10px;
-                justify-self: flex-end;
 
                 .blogLink {
                     font-family: 'Spartan';
                     font-style: normal;
                     font-weight: 500;
-                    font-size: 12px;
+                    font-size: 0.75rem;
                     line-height: 13px;
                     letter-spacing: 0.06em;
                     color: #121212;
@@ -314,12 +314,14 @@
         }
 
         .blogGrid {
+            width: 80%;
             justify-content: center;
             padding: 30px 40px;
 
             .blogGridItem {
                 width: 300px;
                 padding: 10px;
+                flex-direction: row;
 
                 .blogCard {
                     height: 320px;
@@ -337,7 +339,7 @@
                             font-family: 'Spartan';
                             font-style: normal;
                             font-weight: 600;
-                            font-size: 14px;
+                            font-size: 0.875rem;
                             letter-spacing: 0.06em;
                             text-transform: uppercase;
                             color: #121212;
@@ -350,7 +352,7 @@
                             font-family: 'Spartan';
                             font-style: normal;
                             font-weight: 400;
-                            font-size: 14px;
+                            font-size: 0.875rem;
                             color: #121212;
                             white-space: wrap;
                             overflow: hidden;

@@ -1,7 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { SelectChangeEvent } from '@mui/material/Select';
 import axios from "axios";
 
-export interface Category {
+export interface SearchForm {
+    searchForm: {
+        searchSelect: string;
+        searchInput: string;
+    }
+}
+
+export interface Category extends SearchForm {
     categoryResponse: {
         partitionKey: string;
         rowKey: string;
@@ -13,6 +21,7 @@ export interface Category {
         etag: string;
     }
     isLoading: boolean;
+
 }
 
 const initialState: Category = {
@@ -26,7 +35,11 @@ const initialState: Category = {
         timestamp: "string",
         etag: "string"
     },
-    isLoading: false
+    isLoading: false,
+    searchForm: {
+        searchSelect: "",
+        searchInput: "",
+    }
 }
 
 export const getCategories = createAsyncThunk(
@@ -36,7 +49,6 @@ export const getCategories = createAsyncThunk(
             const response = await axios.get("/api/table/category/category");
             return response.data;
         } catch (error) {
-            console.log(error);
             return error;
         }
     }
@@ -45,7 +57,12 @@ export const getCategories = createAsyncThunk(
 const categoriesSlice = createSlice({
     name: "categories",
     initialState,
-    reducers: {},
+    reducers: {
+        setSearchForm(state: any, action: PayloadAction<SelectChangeEvent | React.ChangeEvent<HTMLInputElement>>) {
+            const { name, value } = action.payload.target;
+            state.searchForm[name] = value;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getCategories.pending, (state: Category) => {
             return { ...state, isLoading: true };
@@ -59,6 +76,6 @@ const categoriesSlice = createSlice({
     }
 })
 
-export const { } = categoriesSlice.actions;
+export const { setSearchForm } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;
