@@ -4,7 +4,10 @@ const services_1 = require("../services");
 const getProductImage = (req, res) => {
     return services_1.ProductService.getProductImage(req, res);
 };
-const addProductImage = (req, res) => {
-    return services_1.ProductService.addProductImage(req, res);
+const postProductImage = (req, res) => {
+    return services_1.ProductService.postProductImage(req, res);
 };
-exports.default = { getProductImage, addProductImage };
+const deleteProductImage = (req, res) => {
+    return services_1.ProductService.deleteProductImage(req, res);
+};
+exports.default = { getProductImage, postProductImage, deleteProductImage };

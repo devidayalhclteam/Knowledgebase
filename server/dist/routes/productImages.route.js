@@ -7,8 +7,7 @@ const express_1 = __importDefault(require("express"));
 const controllers_1 = require("../controllers");
 const router = express_1.default.Router();
 router.route("/productImages")
-    .get(controllers_1.ProductImagesController.getProductImages);
-// .post(ProductsController.postProducts)
-// .delete(ProductsController.deleteProduct)
-// .put(ProductsController.updateProducts)
+    .get(controllers_1.productImagesController.getProductImage)
+    .post(controllers_1.productImagesController.postProductImage)
+    .delete(controllers_1.productImagesController.deleteProductImage);
 exports.default = router;

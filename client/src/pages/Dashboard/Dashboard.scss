@@ -8,7 +8,26 @@
         .dashboardLeftContainer {
             background: #FAFBFC;
             border-radius: 20px 20px 0px 0px;
-            padding: 15px 0px;
+            padding: 15px 15px;
+
+            .productsLabel {
+                width: auto;
+                float: left;
+                margin-top: 4px;
+                color: #6B7A99;
+
+                img {
+                    width: 20px;
+                    margin-right: 8px;
+                    float: left;
+                    margin-top: 4px;
+                }
+
+                span {
+                    float: left;
+                    padding: 0;
+                }
+            }
 
             .topContainer {
                 padding: 10px 15px;
@@ -35,12 +54,54 @@
                 padding: 10px 15px;
                 border-bottom: 1px solid #F2F3F5;
                 border-top: 1px solid #F2F3F5;
+                text-align: center;
+
+                button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.addProductButton {
+                    color: #6B7A99;
+                    border: 1px solid #F5F6F7;
+                    background: #FFFFFF;
+                    box-shadow: none;
+
+                    img {
+                        float: left;
+                        width: 20px;
+                        margin-right: 5px;
+                    }
+
+                    span {
+                        text-transform: capitalize;
+                    }
+                }
+
+                .filterSearch {
+                    display: inline-block;
+                    color: #6B7A99;
+                    border: 1px solid #F5F6F7;
+                    padding: 5px;
+
+                    img {
+                        width: 17px;
+                        margin: 8px 10px 0;
+                        float: left;
+                    }
+
+                    input {
+                        padding: 5px;
+                        font-size: 14px;
+                        border: none;
+                    }
+
+                    .MuiInputBase-root:after,
+                    .MuiInputBase-root:before {
+                        display: none !important;
+                    }
+                }
             }
 
             .productList {
                 background: #FFFFFF;
                 display: flex;
-                flex-direction: row;
+                flex-wrap: wrap;
                 flex: 100;
                 padding: 10px 15px;
 
@@ -48,11 +109,12 @@
                     padding: 5px;
 
                     .prodCard {
-                        background: #FAFBFC;
+                        background: #FFFFFF;
                         border-radius: 10px;
                         text-align: center;
                         padding-bottom: 15px;
                         position: relative;
+                        min-height: 250px;
 
                         .productHeading {
                             color: #6B7A99;
@@ -72,8 +134,8 @@
 
                         .imageContainer {
                             position: absolute;
-                            right: 10px;
-                            top: 10px;
+                            right: 0px;
+                            top: 2px;
                             z-index: 99;
                             display: flex;
                             flex-direction: column;
@@ -95,12 +157,47 @@
                                 width: 18px;
                             }
 
+                            button.editBtn:hover img,
+                            button.deleteBtn:hover img {
+                                background-color: #eee;
+                                border-radius: 4px;
+                            }
+
                             button.deleteBtn img {
                                 width: 15px;
                             }
                         }
+
+                        .productImage {
+                            display: flex;
+                            padding: 50px 15px 20px;
+
+                            img {
+                                width: 100%;
+                                float: left;
+                            }
+                        }
                     }
                 }
+            }
+        }
+
+        .loadMore {
+            text-align: center;
+
+            .loadMoreBtn {
+                width: 140px;
+                height: 40px;
+                background: #FFFFFF;
+                border: 2px solid #F5F6F7;
+                box-shadow: 0px 2px 5px rgb(38 51 77 / 3%);
+                border-radius: 20px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin-top: -30px;
+                font-size: 12px;
+                text-transform: capitalize;
             }
         }
 
@@ -113,7 +210,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 500px;
     background-color: #ffffff;
     box-shadow: 24;
     padding: 10px;
@@ -128,11 +225,17 @@
         letter-spacing: 0.02em;
         color: #2F2F2F;
         margin-bottom: 15px;
+        padding-left: 15px;
     }
 
     form {
         display: flex;
         flex-wrap: wrap;
+
+        .modalLeftSide,
+        .modalRightSide{
+            padding: 0 0 0 15px;
+        }
 
 
         .formLabel {
@@ -206,7 +309,50 @@
             color: #FFFFFF;
             background: #000000;
             text-transform: capitalize;
+        }
 
+        .submit.Mui-disabled {
+            opacity: 0.3;
+            cursor: pointer;
+            pointer-events: none;
+        }
+
+        .uploadedImage{
+            width: 100%;
+        }
+
+        .uploadImage {
+            width: 100%;
+            float: left;
+            position: relative;
+            overflow: hidden;
+            margin: 30px 0;
+
+            .MuiFormControl-root,
+            .MuiInputBase-root,
+            input {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                opacity: 0;
+                z-index: 99;
+            }
+
+            p {
+                width: 100%;
+                float: left;
+                text-align: center;
+                background: #545353;
+                padding: 10px;
+                box-sizing: border-box;
+                font-size: 14px;
+                border-radius: 8px;
+                color: #fff;
+                text-transform: capitalize;
+                margin: 0;
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
     res.send('Hello, this is PWD api endpoint');
 });
 app.use("/api/table/category", category_route_1.default);
-app.use("/api/products", products_route_1.default);
+app.use("/api/table/products", products_route_1.default);
 app.use("/api/table/productImages", productImages_route_1.default);
 /** Error handling */
 app.use((req, res) => {

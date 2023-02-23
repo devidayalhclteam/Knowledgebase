@@ -1,12 +1,11 @@
 import express from "express";
-import { ProductImagesController } from "../controllers";
+import { productImagesController } from "../controllers";
 
 const router = express.Router();
 
 router.route("/productImages")
-    .get(ProductImagesController.getProductImages)
-    // .post(ProductsController.postProducts)
-    // .delete(ProductsController.deleteProduct)
-    // .put(ProductsController.updateProducts)
+  .get(productImagesController.getProductImage)
+  .post(productImagesController.postProductImage)
+  .delete(productImagesController.deleteProductImage);
 
 export default router;

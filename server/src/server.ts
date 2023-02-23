@@ -15,9 +15,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use("/api/table/category", categoryRoute);
-app.use("/api/products", productsRoute);
+app.use("/api/table/products", productsRoute);
 app.use("/api/table/productImages", productImagesRoute);
-
 
 /** Error handling */
 app.use((req: Request, res: Response) => {

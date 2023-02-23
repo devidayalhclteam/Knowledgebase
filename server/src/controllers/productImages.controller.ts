@@ -1,8 +1,16 @@
 import { Request, Response } from "express"
-import {ProductImagesService  } from "../services";
+import { productImagesService } from "../services";
 
-const getProductImages = (req: Request, res: Response) => {
-    return ProductImagesService.getProductImages(req, res);
+const getProductImage = (req: Request, res: Response) => {
+    return productImagesService.getProductImage(req, res);
 };
 
-export default { getProductImages,  };
+const postProductImage = (req: Request, res: Response) => {
+    return productImagesService.postProductImage(req, res);
+};
+
+const deleteProductImage = (req: Request, res: Response) => {
+    return productImagesService.deleteProductImage(req, res);
+};
+
+export default { getProductImage, postProductImage, deleteProductImage };
