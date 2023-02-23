@@ -8,5 +8,6 @@ const controllers_1 = require("../controllers");
 const router = express_1.default.Router();
 router.route("/product")
     .get(controllers_1.ProductController.getProductImage)
-    .post(controllers_1.ProductController.addProductImage);
+    .post(controllers_1.ProductController.postProductImage)
+    .delete(controllers_1.ProductController.deleteProductImage);
 exports.default = router;

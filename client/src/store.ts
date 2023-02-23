@@ -5,6 +5,7 @@ import ProductHomeSlice from "./pages/ProductHome/ProductHomeSlice";
 import DashboardSlice from "./pages/Dashboard/DashboardSlice";
 import ProductListSlice from "./pages/ProductList/ProductListSlice";
 import ProductDetailsSlice from "./pages/ProductDetails/ProductDetailsSlice";
+import alertSlice from "./components/Alert/AlertSlice";
 
 const homeCombineReducers = combineReducers({
   searchBar: SearchBarSlice,
@@ -18,9 +19,14 @@ const dashboardReducers = combineReducers({
   dashboard: DashboardSlice
 });
 
+const commonCombineReducers = combineReducers({
+  alert: alertSlice
+});
+
 const rootReducer = combineReducers({
   home: homeCombineReducers,
-  dashboard: dashboardReducers
+  dashboard: dashboardReducers,
+  common: commonCombineReducers,
 });
 
 const store = configureStore({

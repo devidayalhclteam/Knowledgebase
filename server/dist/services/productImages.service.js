@@ -18,8 +18,10 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("../constants");
 const dbConfig_1 = require("../dbConfig");
-const getProductImages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const baseUrl = "https://devgurukulstorage.blob.core.windows.net/knowledebase/productImage/";
+const getProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, e_1, _b, _c;
+    let files = req;
     try {
         let data = [];
         try {
@@ -48,4 +50,28 @@ const getProductImages = (req, res) => __awaiter(void 0, void 0, void 0, functio
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-exports.default = { getProductImages };
+const postProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        try {
+            const data = yield (0, dbConfig_1.clientWithSAS)("productImages").createEntity(req.body);
+            res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+        }
+        catch (error) {
+            res.status(500).send({ status: constants_1.Status.ERROR, error });
+        }
+    }
+    catch (error) {
+        res.status(500).send({ status: constants_1.Status.ERROR, error });
+    }
+});
+const deleteProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const rowKey = req.body.rowKey; //req.body
+        const data = yield (0, dbConfig_1.clientWithSAS)("productImages").deleteEntity("productImage", rowKey);
+        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+    }
+    catch (error) {
+        res.status(500).send({ status: constants_1.Status.ERROR, error });
+    }
+});
+exports.default = { getProductImage, postProductImage, deleteProductImage };

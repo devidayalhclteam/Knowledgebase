@@ -59,7 +59,6 @@ const postProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log("req.body", req.body);
         const rowKey = req.body.rowKey; //req.body
         const data = yield (0, dbConfig_1.clientWithSAS)("products").deleteEntity("product", rowKey);
         res.status(200).send({ status: constants_1.Status.SUCCESS, data });

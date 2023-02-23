@@ -26,7 +26,6 @@ const postProducts = async (req: Request, res: Response) => {
 
 const deleteProduct = async (req: Request, res: Response) => {
     try {
-        console.log("req.body", req.body);
         const rowKey = req.body.rowKey;      //req.body
 
         const data = await clientWithSAS("products").deleteEntity(

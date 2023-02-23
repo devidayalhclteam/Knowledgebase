@@ -49,19 +49,31 @@ const getProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-const addProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log(req.files.file);
-        if (!req.files) {
-            res.status(400).send({ status: constants_1.Status.ERROR, error: "No file uploaded" });
-        }
-        let file = req.files.file;
-        const blockBlobClient = dbConfig_1.containerClient1.getBlockBlobClient(file.name);
-        yield blockBlobClient.upload(file, file.size);
-        res.status(200).send({ status: constants_1.Status.SUCCESS, });
+        console.log("req", req);
+        let files = req;
+        console.log("files", files);
+        // const blockBlobClient = blobService().getBlockBlobClient(files[0].name);
+        // await blockBlobClient.uploadBrowserData(files[0], {
+        //     onProgress: (ev: any) => {
+        //         console.log(`you have upload ${ev.loadedBytes} bytes`);
+        //     }
+        // });
     }
     catch (error) {
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-exports.default = { getProductImage, addProductImage };
+const deleteProductImage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log("req", req);
+        console.log("req.body", req.body);
+        yield (0, dbConfig_1.blobService)().getBlockBlobClient("testFile.png").delete();
+        console.log(`you have deleted testFile.png  bytes`);
+    }
+    catch (error) {
+        res.status(500).send({ status: constants_1.Status.ERROR, error });
+    }
+});
+exports.default = { getProductImage, postProductImage, deleteProductImage };
