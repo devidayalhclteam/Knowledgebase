@@ -1,12 +1,11 @@
 .footerGrid {
     background-color: #121212;
     height: 56px;
-    display: flex;
     align-items: center;
     bottom: 0;
-    position: absolute;
 
     .footerGridItem {
+        align-items: center;
 
         .footerText {
             justify-content: center;
