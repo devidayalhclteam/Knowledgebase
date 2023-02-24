@@ -6,7 +6,7 @@ const Forum = React.lazy(() => import("./pages/Forum/Forum"));
 const Blogs = React.lazy(() => import("./pages/Blogs/Blogs"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 
- interface RouteItem {
+interface RouteItem {
   index?: boolean;
   path: string;
   element: React.ReactNode;
@@ -33,8 +33,7 @@ const AppRoutes: RouteItem[] = [
   {
     path: "/dashboard",
     element: <Dashboard />
-  },
-
+  }
 ];
 
 export default AppRoutes;

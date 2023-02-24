@@ -1,9 +1,9 @@
-import React, { Suspense, PureComponent } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
-import AppRoutes from './AppRoutes';
-import './App.scss';
+import React, { Suspense, PureComponent } from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import AppRoutes from "./AppRoutes";
+import "./App.scss";
 
 type RouteItem = {
   index?: boolean;

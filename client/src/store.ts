@@ -26,7 +26,7 @@ const commonCombineReducers = combineReducers({
 const rootReducer = combineReducers({
   home: homeCombineReducers,
   dashboard: dashboardReducers,
-  common: commonCombineReducers,
+  common: commonCombineReducers
 });
 
 const store = configureStore({
@@ -37,7 +37,7 @@ const store = configureStore({
     })
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default store;

@@ -32,9 +32,7 @@ export default function AlertComponent() {
         onClose={handleClose}
         message="Note archived"
       >
-        <Alert
-          severity={alertInfo.severity}
-        >
+        <Alert severity={alertInfo.severity}>
           <AlertTitle>{alertInfo.title}</AlertTitle>
           {!!alertInfo.message && alertInfo.message}
         </Alert>

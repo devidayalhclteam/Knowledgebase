@@ -3,7 +3,8 @@ import { productImagesController } from "../controllers";
 
 const router = express.Router();
 
-router.route("/productImages")
+router
+  .route("/productImages")
   .get(productImagesController.getProductImage)
   .post(productImagesController.postProductImage)
   .delete(productImagesController.deleteProductImage);

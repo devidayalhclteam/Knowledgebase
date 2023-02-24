@@ -1,15 +1,15 @@
-import React, { useEffect, ChangeEvent } from 'react'
-import { Box, MenuItem, Button, } from '@material-ui/core';
-import { Input, InputAdornment } from "@mui/material"
+import React, { useEffect, ChangeEvent } from "react";
+import { Box, MenuItem, Button } from "@material-ui/core";
+import { Input, InputAdornment } from "@mui/material";
 import Search from "@mui/icons-material/Search";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategories, setSearchForm } from "./SearchBarSlice";
 import { submitSearchForm } from "../ProductList/ProductListSlice";
 import searchBarSelector from "./SearchBarSelector";
 import { setDisplayView } from "../Home/HomeSlice";
 import type { AppDispatch } from "../../store";
-import "./SearchBar.scss"
+import "./SearchBar.scss";
 
 type InputType = ChangeEvent<HTMLInputElement> | SelectChangeEvent;
 
@@ -23,22 +23,22 @@ export default function SearchBar() {
 
   const handleSearch = (e: InputType) => {
     dispatch(setSearchForm(e));
-  }
+  };
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     dispatch(submitSearchForm(searchForm));
-    dispatch(setDisplayView("productList"))
-  }
+    dispatch(setDisplayView("productList"));
+  };
 
   return (
-    <Box sx={{ minWidth: 120 }} className='searchBarBox'>
+    <Box sx={{ minWidth: 120 }} className="searchBarBox">
       <Input
-        aria-label='Search'
+        aria-label="Search"
         className="searchBarText"
         placeholder="Search..."
         startAdornment={
-          <InputAdornment position="end" className='searchBarIcon'>
+          <InputAdornment position="end" className="searchBarIcon">
             <Search fontSize="medium" name="search" />
           </InputAdornment>
         }
@@ -47,22 +47,23 @@ export default function SearchBar() {
         value={searchForm.searchInput}
       />
       <Select
-        className='searchBarSelect'
+        className="searchBarSelect"
         label="All Category"
         onChange={(e: InputType) => handleSearch(e)}
-        name='searchSelect'
+        name="searchSelect"
         value={searchForm.searchSelect}
       >
         {(categories || []).map((category: any) => {
           return (
-            <MenuItem key={category.rowKey} value={category.id}
-              className='searchBarMenu' tabIndex="0">
+            <MenuItem key={category.rowKey} value={category.id} className="searchBarMenu" tabIndex="0">
               {category.name}
-            </MenuItem>)
+            </MenuItem>
+          );
         })}
       </Select>
-      <Button variant='contained' className='searchBarButton' aria-label='Search' onClick={(e) => handleSubmit(e)}>Search</Button>
+      <Button variant="contained" className="searchBarButton" aria-label="Search" onClick={(e) => handleSubmit(e)}>
+        Search
+      </Button>
     </Box>
-
-  )
+  );
 }

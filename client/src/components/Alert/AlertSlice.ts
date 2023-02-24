@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface Alert {
-  showAlert: boolean,
+  showAlert: boolean;
   alertInfo: {
-    severity: string,
-    title: string,
-    message: string,
-    messageList: any
-  }
+    severity: string;
+    title: string;
+    message: string;
+    messageList: any;
+  };
 }
 
 export const initialState: Alert = {

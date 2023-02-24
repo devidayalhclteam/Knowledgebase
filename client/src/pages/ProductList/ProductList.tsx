@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { Container, Box, Grid, Typography, Button, Card, CardContent, CardActions } from '@material-ui/core';
-import { Rating } from '@mui/material';
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import React, { useEffect } from "react";
+import { Container, Box, Grid, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
+import { Rating } from "@mui/material";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
 import { useSelector, useDispatch } from "react-redux";
 import productListSelector from "./ProductListSelector";
 import { getProductImages, getImagesTable } from "../ProductHome/ProductHomeSlice";
@@ -23,34 +23,31 @@ export default function ProductList() {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getProductImages());
-    dispatch(getImagesTable())
+    dispatch(getImagesTable());
   }, []);
 
   const handlePagination = () => {
     dispatch(setPagination());
-  }
+  };
 
   const handleSort = (e: SelectChangeEvent) => {
     dispatch(setSortOrder(e.target.value));
-  }
+  };
 
   const handleCardAction = (productId: string) => {
     dispatch(setProductView(productId));
     dispatch(setDisplayView("productDetails"));
-  }
+  };
 
   return (
     <Box className="productList">
-      <Grid container className='productListGridHeader' >
-        <Grid item xs={12} md={12} sm={12} className='productListGridTitle'>
-          {searchSelect &&
-            <Typography className="productHomeText">
-              {searchSelect}
-            </Typography>}
+      <Grid container className="productListGridHeader">
+        <Grid item xs={12} md={12} sm={12} className="productListGridTitle">
+          {searchSelect && <Typography className="productHomeText">{searchSelect}</Typography>}
         </Grid>
-        <Grid item xs={12} md={12} sm={12} className='productListGridFilter'>
-          <Grid container className='productListGridFilterContainer'>
-            <Grid item xs={12} md={4} sm={4} className='productGridItem'>
+        <Grid item xs={12} md={12} sm={12} className="productListGridFilter">
+          <Grid container className="productListGridFilterContainer">
+            <Grid item xs={12} md={4} sm={4} className="productGridItem">
               {/* <Button variant="text">
                 <FilterAltOutlinedIcon fontSize="medium" />
                 <Typography className="productListFilterTitle">
@@ -58,24 +55,24 @@ export default function ProductList() {
                 </Typography>
               </Button> */}
             </Grid>
-            <Grid item xs={12} md={4} sm={4} className='productGridItem'>
-              <FormControl >
+            <Grid item xs={12} md={4} sm={4} className="productGridItem">
+              <FormControl>
                 <InputLabel id="sortBy-label">Sort By</InputLabel>
                 <Select
                   variant="outlined"
                   labelId="sortBy-select"
-                  className='sortSelect'
+                  className="sortSelect"
                   label="Sort by"
-                  name='sortSelect'
+                  name="sortSelect"
                   onChange={(e: SelectChangeEvent) => handleSort(e)}
                   value={sortOrder}
                 >
                   {sortSettings.map((sort: any) => {
                     return (
-                      <MenuItem key={sort.id} value={sort.order} className='sortMenuItem' tabIndex={0}>
+                      <MenuItem key={sort.id} value={sort.order} className="sortMenuItem" tabIndex={0}>
                         {sort.name}
                       </MenuItem>
-                    )
+                    );
                   })}
                 </Select>
               </FormControl>
@@ -84,34 +81,36 @@ export default function ProductList() {
         </Grid>
       </Grid>
 
-      <Grid container className='productListGrid' spacing={4}>
-        {!!products.length && products.slice(0, productIndex).map((product: any) => {
-          return (
-            <Grid item xs={12} sm={6} md={3} key={product.productId} className='productListGridItem'>
-              <Card className='productListCard' >
-                <CardContent className='productListCardContent'>
-                  <img className='productListImage'
-                    src={product.imageUrl1} alt={product.productName} />
-                </CardContent>
-                <CardActions className='productListCardActions' tabIndex={0}
-                  onClick={() => handleCardAction(product.productId)}>
-                  <Typography className="productName">
-                    {product.productName}
-                  </Typography>
-                  <Rating name="read-only" value={Number(product.rating)} className='productRating' />
-                </CardActions>
-              </Card>
-            </Grid>
-          )
-        })}
+      <Grid container className="productListGrid" spacing={4}>
+        {!!products.length &&
+          products.slice(0, productIndex).map((product: any) => {
+            return (
+              <Grid item xs={12} sm={6} md={3} key={product.productId} className="productListGridItem">
+                <Card className="productListCard">
+                  <CardContent className="productListCardContent">
+                    <img className="productListImage" src={product.imageUrl1} alt={product.productName} />
+                  </CardContent>
+                  <CardActions
+                    className="productListCardActions"
+                    tabIndex={0}
+                    onClick={() => handleCardAction(product.productId)}
+                  >
+                    <Typography className="productName">{product.productName}</Typography>
+                    <Rating name="read-only" value={Number(product.rating)} className="productRating" />
+                  </CardActions>
+                </Card>
+              </Grid>
+            );
+          })}
 
-        <Grid item xs={10} sm={6} md={4} className='productListGridBtn'>
-          {isLoadMoreDisabled &&
-            <Button variant="outlined" className='productLoadBtn' onClick={handlePagination} tabIndex={0}>
+        <Grid item xs={10} sm={6} md={4} className="productListGridBtn">
+          {isLoadMoreDisabled && (
+            <Button variant="outlined" className="productLoadBtn" onClick={handlePagination} tabIndex={0}>
               Load More Products
-            </Button>}
+            </Button>
+          )}
         </Grid>
       </Grid>
-    </Box >
-  )
+    </Box>
+  );
 }

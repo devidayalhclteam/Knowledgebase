@@ -1,25 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export interface ProductDetails {
+export interface ProductDetails {}
 
-}
-
-const initialState: ProductDetails = {
-
-};
+const initialState: ProductDetails = {};
 
 const productListSlice = createSlice({
-    name: "productList",
-    initialState,
-    reducers: {
+  name: "productList",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {}
+});
 
-    },
-    extraReducers: (builder) => {
-
-    }
-})
-
-export const { } = productListSlice.actions;
+export const {} = productListSlice.actions;
 
 export default productListSlice.reducer;

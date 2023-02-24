@@ -1,380 +1,376 @@
 .productHome {
-    width: 100%;
+  width: 100%;
 
-    .productHomeContainer {
-        background: #EEDDCC;
-        min-height: 450px;
-        height: fit-content;
+  .productHomeContainer {
+    background: #eeddcc;
+    min-height: 450px;
+    height: fit-content;
+    display: flex;
+
+    .productHomeCarousel {
+      width: 100%;
+
+      .MuiPaper-elevation1 {
+        box-shadow: none;
+      }
+
+      .MuiPaper-rounded {
+        border-radius: 0;
+      }
+
+      .MuiPaper-root {
+        background: none;
+      }
+
+      .productHomeGrid {
+        width: 100%;
         display: flex;
+        height: fit-content;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        padding: 20px 30px;
 
-        .productHomeCarousel {
-            width: 100%;
-
-            .MuiPaper-elevation1 {
-                box-shadow: none;
-            }
-
-            .MuiPaper-rounded {
-                border-radius: 0;
-            }
-
-            .MuiPaper-root {
-                background: none;
-            }
-
-            .productHomeGrid {
-                width: 100%;
-                display: flex;
-                height: fit-content;
-                align-items: center;
-                justify-content: center;
-                flex-direction: row;
-                padding: 20px 30px;
-
-                .productHomeText {
-                    font-family: 'Frank Ruhl Libre';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 4rem;
-                    line-height: 4rem;
-                    text-transform: capitalize;
-                    color: #34251F;
-                    width: 400px;
-                }
-
-                .productHomeSubText {
-                    width: 310px;
-                    font-size: 1rem;
-                    padding: 10px;
-                }
-
-                .productHomeButton {
-                    background: #34251F;
-                    border-radius: 2px;
-                    margin-top: 30px;
-                }
-
-                .MuiButton-label {
-                    font-family: 'Lato';
-                    font-style: normal;
-                    font-weight: 900;
-                    font-size: 0.875rem;
-                    line-height: 2rem;
-                    text-transform: uppercase;
-                    color: #FFFFFF;
-                }
-
-                .productHomeImage {
-                    width: 250px;
-                    height: 200px;
-                }
-            }
-
+        .productHomeText {
+          font-family: "Frank Ruhl Libre";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 4rem;
+          line-height: 4rem;
+          text-transform: capitalize;
+          color: #34251f;
+          width: 400px;
         }
+
+        .productHomeSubText {
+          width: 310px;
+          font-size: 1rem;
+          padding: 10px;
+        }
+
+        .productHomeButton {
+          background: #34251f;
+          border-radius: 2px;
+          margin-top: 30px;
+        }
+
+        .MuiButton-label {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 900;
+          font-size: 0.875rem;
+          line-height: 2rem;
+          text-transform: uppercase;
+          color: #ffffff;
+        }
+
+        .productHomeImage {
+          width: 250px;
+          height: 200px;
+        }
+      }
+    }
+  }
+
+  .topProductContainer {
+    min-height: 450px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+
+    .topProductGrid {
+      justify-content: center;
+      align-items: center;
+
+      .topProductText {
+        font-family: "Frank Ruhl Libre";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 3.75rem;
+        line-height: 88px;
+        text-align: center;
+        text-transform: capitalize;
+        color: #34251f;
+      }
+
+      .topProductSubText {
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        text-align: center;
+        color: #34251f;
+      }
     }
 
-    .topProductContainer {
-        min-height: 450px;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
+    .topProductCarouselGrid {
+      min-height: 450px;
+      height: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-        .topProductGrid {
+      .topProductCarousel {
+        .slick-prev:before,
+        .slick-next:before {
+          color: #000000;
+        }
+
+        .slick-slide {
+          padding: 0 10px;
+          width: 22%;
+        }
+
+        .topProductCard {
+          background: #c4c4c4;
+          display: flex;
+          flex-direction: column !important;
+
+          .topProductCardContent {
             justify-content: center;
-            align-items: center;
+            background: #c4c4c4;
+            height: 300px;
 
-            .topProductText {
-                font-family: 'Frank Ruhl Libre';
+            .topProductImage {
+              height: 100%;
+              width: 100%;
+            }
+          }
+
+          .MuiCardContent-root {
+            padding: 0;
+          }
+
+          .topProductCardActions {
+            justify-content: center;
+            flex-direction: column;
+
+            .topProductName {
+              background: #ffffff;
+              padding: 10px 30px;
+              width: 90%;
+              border-radius: 0;
+
+              .topProductText {
+                font-family: "Lato";
+                font-style: normal;
+                font-weight: 900;
+                font-size: 1.125rem;
+                text-align: center;
+                text-transform: uppercase;
+                color: #34251f;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .listedProductContainer {
+    background: #413531;
+    min-height: 450px;
+    height: fit-content;
+    display: flex;
+
+    .listedProductGrid {
+      justify-content: center;
+      align-items: center;
+
+      .listedProductGridItem {
+        padding: 0 10px;
+
+        .listedProductText {
+          font-family: "Frank Ruhl Libre";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 3.25rem;
+          line-height: 67px;
+          text-transform: capitalize;
+          color: #ffffff;
+        }
+
+        .listedProductSubText {
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.25rem;
+          line-height: 180%;
+          text-transform: capitalize;
+          color: #ffffff;
+        }
+
+        .listedProductCarousel {
+          .slick-slide {
+            padding: 0 10px;
+          }
+
+          .listedProductCard {
+            height: 350px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column !important;
+
+            .listedProductCardContent {
+              justify-content: center;
+              background: #c4c4c4;
+              height: 275px;
+
+              .listedProductImage {
+                height: 100%;
+                width: 100%;
+              }
+            }
+
+            .MuiCardContent-root {
+              padding: 0;
+            }
+
+            .listedProductCardActions {
+              justify-content: center;
+              flex-direction: column;
+
+              .listedProductName {
+                font-family: "Frank Ruhl Libre";
                 font-style: normal;
                 font-weight: 700;
-                font-size: 3.75rem;
-                line-height: 88px;
-                text-align: center;
-                text-transform: capitalize;
-                color: #34251F;
+                font-size: 1.125rem;
+                line-height: 23px;
+                color: #34251f;
+                margin-top: 14px;
+              }
             }
-
-            .topProductSubText {
-                font-family: 'Lato';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 1.25rem;
-                text-align: center;
-                color: #34251F;
-            }
+          }
         }
 
-        .topProductCarouselGrid {
-            min-height: 450px;
-            height: fit-content;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .topProductCarousel {
-
-                .slick-prev:before,
-                .slick-next:before {
-                    color: #000000;
-                }
-
-                .slick-slide {
-                    padding: 0 10px;
-                    width: 22%;
-                }
-
-                .topProductCard {
-                    background: #C4C4C4;
-                    display: flex;
-                    flex-direction: column !important;
-
-                    .topProductCardContent {
-                        justify-content: center;
-                        background: #C4C4C4;
-                        height: 300px;
-
-                        .topProductImage {
-                            height: 100%;
-                            width: 100%;
-                        }
-                    }
-
-                    .MuiCardContent-root {
-                        padding: 0;
-                    }
-
-                    .topProductCardActions {
-                        justify-content: center;
-                        flex-direction: column;
-
-                        .topProductName {
-                            background: #FFFFFF;
-                            padding: 10px 30px;
-                            width: 90%;
-                            border-radius: 0;
-
-                            .topProductText {
-                                font-family: 'Lato';
-                                font-style: normal;
-                                font-weight: 900;
-                                font-size: 1.125rem;
-                                text-align: center;
-                                text-transform: uppercase;
-                                color: #34251F;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                            }
-                        }
-                    }
-
-
-                }
-            }
-
+        .MuiButton-outlined {
+          border: 1px solid #ffffff;
+          color: #ffffff;
+          border-radius: 0;
+          margin-top: 20px;
         }
+
+        .MuiButton-label {
+          padding: 5px 10px;
+        }
+      }
+    }
+  }
+
+  .blogContainer {
+    min-height: 450px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .blogTileGrid {
+      padding: 30px 80px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .blogTileGridItem {
+        padding: 0 10px;
+
+        .blogTitle {
+          font-family: "Spartan";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.375rem;
+          line-height: 25px;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          color: #121212;
+          text-align: center;
+        }
+      }
+
+      .blogLinkGridItem {
+        padding: 0 10px;
+
+        .blogLink {
+          font-family: "Spartan";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 0.75rem;
+          line-height: 13px;
+          letter-spacing: 0.06em;
+          color: #121212;
+          text-align: right;
+          float: right;
+          cursor: pointer;
+        }
+      }
     }
 
-    .listedProductContainer {
-        background: #413531;
-        min-height: 450px;
-        height: fit-content;
-        display: flex;
+    .blogGrid {
+      width: 80%;
+      justify-content: center;
+      padding: 30px 40px;
 
-        .listedProductGrid {
-            justify-content: center;
-            align-items: center;
-
-            .listedProductGridItem {
-                padding: 0 10px;
-
-                .listedProductText {
-                    font-family: 'Frank Ruhl Libre';
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 3.25rem;
-                    line-height: 67px;
-                    text-transform: capitalize;
-                    color: #FFFFFF;
-                }
-
-                .listedProductSubText {
-                    font-family: 'Lato';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 1.25rem;
-                    line-height: 180%;
-                    text-transform: capitalize;
-                    color: #FFFFFF;
-                }
-
-                .listedProductCarousel {
-                    .slick-slide {
-                        padding: 0 10px;
-                    }
-
-                    .listedProductCard {
-                        height: 350px;
-                        background: #FFFFFF;
-                        display: flex;
-                        flex-direction: column !important;
-
-                        .listedProductCardContent {
-                            justify-content: center;
-                            background: #C4C4C4;
-                            height: 275px;
-
-                            .listedProductImage {
-                                height: 100%;
-                                width: 100%;
-                            }
-                        }
-
-                        .MuiCardContent-root {
-                            padding: 0;
-                        }
-
-                        .listedProductCardActions {
-                            justify-content: center;
-                            flex-direction: column;
-
-                            .listedProductName {
-                                font-family: 'Frank Ruhl Libre';
-                                font-style: normal;
-                                font-weight: 700;
-                                font-size: 1.125rem;
-                                line-height: 23px;
-                                color: #34251F;
-                                margin-top: 14px;
-                            }
-                        }
-                    }
-                }
-
-                .MuiButton-outlined {
-                    border: 1px solid #FFFFFF;
-                    color: #FFFFFF;
-                    border-radius: 0;
-                    margin-top: 20px;
-                }
-
-                .MuiButton-label {
-                    padding: 5px 10px;
-                }
-            }
-        }
-    }
-
-    .blogContainer {
-        min-height: 450px;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .blogTileGrid {
-            padding: 30px 80px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-
-            .blogTileGridItem {
-                padding: 0 10px;
-
-                .blogTitle {
-                    font-family: 'Spartan';
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 1.375rem;
-                    line-height: 25px;
-                    letter-spacing: 0.06em;
-                    text-transform: uppercase;
-                    color: #121212;
-                    text-align: center;
-                }
-            }
-
-            .blogLinkGridItem {
-                padding: 0 10px;
-
-                .blogLink {
-                    font-family: 'Spartan';
-                    font-style: normal;
-                    font-weight: 500;
-                    font-size: 0.75rem;
-                    line-height: 13px;
-                    letter-spacing: 0.06em;
-                    color: #121212;
-                    text-align: right;
-                    float: right;
-                    cursor: pointer;
-                }
-            }
-        }
-
-        .blogGrid {
-            width: 80%;
-            justify-content: center;
-            padding: 30px 40px;
-
-            .blogGridItem {
-                width: 300px;
-                padding: 10px;
-                flex-direction: row;
-
-                .blogCard {
-                    height: 320px;
-
-                    .blogCardContent {
-                        height: 180px;
-
-                        .blogImage {}
-                    }
-
-                    .blogCardActions {
-                        flex-direction: column;
-
-                        .blogName {
-                            font-family: 'Spartan';
-                            font-style: normal;
-                            font-weight: 600;
-                            font-size: 0.875rem;
-                            letter-spacing: 0.06em;
-                            text-transform: uppercase;
-                            color: #121212;
-                            white-space: wrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-
-                        .blogDesc {
-                            font-family: 'Spartan';
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 0.875rem;
-                            color: #121212;
-                            white-space: wrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .scrollContainer {
-        flex-direction: row;
-        justify-content: flex-end;
+      .blogGridItem {
+        width: 300px;
         padding: 10px;
+        flex-direction: row;
 
-        .scrollButton {
-            background: #34251F;
+        .blogCard {
+          height: 320px;
 
-            .scrollIcon {
-                color: #FFFFFF;
+          .blogCardContent {
+            height: 180px;
+
+            .blogImage {
             }
+          }
+
+          .blogCardActions {
+            flex-direction: column;
+
+            .blogName {
+              font-family: "Spartan";
+              font-style: normal;
+              font-weight: 600;
+              font-size: 0.875rem;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: #121212;
+              white-space: wrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .blogDesc {
+              font-family: "Spartan";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 0.875rem;
+              color: #121212;
+              white-space: wrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
         }
+      }
     }
+  }
+
+  .scrollContainer {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+
+    .scrollButton {
+      background: #34251f;
+
+      .scrollIcon {
+        color: #ffffff;
+      }
+    }
+  }
 }
