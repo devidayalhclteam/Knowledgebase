@@ -32,6 +32,20 @@ const postProductImage = async (req: Request, res: Response) => {
     }
 }
 
+const updateProductImage = async (req: Request, res: Response) => {
+    try {
+        try {
+            const data = await clientWithSAS("productImages").updateEntity(req.body);
+            res.status(200).send({ status: Status.SUCCESS, data });
+        } catch (error: any) {
+            res.status(500).send({ status: Status.ERROR, error });
+        }
+    }
+    catch (error: any) {
+        res.status(500).send({ status: Status.ERROR, error });
+    }
+}
+
 const deleteProductImage = async (req: Request, res: Response) => {
     try {
         const rowKey = req.body.rowKey;      //req.body
@@ -47,4 +61,4 @@ const deleteProductImage = async (req: Request, res: Response) => {
     }
 }
 
-export default { getProductImage, postProductImage, deleteProductImage };
+export default { getProductImage, postProductImage, updateProductImage, deleteProductImage };

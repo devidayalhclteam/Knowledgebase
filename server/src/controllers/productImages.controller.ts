@@ -9,8 +9,12 @@ const postProductImage = (req: Request, res: Response) => {
     return productImagesService.postProductImage(req, res);
 };
 
+const updateProductImage = (req: Request, res: Response) => {
+    return productImagesService.updateProductImage(req, res);
+};
+
 const deleteProductImage = (req: Request, res: Response) => {
     return productImagesService.deleteProductImage(req, res);
 };
 
-export default { getProductImage, postProductImage, deleteProductImage };
+export default { getProductImage, postProductImage, updateProductImage, deleteProductImage };

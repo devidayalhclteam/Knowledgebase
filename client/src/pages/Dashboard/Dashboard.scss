@@ -233,7 +233,7 @@
         flex-wrap: wrap;
 
         .modalLeftSide,
-        .modalRightSide{
+        .modalRightSide {
             padding: 0 0 0 15px;
         }
 
@@ -317,8 +317,26 @@
             pointer-events: none;
         }
 
-        .uploadedImage{
+        .uploadedImage {
             width: 100%;
+        }
+
+        .EditImage {
+            width: 100%;
+            float: left;
+            position: relative;
+            box-shadow: 0px 0px 6px 0px #eee;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+
+            .deleteImage {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                width: 13px;
+                cursor: pointer;
+            }
         }
 
         .uploadImage {
