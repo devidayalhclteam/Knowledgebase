@@ -7,7 +7,7 @@ const productDetailsSelector = createSelector(
   homeSelect,
   productHomeSelector,
   (homeState: any, productHomeState: any) => {
-    let displayProduct;
+    let displayProduct: any;
 
     if (productHomeState.products.length) {
       displayProduct = productHomeState.products.find(
@@ -15,8 +15,17 @@ const productDetailsSelector = createSelector(
       );
     }
 
+    let relatedProducts;
+
+    if (displayProduct) {
+      relatedProducts = productHomeState.products.filter(
+        (product: any) => product.categoryId === displayProduct.categoryId
+      );
+    }
+
     return {
-      displayProduct
+      displayProduct,
+      relatedProducts
     };
   }
 );

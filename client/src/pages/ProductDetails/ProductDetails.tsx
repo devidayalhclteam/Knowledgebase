@@ -50,8 +50,10 @@ export default function ProductDetails() {
         </Grid>
       </Grid>
 
-      <Grid container className="">
-        
+      <Grid container className="productRelatedGrid">
+        <Grid item xs={12} sm={10} md={10}>
+          <Typography className="productRelatedTitle">RELATED PRODUCTS</Typography>
+        </Grid>
       </Grid>
     </Box>
   );
