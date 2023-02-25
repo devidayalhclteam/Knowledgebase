@@ -33,13 +33,14 @@ export default function ProductHome() {
     return (
         <Grid className="productHome" >
             <Grid container className="productHomeContainer">
-                <Slider {...productHomeSettings} className='productHomeCarousel'>
+                <Slider {...productHomeSettings} className='productHomeCarousel'
+                >
                     {!!products.length && 
                          products.map((product: any) => {
                             return (
                                 <Paper key={product.productId}>
                                     <Grid container className='productHomeGrid'>
-                                        <Grid item xs={12} sm={5} md={5} >
+                                        <Grid item xs={12} sm={7} md={7}>
                                             <Typography className="productHomeText">
                                                 Find the best Product for you
                                             </Typography>
@@ -51,7 +52,7 @@ export default function ProductHome() {
                                                 Know More...
                                             </Button>
                                         </Grid>
-                                        <Grid item xs={12} sm={4} md={4}>
+                                        <Grid item xs={12} sm={5} md={5}>
                                             <img alt='heroImage' src={product.imageUrl1} className='productHomeImage' />
                                         </Grid>
                                     </Grid>
@@ -73,14 +74,14 @@ export default function ProductHome() {
                     </Grid>
                 </Grid>
                 <Grid container className='topProductCarouselGrid'>
-                    <Slider {...topProductSettings} className='topProductCarousel'>
+                    <Slider {...topProductSettings} className='topProductCarousel'  style={{width:'1182px', height:'372px', padding: '10px 0px 5px 0px'}}>
                         {!!topRatedProducts.length
                             && topRatedProducts.map((product: any) => {
                                 return (
-                                    <Card key={product.productId} className='topProductCard'>
-                                        <CardContent className='topProductCardContent'>
+                                    <Card key={product.productId} className='topProductCard' >
+                                        <CardContent className='topProductCardContent' style={{ width:'362px', height:'282px', margin:'0px auto', padding:'0px'}}>
                                             <img className='topProductImage'
-                                                src={product.imageUrl1} alt={product.productName} />
+                                                src={product.imageUrl1} alt={product.productName} style={{width:'282px', height:'282px', margin:'0px auto'}}/>
                                         </CardContent>
                                         <CardActions className='topProductCardActions'>
                                             <Button variant='contained' size="medium" className='topProductName'>
