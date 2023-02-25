@@ -1,12 +1,14 @@
 import React from "react";
-import { Box, Grid, Typography, Button, Divider } from "@material-ui/core";
+import { Box, Grid, Typography, Button, Divider, Card, CardActions, CardContent } from "@material-ui/core";
 import { Rating } from "@mui/material";
-import productDetailsSelector from "./ProductDetailsSelector";
+import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
+import productDetailsSelector from "./ProductDetailsSelector";
+import { relatedProductsSettings } from "../ProductHome/ProductHomeConstants";
 import "./ProductDetails.scss";
 
 export default function ProductDetails() {
-  const { displayProduct } = useSelector(productDetailsSelector);
+  const { displayProduct, relatedProducts } = useSelector(productDetailsSelector);
   console.log("useSelector(productDetailsSelector):", useSelector(productDetailsSelector));
 
   if (!Object.keys(displayProduct).length) {
@@ -53,6 +55,24 @@ export default function ProductDetails() {
       <Grid container className="productRelatedGrid">
         <Grid item xs={12} sm={10} md={10}>
           <Typography className="productRelatedTitle">RELATED PRODUCTS</Typography>
+        </Grid>
+        <Grid item xs={12} sm={10} md={10}>
+          <Slider {...relatedProductsSettings} className="productRelatedCarousel">
+            {!!relatedProducts.length &&
+              relatedProducts.map((product: any) => {
+                return (
+                  <Card key={product.productId} className="productRelatedCard">
+                    <CardContent className="productRelatedCardContent">
+                      <img className="productRelatedImage" src={product.imageUrl1} alt={product.productName} />
+                    </CardContent>
+                    <CardActions className="productRelatedCardActions" tabIndex={0}>
+                      <Typography className="productName">{product.productName}</Typography>
+                      <Rating name="read-only" value={Number(product.rating)} className="productRating" />
+                    </CardActions>
+                  </Card>
+                );
+              })}
+          </Slider>
         </Grid>
       </Grid>
     </Box>

@@ -88,5 +88,69 @@
       text-transform: uppercase;
       color: #121212;
     }
+
+    .productRelatedCarousel {
+      padding: 20px;
+
+      .slick-prev:before,
+      .slick-next:before {
+        color: #000000;
+      }
+
+      .productRelatedCard {
+        height: 320px;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column !important;
+
+        .MuiCardContent-root {
+          padding: 0;
+        }
+
+        .productRelatedCardContent {
+          justify-content: center;
+          background: #c4c4c4;
+          height: 220px;
+
+          .productRelatedImage {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .productRelatedCardActions {
+          flex-direction: column;
+          cursor: pointer;
+
+          .productName {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: #121212;
+            opacity: 0.6;
+            float: left;
+          }
+
+          .productRating {
+            margin-top: 15px;
+          }
+        }
+
+        .MuiCardActions-root {
+          align-items: flex-start;
+        }
+
+        .MuiCardActions-spacing > :not(:first-child) {
+          margin-right: 0;
+        }
+      }
+
+      .slick-slide {
+        padding: 0 10px;
+        width: 22%;
+      }
+    }
   }
 }

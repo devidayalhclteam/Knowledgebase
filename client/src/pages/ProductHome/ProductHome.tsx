@@ -8,7 +8,7 @@ import { getProductImages, getImagesTable } from "./ProductHomeSlice";
 import { getProducts } from "../Dashboard/DashboardSlice";
 import productHomeSelector from "./ProductHomeSelector";
 import type { AppDispatch } from "../../store";
-import { topProductSettings, productHomeSettings, listedProductSettings, blogs } from "./ProductHomeConstants";
+import { topProductSettings, productHomeSettings, listedProductSettings } from "./ProductHomeConstants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ProductHome.scss";

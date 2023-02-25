@@ -19,7 +19,8 @@ const productDetailsSelector = createSelector(
 
     if (displayProduct) {
       relatedProducts = productHomeState.products.filter(
-        (product: any) => product.categoryId === displayProduct.categoryId
+        (product: any) =>
+          product.categoryId === displayProduct.categoryId && product.productId !== displayProduct.productId
       );
     }
 

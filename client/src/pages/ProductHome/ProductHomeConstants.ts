@@ -123,6 +123,20 @@ const listedProductSettings = {
   ]
 };
 
+const relatedProductsSettings = {
+  infinite: true,
+  speed: 100,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: false,
+  draggable: false,
+  arrows: true,
+  swipe: true,
+  adaptiveHeight: true,
+  centerMode: false,
+  responsive: []
+};
+
 const blogs = [
   {
     name: "tolong letak gamber",
@@ -174,4 +188,4 @@ const blogs = [
   }
 ];
 
-export { productHomeSettings, topProductSettings, listedProductSettings, blogs };
+export { productHomeSettings, topProductSettings, listedProductSettings, relatedProductsSettings, blogs };
