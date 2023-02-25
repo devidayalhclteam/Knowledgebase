@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { addProducts, addProductImages, getProducts, uploadImage, setProductFormData, setImageTableProductKey, setProductRating, toggleAddProductModal, getProductImages, setProductFormImageData } from "./DashboardSlice";
+import { addProducts, addProductImages, getProducts, uploadImage, setProductFormData, setImageTableProductKey, setProductRating, toggleAddProductModal, getProductImages, setProductFormImageData, updateProducts, updateProductImages, setStateValue, softDeleteImage, deleteImage } from "./DashboardSlice";
 import dashboardSelector from "./DashboardSelector";
 import type { AppDispatch } from "../../store";
 import { Box, Grid, Typography, Button, TextField, MenuItem, InputLabel } from '@material-ui/core';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Rating from '@mui/material/Rating';
 import { displayAlert } from "../../components/Alert/AlertSlice";
+import Delete from "../../images/delete.png";
 import "./Dashboard.scss";
 
 export default function AddProduct() {
     const dispatch = useDispatch<AppDispatch>();
     const [file, setFile] = useState<any>()
-    const { productForm, categories, productImage, productImageTable, isDisabledSubmitBtn, isAddProductSuccessful, isDeleteProductSuccessful } = useSelector(dashboardSelector);
+    const { productForm, categories, productImage, productImageTable, isDisabledSubmitBtn, isAddProductSuccessful, modalViewName } = useSelector(dashboardSelector);
     const { productName, categoryId, description, externalProductLink, rating } = productForm;
     const { imageFile } = productImage;
 
@@ -29,8 +30,9 @@ export default function AddProduct() {
             dispatch(getProducts());
             dispatch(getProductImages());
             dispatch(toggleAddProductModal(false));
+            dispatch(setStateValue(["modalViewName", ""]));
+            dispatch(setStateValue(["isAddProductSuccessful", ""]));
         }
-
     }, [isAddProductSuccessful]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
@@ -52,21 +54,40 @@ export default function AddProduct() {
             setFile(reader.result);
         }
 
-        dispatch(setProductFormImageData(files))
+        dispatch(setProductFormImageData(files));
+        dispatch(softDeleteImage(true));
         let imagePath = imageURL + (files && files[0]?.name);
-        dispatch(setImageTableProductKey([productKey, imagePath]));
+        if (modalViewName === 'AddProduct') {
+            dispatch(setImageTableProductKey([productKey, imagePath]));
+        }
     }
 
     const handleSubmit = () => {
-        dispatch(uploadImage(imageFile));
+        !!imageFile && dispatch(uploadImage(imageFile));
         dispatch(addProductImages(productImageTable));
         dispatch(addProducts(productForm));
+    }
+
+    const handleSoftDelete = () => {
+        dispatch(softDeleteImage(false));
+    }
+
+    const handleEditSubmit = () => {
+        if (!productImageTable.isActive) {
+            let imageName = productImageTable.imageUrl1.split('/');
+            dispatch(deleteImage(imageName.slice(-1)));
+        }
+        !!imageFile && dispatch(uploadImage(imageFile));
+        dispatch(updateProductImages(productImageTable));
+        dispatch(updateProducts(productForm));
     }
 
     return (
         <>
             <Grid className='addProductModal'>
-                <Typography className='addProdHeading'>Add Product*</Typography>
+                {modalViewName === 'AddProduct' && <Typography className='addProdHeading'>Add Product</Typography>}
+                {modalViewName === 'EditProduct' && <Typography className='addProdHeading'>Edit Product</Typography>}
+
                 <Box component="form">
                     <Grid item xs={8} md={8} sm={8} className="modalLeftSide">
                         <InputLabel className="formLabel">Category</InputLabel>
@@ -79,8 +100,8 @@ export default function AddProduct() {
                             name="categoryId"
                             onChange={(e: SelectChangeEvent) => handleChange(e)}
                         >
-                            {!!categories?.data  && categories.data.map((category: any) => {
-                                return <MenuItem value={category.id}>{category.name}</MenuItem>
+                            {!!categories?.data && categories.data.map((category: any) => {
+                                return <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
                             })}
                         </Select>
 
@@ -143,10 +164,23 @@ export default function AddProduct() {
                             <p>Upload Image</p>
                         </div>
                         {!!file && <img src={file} className="uploadedImage"></img>}
-                        {/* <input type="file" onChange={(e: React.ChangeEvent<HTMLInputElement>) => saveFile(e)} /> */}
-                        <Button variant="contained" className="submit" disabled={isDisabledSubmitBtn} onClick={() => handleSubmit()} >
-                            <span> Submit</span>
-                        </Button>
+                        {(modalViewName === 'EditProduct' && !!productImageTable?.imageUrl1 && !!productImageTable?.isActive && !file) &&
+                            <div className='EditImage'>
+                                <img src={Delete} alt="Delete" className='deleteImage' onClick={() => handleSoftDelete()} />
+                                <img src={productImageTable.imageUrl1} className="uploadedImage"></img>
+                            </div>
+                        }
+
+                        {modalViewName === 'AddProduct' &&
+                            <Button variant="contained" className="submit" disabled={isDisabledSubmitBtn} onClick={() => handleSubmit()} >
+                                <span> Submit</span>
+                            </Button>
+                        }
+                        {modalViewName === 'EditProduct' &&
+                            <Button variant="contained" className="submit" disabled={isDisabledSubmitBtn} onClick={() => handleEditSubmit()} >
+                                <span> Submit</span>
+                            </Button>
+                        }
                     </Grid>
                 </Box>
             </Grid>

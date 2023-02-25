@@ -57,9 +57,17 @@ const postProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
+const updateProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield (0, dbConfig_1.clientWithSAS)("products").updateEntity(req.body);
+        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+    }
+    catch (error) {
+        res.status(500).send({ status: constants_1.Status.ERROR, error });
+    }
+});
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log("req.body", req.body);
         const rowKey = req.body.rowKey; //req.body
         const data = yield (0, dbConfig_1.clientWithSAS)("products").deleteEntity("product", rowKey);
         res.status(200).send({ status: constants_1.Status.SUCCESS, data });
@@ -68,4 +76,4 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
 });
-exports.default = { getProducts, postProducts, deleteProduct };
+exports.default = { getProducts, postProducts, updateProducts, deleteProduct };

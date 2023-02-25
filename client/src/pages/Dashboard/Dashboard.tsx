@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { BlobServiceClient } from '@azure/storage-blob';
 import {
-    getProducts, setStateValue, deleteProduct, deleteImage, setProductKey, toggleAddProductModal, resetProductForm, getProductImages, deleteProductImages
+    getProducts, setStateValue, deleteProduct, deleteImage, setProductKey, toggleAddProductModal, resetProductForm, getProductImages, deleteProductImages, setProductFormDataOnEdit, setProductImageTableDataOnEdit
 } from "./DashboardSlice";
 import dashboardSelector from "./DashboardSelector";
 import type { AppDispatch } from "../../store";
@@ -27,13 +26,16 @@ import { displayAlert } from '../../components/Alert/AlertSlice';
 import { getCategories } from '../SearchBar/SearchBarSlice';
 
 export default function Dashboard() {
-    const { products, productImages, isModalOpen, selectedProducts, currentIndex, isDeleteProductSuccessful } = useSelector(dashboardSelector);
+    const {
+        products, productForm, productImageTable, productImages, isModalOpen, modalViewName,
+        selectedProducts, currentIndex, isDeleteProductSuccessful, isUpdatedProductSuccessful } = useSelector(dashboardSelector);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         dispatch(getProducts());
         dispatch(getProductImages());
         dispatch(getCategories());
+        dispatch(setStateValue(["modalViewName", ""]));
     }, []);
 
     useEffect(() => {
@@ -42,15 +44,16 @@ export default function Dashboard() {
 
     useEffect(() => {
         let productKey: any = uuidv4();
-        isModalOpen ?
-            dispatch(setProductKey(productKey)) :
+        if (isModalOpen && modalViewName === 'AddProduct') {
+            dispatch(setProductKey(productKey))
+        }
+        else if (modalViewName === '') {
             dispatch(resetProductForm());
+        }
     }, [isModalOpen]);
 
     useEffect(() => {
-        console.log("inside isDeleteProductSuccessful", isDeleteProductSuccessful);
         if (isDeleteProductSuccessful === 'success') {
-            console.log("Inside isDeleteProductSuccessful");
             dispatch(
                 displayAlert({
                     severity: "success",
@@ -59,9 +62,27 @@ export default function Dashboard() {
                 })
             );
             dispatch(getProducts());
+            dispatch(setStateValue(["modalViewName", ""]));
+            dispatch(setStateValue(["isDeleteProductSuccessful", ""]));
+        }
+    }, [isDeleteProductSuccessful]);
+
+    useEffect(() => {
+        if (isUpdatedProductSuccessful === 'success') {
+            dispatch(
+                displayAlert({
+                    severity: "success",
+                    title: "Success",
+                    message: "Product Updated successfully"
+                })
+            );
+            dispatch(getProducts());
+            dispatch(toggleAddProductModal(false));
+            dispatch(setStateValue(["modalViewName", ""]));
+            dispatch(setStateValue(["isUpdatedProductSuccessful", ""]));
         }
 
-    }, [isDeleteProductSuccessful]);
+    }, [isUpdatedProductSuccessful]);
 
     const getSelectedProducts = () => {
         let selectedProducts = !!products && products.slice(0, currentIndex * 12);
@@ -80,16 +101,35 @@ export default function Dashboard() {
     }
 
     const handleModal = (data: boolean) => {
-        dispatch(toggleAddProductModal(data))
+        dispatch(toggleAddProductModal(data));
+        dispatch(setStateValue(["modalViewName", "AddProduct"]));
     }
 
     const handleDelete = (rowKey: any) => {
         dispatch(deleteProduct(rowKey));
         let productTableRowKey = productImages.filter((data: any) => data.productId === rowKey);
         let imageName = (productTableRowKey[0].imageUrl1).split('/');
-        console.log(imageName.slice(-1));
         dispatch(deleteProductImages(productTableRowKey[0].rowKey))
         dispatch(deleteImage(imageName.slice(-1)));
+    }
+
+    const handleEdit = (rowKey: any) => {
+        handleModal(true);
+        dispatch(setStateValue(["modalViewName", "EditProduct"]));
+        let selectedProduct = products.filter((product: any) => {
+            if (product.rowKey === rowKey) {
+                return product
+            };
+        });
+
+        let selectedProductImageTable = productImages.filter((productImage: any) => {
+            if (productImage.productId === rowKey) {
+                return productImage
+            }
+        })
+
+        dispatch(setProductFormDataOnEdit(selectedProduct));
+        dispatch(setProductImageTableDataOnEdit(selectedProductImageTable));
     }
 
     const loadMore = () => {
@@ -97,9 +137,9 @@ export default function Dashboard() {
     }
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let searchValue = e.target.value;
+        let searchValue = (e.target.value).trim().toLowerCase();
         let searchProduct = !!products && products.filter((product: any) => {
-            return product.productName.toLowerCase().match(new RegExp(searchValue, 'g'))
+            return product.productName.trim().toLowerCase().match(new RegExp(searchValue, 'g'))
         })
         !!searchProduct && dispatch(setStateValue(["selectedProducts", searchProduct]));
         !searchValue.length && getSelectedProducts();
@@ -139,10 +179,10 @@ export default function Dashboard() {
                                     let rowkey = product.rowKey;
                                     let imageUrl = product?.productId && getImage(product.productId);
                                     return (
-                                        <Grid item xs={3} md={3} sm={3} className="cardContainer">
+                                        <Grid item xs={3} md={3} sm={3} className="cardContainer" key={index}>
                                             <Card className="prodCard" key={index}>
                                                 <div className='imageContainer'>
-                                                    <Button variant="contained" className="editBtn" >
+                                                    <Button variant="contained" className="editBtn" onClick={() => handleEdit(rowkey)}>
                                                         <img src={Edit} alt="Edit" />
                                                     </Button>
                                                     <Button variant="contained" className='deleteBtn' onClick={() => handleDelete(rowkey)} >

@@ -18,8 +18,6 @@ export default function AlertComponent() {
     dispatch(clearAlert());
   };
 
-  console.log("Snackbar", alertInfo);
-
   return (
     <div>
       <Snackbar

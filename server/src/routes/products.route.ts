@@ -7,6 +7,6 @@ router.route("/products")
     .get(ProductsController.getProducts)
     .post(ProductsController.postProducts)
     .delete(ProductsController.deleteProduct)
-    // .put(ProductsController.updateProducts)
+    .put(ProductsController.updateProducts)
 
 export default router;
