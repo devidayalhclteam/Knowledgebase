@@ -15,7 +15,7 @@ body{
         .productHomeCarousel {
             width: 1200px;
             margin: 0px auto;
-
+            height:inherit;
             .MuiPaper-elevation1 {
                 box-shadow: none;
             }
@@ -193,7 +193,9 @@ body{
         .listedProductGrid {
             justify-content: center;
             align-items: center;
-            padding: 20px 40px;
+            padding: 20px 0px;
+            width: 1200px;
+            margin: 0px auto;
 
             .listedProductGridItem {
                 padding: 0 10px;
