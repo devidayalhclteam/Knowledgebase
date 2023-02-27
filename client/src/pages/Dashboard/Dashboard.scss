@@ -1,376 +1,372 @@
 .dashboard {
-    padding: 15px;
-    display: flex;
-    background: #F7F8FA;
+  padding: 15px;
+  display: flex;
+  background: #f7f8fa;
 
-    .dashboardContainer {
+  .dashboardContainer {
+    .dashboardLeftContainer {
+      background: #fafbfc;
+      border-radius: 20px 20px 0px 0px;
+      padding: 15px 15px;
 
-        .dashboardLeftContainer {
-            background: #FAFBFC;
-            border-radius: 20px 20px 0px 0px;
-            padding: 15px 15px;
+      .productsLabel {
+        width: auto;
+        float: left;
+        margin-top: 4px;
+        color: #6b7a99;
 
-            .productsLabel {
-                width: auto;
-                float: left;
-                margin-top: 4px;
-                color: #6B7A99;
-
-                img {
-                    width: 20px;
-                    margin-right: 8px;
-                    float: left;
-                    margin-top: 4px;
-                }
-
-                span {
-                    float: left;
-                    padding: 0;
-                }
-            }
-
-            .topContainer {
-                padding: 10px 15px;
-                width: 100%;
-                float: left;
-                background: #FAFBFC;
-
-                .addProductButton {
-                    float: right;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 6px 20px 6px 15px;
-                    background: #E3CBB3;
-                    border-radius: 20px;
-                }
-            }
-
-            .filterContainer {
-                background: #FFFFFF;
-                width: 100%;
-                float: left;
-                padding: 10px 15px;
-                border-bottom: 1px solid #F2F3F5;
-                border-top: 1px solid #F2F3F5;
-                text-align: center;
-
-                button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.addProductButton {
-                    color: #6B7A99;
-                    border: 1px solid #F5F6F7;
-                    background: #FFFFFF;
-                    box-shadow: none;
-
-                    img {
-                        float: left;
-                        width: 20px;
-                        margin-right: 5px;
-                    }
-
-                    span {
-                        text-transform: capitalize;
-                    }
-                }
-
-                .filterSearch {
-                    display: inline-block;
-                    color: #6B7A99;
-                    border: 1px solid #F5F6F7;
-                    padding: 5px;
-
-                    img {
-                        width: 17px;
-                        margin: 8px 10px 0;
-                        float: left;
-                    }
-
-                    input {
-                        padding: 5px;
-                        font-size: 14px;
-                        border: none;
-                    }
-
-                    .MuiInputBase-root:after,
-                    .MuiInputBase-root:before {
-                        display: none !important;
-                    }
-                }
-            }
-
-            .productList {
-                background: #FFFFFF;
-                display: flex;
-                flex-wrap: wrap;
-                flex: 100;
-                padding: 10px 15px;
-
-                .cardContainer {
-                    padding: 5px;
-
-                    .prodCard {
-                        background: #FFFFFF;
-                        border-radius: 10px;
-                        text-align: center;
-                        padding-bottom: 15px;
-                        position: relative;
-                        min-height: 250px;
-
-                        .productHeading {
-                            color: #6B7A99;
-                            font-family: 'Lato';
-                            font-style: normal;
-                            font-weight: 700;
-                            font-size: 16px;
-                            line-height: 20px;
-                        }
-
-                        .cardContainer {
-                            span {
-                                text-align: center;
-                                margin: 0 auto;
-                            }
-                        }
-
-                        .imageContainer {
-                            position: absolute;
-                            right: 0px;
-                            top: 2px;
-                            z-index: 99;
-                            display: flex;
-                            flex-direction: column;
-
-                            button {
-                                background: none;
-                                padding: 0;
-                                border: none;
-                                box-shadow: none;
-                            }
-
-                            img {
-                                padding: 5px;
-                                margin-bottom: 5px;
-                                cursor: pointer;
-                            }
-
-                            button.editBtn img {
-                                width: 18px;
-                            }
-
-                            button.editBtn:hover img,
-                            button.deleteBtn:hover img {
-                                background-color: #eee;
-                                border-radius: 4px;
-                            }
-
-                            button.deleteBtn img {
-                                width: 15px;
-                            }
-                        }
-
-                        .productImage {
-                            display: flex;
-                            padding: 50px 15px 20px;
-
-                            img {
-                                width: 100%;
-                                float: left;
-                            }
-                        }
-                    }
-                }
-            }
+        img {
+          width: 20px;
+          margin-right: 8px;
+          float: left;
+          margin-top: 4px;
         }
 
-        .loadMore {
+        span {
+          float: left;
+          padding: 0;
+        }
+      }
+
+      .topContainer {
+        padding: 10px 15px;
+        width: 100%;
+        float: left;
+        background: #fafbfc;
+
+        .addProductButton {
+          float: right;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 6px 20px 6px 15px;
+          background: #e3cbb3;
+          border-radius: 20px;
+        }
+      }
+
+      .filterContainer {
+        background: #ffffff;
+        width: 100%;
+        float: left;
+        padding: 10px 15px;
+        border-bottom: 1px solid #f2f3f5;
+        border-top: 1px solid #f2f3f5;
+        text-align: center;
+
+        button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.addProductButton {
+          color: #6b7a99;
+          border: 1px solid #f5f6f7;
+          background: #ffffff;
+          box-shadow: none;
+
+          img {
+            float: left;
+            width: 20px;
+            margin-right: 5px;
+          }
+
+          span {
+            text-transform: capitalize;
+          }
+        }
+
+        .filterSearch {
+          display: inline-block;
+          color: #6b7a99;
+          border: 1px solid #f5f6f7;
+          padding: 5px;
+
+          img {
+            width: 17px;
+            margin: 8px 10px 0;
+            float: left;
+          }
+
+          input {
+            padding: 5px;
+            font-size: 14px;
+            border: none;
+          }
+
+          .MuiInputBase-root:after,
+          .MuiInputBase-root:before {
+            display: none !important;
+          }
+        }
+      }
+
+      .productList {
+        background: #ffffff;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 100;
+        padding: 10px 15px;
+
+        .cardContainer {
+          padding: 5px;
+
+          .prodCard {
+            background: #ffffff;
+            border-radius: 10px;
             text-align: center;
+            padding-bottom: 15px;
+            position: relative;
+            min-height: 250px;
 
-            .loadMoreBtn {
-                width: 140px;
-                height: 40px;
-                background: #FFFFFF;
-                border: 2px solid #F5F6F7;
-                box-shadow: 0px 2px 5px rgb(38 51 77 / 3%);
-                border-radius: 20px;
-                flex: none;
-                order: 0;
-                flex-grow: 0;
-                margin-top: -30px;
-                font-size: 12px;
-                text-transform: capitalize;
+            .productHeading {
+              color: #6b7a99;
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 20px;
             }
-        }
 
+            .cardContainer {
+              span {
+                text-align: center;
+                margin: 0 auto;
+              }
+            }
+
+            .imageContainer {
+              position: absolute;
+              right: 0px;
+              top: 2px;
+              z-index: 99;
+              display: flex;
+              flex-direction: column;
+
+              button {
+                background: none;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+              }
+
+              img {
+                padding: 5px;
+                margin-bottom: 5px;
+                cursor: pointer;
+              }
+
+              button.editBtn img {
+                width: 18px;
+              }
+
+              button.editBtn:hover img,
+              button.deleteBtn:hover img {
+                background-color: #eee;
+                border-radius: 4px;
+              }
+
+              button.deleteBtn img {
+                width: 15px;
+              }
+            }
+
+            .productImage {
+              display: flex;
+              padding: 50px 15px 20px;
+
+              img {
+                width: 100%;
+                float: left;
+              }
+            }
+          }
+        }
+      }
     }
 
+    .loadMore {
+      text-align: center;
+
+      .loadMoreBtn {
+        width: 140px;
+        height: 40px;
+        background: #ffffff;
+        border: 2px solid #f5f6f7;
+        box-shadow: 0px 2px 5px rgb(38 51 77 / 3%);
+        border-radius: 20px;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        margin-top: -30px;
+        font-size: 12px;
+        text-transform: capitalize;
+      }
+    }
+  }
 }
 
 .addProductModal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    background-color: #ffffff;
-    box-shadow: 24;
-    padding: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: #ffffff;
+  box-shadow: 24;
+  padding: 10px;
 
-    .addProdHeading {
-        font-family: 'Lato';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 28px;
-        text-align: left;
-        letter-spacing: 0.02em;
-        color: #2F2F2F;
-        margin-bottom: 15px;
-        padding-left: 15px;
+  .addProdHeading {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: left;
+    letter-spacing: 0.02em;
+    color: #2f2f2f;
+    margin-bottom: 15px;
+    padding-left: 15px;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+
+    .modalLeftSide,
+    .modalRightSide {
+      padding: 0 0 0 15px;
     }
 
-    form {
-        display: flex;
-        flex-wrap: wrap;
-
-        .modalLeftSide,
-        .modalRightSide {
-            padding: 0 0 0 15px;
-        }
-
-
-        .formLabel {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 26px;
-            letter-spacing: 0.02em;
-            color: #2F2F2F;
-            margin-top: 15px;
-        }
-
-        .formLabel span {
-            width: 100%;
-            float: left;
-        }
-
-        .formLabel:first-child {
-            margin-top: 0;
-        }
-
-        input,
-        textarea,
-        #category {
-            border: 1px solid #ECECEC;
-            border-radius: 8px;
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 24px;
-            color: #1C1C1C;
-            padding: 5px 10px;
-            min-height: 32px;
-        }
-
-        input:focus,
-        input:hover,
-        textarea:focus,
-        textarea:hover {
-            border: 1px solid #1976d2;
-        }
-
-        .MuiInput-underline:before,
-        .MuiInput-underline:after {
-            display: none;
-        }
-
-        textarea {
-            min-height: 80px;
-            max-height: 80px;
-        }
-
-        .MuiInput-underline:hover:not(.Mui-disabled):before,
-        .MuiInput-underline:hover:after {
-            border: none;
-        }
-
-        .css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-            border-width: 1px;
-        }
-
-        .submit {
-            font-family: 'Lato';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 24px;
-            text-align: center;
-            color: #FFFFFF;
-            background: #000000;
-            text-transform: capitalize;
-        }
-
-        .submit.Mui-disabled {
-            opacity: 0.3;
-            cursor: pointer;
-            pointer-events: none;
-        }
-
-        .uploadedImage {
-            width: 100%;
-        }
-
-        .EditImage {
-            width: 100%;
-            float: left;
-            position: relative;
-            box-shadow: 0px 0px 6px 0px #eee;
-            padding: 5px;
-            box-sizing: border-box;
-            margin-bottom: 15px;
-
-            .deleteImage {
-                position: absolute;
-                top: 8px;
-                right: 8px;
-                width: 13px;
-                cursor: pointer;
-            }
-        }
-
-        .uploadImage {
-            width: 100%;
-            float: left;
-            position: relative;
-            overflow: hidden;
-            margin: 30px 0;
-
-            .MuiFormControl-root,
-            .MuiInputBase-root,
-            input {
-                position: absolute;
-                left: 0;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                opacity: 0;
-                z-index: 99;
-            }
-
-            p {
-                width: 100%;
-                float: left;
-                text-align: center;
-                background: #545353;
-                padding: 10px;
-                box-sizing: border-box;
-                font-size: 14px;
-                border-radius: 8px;
-                color: #fff;
-                text-transform: capitalize;
-                margin: 0;
-            }
-        }
+    .formLabel {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 26px;
+      letter-spacing: 0.02em;
+      color: #2f2f2f;
+      margin-top: 15px;
     }
+
+    .formLabel span {
+      width: 100%;
+      float: left;
+    }
+
+    .formLabel:first-child {
+      margin-top: 0;
+    }
+
+    input,
+    textarea,
+    #category {
+      border: 1px solid #ececec;
+      border-radius: 8px;
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #1c1c1c;
+      padding: 5px 10px;
+      min-height: 32px;
+    }
+
+    input:focus,
+    input:hover,
+    textarea:focus,
+    textarea:hover {
+      border: 1px solid #1976d2;
+    }
+
+    .MuiInput-underline:before,
+    .MuiInput-underline:after {
+      display: none;
+    }
+
+    textarea {
+      min-height: 80px;
+      max-height: 80px;
+    }
+
+    .MuiInput-underline:hover:not(.Mui-disabled):before,
+    .MuiInput-underline:hover:after {
+      border: none;
+    }
+
+    .css-1ualgfl-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-width: 1px;
+    }
+
+    .submit {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      color: #ffffff;
+      background: #000000;
+      text-transform: capitalize;
+    }
+
+    .submit.Mui-disabled {
+      opacity: 0.3;
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    .uploadedImage {
+      width: 100%;
+    }
+
+    .EditImage {
+      width: 100%;
+      float: left;
+      position: relative;
+      box-shadow: 0px 0px 6px 0px #eee;
+      padding: 5px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+
+      .deleteImage {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 13px;
+        cursor: pointer;
+      }
+    }
+
+    .uploadImage {
+      width: 100%;
+      float: left;
+      position: relative;
+      overflow: hidden;
+      margin: 30px 0;
+
+      .MuiFormControl-root,
+      .MuiInputBase-root,
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: 99;
+      }
+
+      p {
+        width: 100%;
+        float: left;
+        text-align: center;
+        background: #545353;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 14px;
+        border-radius: 8px;
+        color: #fff;
+        text-transform: capitalize;
+        margin: 0;
+      }
+    }
+  }
 }

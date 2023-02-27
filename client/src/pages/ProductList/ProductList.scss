@@ -1,0 +1,149 @@
+.productList {
+  width: 100%;
+
+  .productListGridHeader {
+    justify-content: center;
+    padding: 50px 0;
+
+    .productListGridTitle {
+      .productHomeText {
+        font-family: "Spartan";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1.625rem;
+        line-height: 2.25rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #121212;
+        text-align: center;
+      }
+    }
+
+    .productListGridFilter {
+      .productListGridFilterContainer {
+        justify-content: space-between;
+
+        .productGridItem {
+          text-align: center;
+
+          .productListFilterTitle {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.813rem;
+            line-height: 0.938rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #121212;
+            opacity: 0.6;
+            margin-left: 10px;
+          }
+
+          .sortSelect {
+            width: 200px;
+          }
+
+          .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.813rem;
+            line-height: 26px;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.3px;
+            color: #000000;
+            mix-blend-mode: normal;
+            opacity: 0.5;
+          }
+
+          .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 0.875rem;
+            line-height: 26px;
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.3px;
+            color: #000000;
+            mix-blend-mode: normal;
+          }
+        }
+      }
+    }
+  }
+
+  .productListGrid {
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px 50px;
+
+    .productListGridItem {
+      .productListCard {
+        height: 320px;
+
+        .productListCardContent {
+          height: 200px;
+
+          .productListImage {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .productListCardActions {
+          flex-direction: column;
+          cursor: pointer;
+
+          .productName {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: #121212;
+            opacity: 0.6;
+            float: left;
+          }
+
+          .productRating {
+            margin-top: 15px;
+          }
+        }
+
+        .MuiCardActions-root {
+          align-items: flex-start;
+        }
+
+        .MuiCardActions-spacing > :not(:first-child) {
+          margin-right: 0;
+        }
+      }
+
+      .MuiPaper-elevation1 {
+        box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%),
+          0px 1px 3px 0px rgb(0 0 0 / 12%), 0px 1px 3px 0px rgb(0 0 0 / 20%);
+      }
+    }
+
+    .productListGridBtn {
+      justify-content: center;
+
+      .productLoadBtn {
+        text-align: center;
+        width: 80%;
+        padding: 15px 0;
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.375rem;
+        text-align: center;
+        letter-spacing: -0.4px;
+        color: #0d0d0d;
+        border: 1px solid #0d0d0d;
+      }
+    }
+  }
+}

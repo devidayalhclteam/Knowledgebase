@@ -1,20 +1,20 @@
-import { Request, Response } from "express"
+import { Request, Response } from "express";
 import { productImagesService } from "../services";
 
 const getProductImage = (req: Request, res: Response) => {
-    return productImagesService.getProductImage(req, res);
+  return productImagesService.getProductImage(req, res);
 };
 
 const postProductImage = (req: Request, res: Response) => {
-    return productImagesService.postProductImage(req, res);
+  return productImagesService.postProductImage(req, res);
 };
 
 const updateProductImage = (req: Request, res: Response) => {
-    return productImagesService.updateProductImage(req, res);
+  return productImagesService.updateProductImage(req, res);
 };
 
 const deleteProductImage = (req: Request, res: Response) => {
-    return productImagesService.deleteProductImage(req, res);
+  return productImagesService.deleteProductImage(req, res);
 };
 
 export default { getProductImage, postProductImage, updateProductImage, deleteProductImage };

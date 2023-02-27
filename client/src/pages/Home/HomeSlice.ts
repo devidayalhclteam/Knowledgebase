@@ -1,28 +1,30 @@
-import { createAsyncThunk, createSlice, PayloadAction  } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface Home {
-    displayView: string;
+  displayView: string;
+  displayProductId: string;
 }
 
 const initialState: Home = {
-    // displayView:"productList",
-    displayView:"productHome"
+  displayView: "productHome",
+  displayProductId: ""
 };
 
 const homeSlice = createSlice({
-    name: "home",
-    initialState,
-    reducers: {
-        // setDisplayView: (state: Home,  action: PayloadAction<Home>) => {
-        //     state.displayView = action.payload;
-        // },
+  name: "home",
+  initialState,
+  reducers: {
+    setDisplayView: (state: Home, action: PayloadAction<string>) => {
+      state.displayView = action.payload;
     },
-    extraReducers: (builder) => {
-
+    setProductView: (state: Home, action: PayloadAction<string>) => {
+      state.displayProductId = action.payload;
     }
-})
+  },
+  extraReducers: (builder) => {}
+});
 
-export const { } = homeSlice.actions;
+export const { setDisplayView, setProductView } = homeSlice.actions;
 
 export default homeSlice.reducer;

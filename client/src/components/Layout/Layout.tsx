@@ -1,9 +1,9 @@
-import React, { ReactNode } from 'react';
-import Navbar from '../../pages/Navbar/Navbar';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import AlertComponent from '../Alert/Alert';
+import React, { ReactNode } from "react";
+import Navbar from "../../pages/Navbar/Navbar";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import AlertComponent from "../Alert/Alert";
 interface LayoutProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function Layout({ children }: LayoutProps) {
@@ -14,5 +14,5 @@ export default function Layout({ children }: LayoutProps) {
       <Navbar />
       <div className="mainContainer">{children}</div>
     </div>
-  )
+  );
 }

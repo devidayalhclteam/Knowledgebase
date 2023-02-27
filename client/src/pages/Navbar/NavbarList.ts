@@ -21,7 +21,7 @@ const NavbarList: Navbar[] = [
   {
     path: "/blogs",
     name: "Blogs"
-  },
+  }
 ];
 
 export default NavbarList;

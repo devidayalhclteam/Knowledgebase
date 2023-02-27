@@ -1,0 +1,156 @@
+.productDetails {
+  width: 100%;
+
+  .productDetailsGrid {
+    justify-content: center;
+
+    .productDetailsGridItem {
+      padding: 20px;
+
+      .productDetailsName {
+        font-family: "Public Sans";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 2.25rem;
+        line-height: 48px;
+        letter-spacing: -0.03em;
+        color: #000000;
+      }
+
+      .productDetailsLink {
+        background: #0d0d0d;
+        border: 1px solid #0d0d0d;
+        font-family: "Public Sans";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 22px;
+        text-align: center;
+        letter-spacing: -0.4px;
+        color: #ffffff;
+        border-radius: 0;
+        padding: 14px 20px;
+        width: 200px;
+      }
+
+      .productDetailsDescGrid {
+        height: 250px;
+
+        .productDetailsDesc {
+          font-family: "Spartan";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 0.875rem;
+          line-height: 22px;
+          color: #121212;
+        }
+      }
+
+      .divider {
+        width: 100%;
+        border: 2px solid #e6e6e6;
+      }
+
+      .productDetailsRateGrid {
+        display: flex;
+        justify-content: center;
+
+        .productDetailsRate {
+          width: 250px;
+          padding: 14px 20px;
+          border-radius: 0;
+          font-family: "Lato";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1rem;
+          line-height: 22px;
+          text-align: center;
+          letter-spacing: -0.4px;
+          color: #0d0d0d;
+        }
+      }
+    }
+  }
+
+  .productRelatedGrid {
+    justify-content: center;
+    margin-top: 50px;
+
+    .productRelatedTitle {
+      font-family: "Spartan";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.375rem;
+      line-height: 25px;
+      display: flex;
+      align-items: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #121212;
+    }
+
+    .productRelatedCarousel {
+      padding: 20px;
+
+      .slick-prev:before,
+      .slick-next:before {
+        color: #000000;
+      }
+
+      .productRelatedCard {
+        height: 320px;
+        background: #ffffff;
+        display: flex;
+        flex-direction: column !important;
+
+        .MuiCardContent-root {
+          padding: 0;
+        }
+
+        .productRelatedCardContent {
+          justify-content: center;
+          background: #c4c4c4;
+          height: 220px;
+
+          .productRelatedImage {
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .productRelatedCardActions {
+          flex-direction: column;
+          cursor: pointer;
+
+          .productName {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.875rem;
+            line-height: 1rem;
+            color: #121212;
+            opacity: 0.6;
+            float: left;
+          }
+
+          .productRating {
+            margin-top: 15px;
+          }
+        }
+
+        .MuiCardActions-root {
+          align-items: flex-start;
+        }
+
+        .MuiCardActions-spacing > :not(:first-child) {
+          margin-right: 0;
+        }
+      }
+
+      .slick-slide {
+        padding: 0 10px;
+        width: 22%;
+      }
+    }
+  }
+}
