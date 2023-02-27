@@ -7,6 +7,7 @@ router
   .route("/productImages")
   .get(productImagesController.getProductImage)
   .post(productImagesController.postProductImage)
+  .put(productImagesController.updateProductImage)
   .delete(productImagesController.deleteProductImage);
 
 export default router;

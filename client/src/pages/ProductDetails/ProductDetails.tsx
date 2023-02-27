@@ -5,15 +5,22 @@ import Slider from "react-slick";
 import { useSelector, useDispatch } from "react-redux";
 import productDetailsSelector from "./ProductDetailsSelector";
 import { relatedProductsSettings } from "../ProductHome/ProductHomeConstants";
+import { setDisplayView, setProductView } from "../Home/HomeSlice";
+import type { AppDispatch } from "../../store";
 import "./ProductDetails.scss";
 
 export default function ProductDetails() {
   const { displayProduct, relatedProducts } = useSelector(productDetailsSelector);
-  console.log("useSelector(productDetailsSelector):", useSelector(productDetailsSelector));
+  const dispatch = useDispatch<AppDispatch>();
 
   if (!Object.keys(displayProduct).length) {
     return null;
   }
+
+  const handleCardAction = (productId: string) => {
+    dispatch(setProductView(productId));
+    dispatch(setDisplayView("productDetails"));
+  };
 
   return (
     <Box className="productDetails">
@@ -34,7 +41,7 @@ export default function ProductDetails() {
               <Button
                 variant="contained"
                 className="productDetailsLink"
-                tabIndex="0"
+                tabIndex={0}
                 onClick={() => window.open(`${displayProduct.externalProductLink}`, "_blank")}
               >
                 Website
@@ -44,7 +51,7 @@ export default function ProductDetails() {
               <Divider className="divider" />
             </Grid>
             <Grid item xs={12} sm={12} md={12} className="productDetailsRateGrid">
-              <Button variant="outlined" className="productDetailsRate" tabIndex="0">
+              <Button variant="outlined" className="productDetailsRate" tabIndex={0}>
                 Rate the Product
               </Button>
             </Grid>
@@ -65,7 +72,11 @@ export default function ProductDetails() {
                     <CardContent className="productRelatedCardContent">
                       <img className="productRelatedImage" src={product.imageUrl1} alt={product.productName} />
                     </CardContent>
-                    <CardActions className="productRelatedCardActions" tabIndex={0}>
+                    <CardActions
+                      className="productRelatedCardActions"
+                      tabIndex={0}
+                      onClick={() => handleCardAction(product.productId)}
+                    >
                       <Typography className="productName">{product.productName}</Typography>
                       <Rating name="read-only" value={Number(product.rating)} className="productRating" />
                     </CardActions>

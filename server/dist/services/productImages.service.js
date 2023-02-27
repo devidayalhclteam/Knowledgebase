@@ -114,6 +114,19 @@ const postProductImage = (req, res) =>
       res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
   });
+const updateProductImage = (req, res) =>
+  __awaiter(void 0, void 0, void 0, function* () {
+    try {
+      try {
+        const data = yield (0, dbConfig_1.clientWithSAS)("productImages").updateEntity(req.body);
+        res.status(200).send({ status: constants_1.Status.SUCCESS, data });
+      } catch (error) {
+        res.status(500).send({ status: constants_1.Status.ERROR, error });
+      }
+    } catch (error) {
+      res.status(500).send({ status: constants_1.Status.ERROR, error });
+    }
+  });
 const deleteProductImage = (req, res) =>
   __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -124,4 +137,4 @@ const deleteProductImage = (req, res) =>
       res.status(500).send({ status: constants_1.Status.ERROR, error });
     }
   });
-exports.default = { getProductImage, postProductImage, deleteProductImage };
+exports.default = { getProductImage, postProductImage, updateProductImage, deleteProductImage };

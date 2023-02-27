@@ -47,7 +47,6 @@ export interface Products {
     rating: Number;
     partitionKey: string;
     rowKey: string;
-    imageFile: any;
   };
   productImageTable: {
     partitionKey: string;
@@ -64,8 +63,10 @@ export interface Products {
   selectedProducts: [];
   isDisabledSubmitBtn: true;
   isModalOpen: any;
+  modalViewName: string;
   isLoading: boolean;
   isAddProductSuccessful: string;
+  isUpdatedProductSuccessful: string;
   isDeleteProductSuccessful: string;
 }
 
@@ -106,8 +107,7 @@ const initialState: Products = {
     productName: "",
     rating: 0,
     partitionKey: "product",
-    rowKey: "",
-    imageFile: ""
+    rowKey: ""
   },
   productImageTable: {
     partitionKey: "productImage",
@@ -118,23 +118,22 @@ const initialState: Products = {
     productId: ""
   },
   productImage: {
-    imageFile: ""
+    imageFile: {}
   },
   currentIndex: 1,
   selectedProducts: [],
   isDisabledSubmitBtn: true,
   isModalOpen: false,
+  modalViewName: "",
   isLoading: false,
   isAddProductSuccessful: "",
+  isUpdatedProductSuccessful: "",
   isDeleteProductSuccessful: ""
 };
-
-const product: any = {};
 
 export const getProducts = createAsyncThunk("dashboard/getProducts", async () => {
   try {
     const response = await axios.get("/api/table/products/products");
-    console.log("response.data", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -145,7 +144,16 @@ export const getProducts = createAsyncThunk("dashboard/getProducts", async () =>
 export const addProducts = createAsyncThunk("dashboard/addProducts", async (payload: any) => {
   try {
     const response = await axios.post("/api/table/products/products", payload);
-    console.log("add Product response.data", response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+});
+
+export const updateProducts = createAsyncThunk("dashboard/updateProducts", async (payload: any) => {
+  try {
+    const response = await axios.put("/api/table/products/products", payload);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -162,7 +170,6 @@ export const deleteProduct = createAsyncThunk("dashboard/deleteProduct", async (
         rowKey: payload
       }
     });
-    console.log("add Product response.data", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -173,7 +180,6 @@ export const deleteProduct = createAsyncThunk("dashboard/deleteProduct", async (
 export const getProductImages = createAsyncThunk("dashboard/getProductImages", async () => {
   try {
     const response = await axios.get("/api/table/productImages/productImages");
-    console.log("response.data", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -184,7 +190,16 @@ export const getProductImages = createAsyncThunk("dashboard/getProductImages", a
 export const addProductImages = createAsyncThunk("dashboard/addProductImages", async (payload: any) => {
   try {
     const response = await axios.post("/api/table/productImages/productImages", payload);
-    console.log("add Product Images response.data", response.data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+});
+
+export const updateProductImages = createAsyncThunk("dashboard/updateProductImages", async (payload: any) => {
+  try {
+    const response = await axios.put("/api/table/productImages/productImages", payload);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -201,7 +216,6 @@ export const deleteProductImages = createAsyncThunk("dashboard/deleteProductImag
         rowKey: payload
       }
     });
-    console.log("add Product response.data", response.data);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -213,7 +227,7 @@ export const uploadImage = createAsyncThunk("dashboard/uploaImage", async (paylo
   if (payload?.length) {
     try {
       const blockBlobClient = containerClient.getBlockBlobClient(payload[0].name);
-      await blockBlobClient.uploadBrowserData(payload, {
+      await blockBlobClient.uploadBrowserData(payload[0], {
         onProgress: (ev: any) => {
           console.log(`you have upload ${ev.loadedBytes} bytes`);
           return "success";
@@ -230,7 +244,6 @@ export const deleteImage = createAsyncThunk("dashboard/deleteImage", async (payl
   if (payload?.length) {
     try {
       await containerClient.getBlockBlobClient(payload[0]).delete();
-      console.log("deleted successfully.");
       return "Success";
     } catch (error: any) {
       console.log(error.message);
@@ -263,7 +276,6 @@ const productsSlice = createSlice({
       state.productForm[name] = value;
     },
     setProductFormImageData: (state: any, action: PayloadAction<any>) => {
-      console.log("setProductFormImageData", action.payload);
       state.productImage["imageFile"] = action.payload;
     },
     setProductRating: (state: any, action: PayloadAction<any>) => {
@@ -271,7 +283,6 @@ const productsSlice = createSlice({
       state.productForm[name] = value;
     },
     setProductKey: (state: any, action: any) => {
-      console.log("action", action.payload);
       const productKey = action.payload;
       state.productForm["productId"] = productKey;
       state.productForm["rowKey"] = productKey;
@@ -283,6 +294,35 @@ const productsSlice = createSlice({
       state.productImageTable["rowKey"] = productKey;
       state.productImageTable["imageUrl1"] = imagePath;
     },
+    setProductFormDataOnEdit: (state: any, action: PayloadAction<any[]>) => {
+      let formData = action.payload[0];
+      let productForm = {
+        categoryId: formData.categoryId,
+        productId: formData.productId,
+        description: formData.description,
+        shortDescription: formData.shortDescription,
+        isActive: formData.isActive,
+        externalProductLink: formData.externalProductLink,
+        productName: formData.productName,
+        rating: formData.rating,
+        partitionKey: "product",
+        rowKey: formData.rowKey
+      };
+
+      state.productForm = productForm;
+    },
+    setProductImageTableDataOnEdit: (state: any, action: PayloadAction<any[]>) => {
+      let formData = action.payload[0];
+      let productImageTable = {
+        productId: formData.productId,
+        isActive: formData.isActive,
+        imageUrl1: formData.imageUrl1,
+        partitionKey: "productImage",
+        rowKey: formData.rowKey,
+        imageId: formData.imageId
+      };
+      state.productImageTable = productImageTable;
+    },
     toggleAddProductModal: (state: any, action: PayloadAction<boolean>) => {
       state.isModalOpen = action.payload;
     },
@@ -290,6 +330,9 @@ const productsSlice = createSlice({
       let key = action.payload[0];
       let value = action.payload[1];
       state[key] = value;
+    },
+    softDeleteImage: (state: any, action: PayloadAction<any>) => {
+      state.productImageTable["isActive"] = action.payload;
     },
     resetProductForm: (state: any) => {
       state.productForm = initialState.productForm;
@@ -309,8 +352,6 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(getProducts.fulfilled, (state: Products, { payload }) => {
-      console.log("🚀 ~ file: DashboardSlice.ts:169 ~ builder.addCase ~ payload:", payload);
-
       return { ...state, productResponse: payload, isLoading: false };
     });
     builder.addCase(getProducts.rejected, (state: Products) => {
@@ -320,17 +361,24 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(addProducts.fulfilled, (state: Products, { payload }) => {
-      console.log("add Product payload", payload);
       return { ...state, isAddProductSuccessful: payload.status, isLoading: false };
     });
     builder.addCase(addProducts.rejected, (state: Products) => {
+      return { ...state, isLoading: false };
+    });
+    builder.addCase(updateProducts.pending, (state: Products) => {
+      return { ...state, isLoading: true };
+    });
+    builder.addCase(updateProducts.fulfilled, (state: Products, { payload }) => {
+      return { ...state, isUpdatedProductSuccessful: payload.status, isLoading: false };
+    });
+    builder.addCase(updateProducts.rejected, (state: Products) => {
       return { ...state, isLoading: false };
     });
     builder.addCase(deleteProduct.pending, (state: Products) => {
       return { ...state, isLoading: true };
     });
     builder.addCase(deleteProduct.fulfilled, (state: Products, { payload }) => {
-      console.log("deleteProduct payload", payload);
       return { ...state, isDeleteProductSuccessful: payload.status, isLoading: false };
     });
     builder.addCase(deleteProduct.rejected, (state: Products) => {
@@ -340,7 +388,6 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(getProductImages.fulfilled, (state: Products, { payload }) => {
-      console.log("getProductImages payload", payload);
       return { ...state, productImageResponse: payload, isLoading: false };
     });
     builder.addCase(getProductImages.rejected, (state: Products) => {
@@ -350,17 +397,24 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(addProductImages.fulfilled, (state: Products, { payload }) => {
-      console.log("addProductImages payload", payload);
       return { ...state, isLoading: false };
     });
     builder.addCase(addProductImages.rejected, (state: Products) => {
+      return { ...state, isLoading: false };
+    });
+    builder.addCase(updateProductImages.pending, (state: Products) => {
+      return { ...state, isLoading: true };
+    });
+    builder.addCase(updateProductImages.fulfilled, (state: Products, { payload }) => {
+      return { ...state, isLoading: false };
+    });
+    builder.addCase(updateProductImages.rejected, (state: Products) => {
       return { ...state, isLoading: false };
     });
     builder.addCase(deleteProductImages.pending, (state: Products) => {
       return { ...state, isLoading: true };
     });
     builder.addCase(deleteProductImages.fulfilled, (state: Products, { payload }) => {
-      console.log("deleteProductImages payload", payload);
       return { ...state, isDeleteProductSuccessful: payload.status, isLoading: false };
     });
     builder.addCase(deleteProductImages.rejected, (state: Products) => {
@@ -370,7 +424,6 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(uploadImage.fulfilled, (state: Products, { payload }) => {
-      console.log("uploadImage payload", payload);
       return { ...state, isLoading: false };
     });
     builder.addCase(uploadImage.rejected, (state: Products) => {
@@ -380,7 +433,6 @@ const productsSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(deleteImage.fulfilled, (state: Products, { payload }) => {
-      console.log("deleteImage payload", payload);
       return { ...state, isLoading: false };
     });
     builder.addCase(deleteImage.rejected, (state: Products) => {
@@ -392,9 +444,12 @@ const productsSlice = createSlice({
 export const {
   setProductFormData,
   setStateValue,
+  softDeleteImage,
   setProductFormImageData,
+  setProductImageTableDataOnEdit,
   setProductRating,
   setProductKey,
+  setProductFormDataOnEdit,
   setImageTableProductKey,
   toggleAddProductModal,
   resetProductForm

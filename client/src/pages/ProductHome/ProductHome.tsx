@@ -6,6 +6,7 @@ import { Rating, Fab, Box } from "@mui/material";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import { getProductImages, getImagesTable } from "./ProductHomeSlice";
 import { getProducts } from "../Dashboard/DashboardSlice";
+import { setDisplayView, setProductView } from "../Home/HomeSlice";
 import productHomeSelector from "./ProductHomeSelector";
 import type { AppDispatch } from "../../store";
 import { topProductSettings, productHomeSettings, listedProductSettings } from "./ProductHomeConstants";
@@ -29,6 +30,11 @@ export default function ProductHome() {
     setSeeAll(!seeAll);
   };
 
+  const handleCardAction = (productId: string) => {
+    dispatch(setProductView(productId));
+    dispatch(setDisplayView("productDetails"));
+  };
+
   return (
     <Box className="productHome">
       <Grid container className="productHomeContainer">
@@ -39,12 +45,14 @@ export default function ProductHome() {
                 <Paper key={product.productId}>
                   <Grid container spacing={2} className="productHomeGrid">
                     <Grid item xs={12} sm={5} md={5}>
-                      <Typography className="productHomeText">Find the best Product for you</Typography>
-                      <Typography className="productHomeSubText">{product.shortDescription}</Typography>
+                      <Grid container className="productHomeDesc" spacing={0}>
+                        <Typography className="productHomeText">Find the best Product for you</Typography>
+                        <Typography className="productHomeSubText">{product.shortDescription}</Typography>
+                      </Grid>
                       <Button
                         variant="contained"
                         className="productHomeButton"
-                        tabIndex="0"
+                        tabIndex={0}
                         onClick={() => window.open(`${product.externalProductLink}`, "_blank")}
                       >
                         Know More...
@@ -80,7 +88,13 @@ export default function ProductHome() {
                         <img className="topProductImage" src={product.imageUrl1} alt={product.productName} />
                       </CardContent>
                       <CardActions className="topProductCardActions">
-                        <Button variant="contained" size="medium" className="topProductName" tabIndex="0">
+                        <Button
+                          variant="contained"
+                          size="medium"
+                          className="topProductName"
+                          tabIndex={0}
+                          onClick={() => handleCardAction(product.productId)}
+                        >
                           <Typography className="topProductText">{product.productName}</Typography>
                         </Button>
                       </CardActions>
@@ -112,7 +126,11 @@ export default function ProductHome() {
                       <CardContent className="listedProductCardContent">
                         <img className="listedProductImage" src={product.imageUrl1} alt={product.productName} />
                       </CardContent>
-                      <CardActions className="listedProductCardActions">
+                      <CardActions
+                        className="listedProductCardActions"
+                        tabIndex={0}
+                        onClick={() => handleCardAction(product.productId)}
+                      >
                         <Rating name="read-only" value={product.rating} />
                         <Typography className="listedProductName">{product.productName}</Typography>
                       </CardActions>

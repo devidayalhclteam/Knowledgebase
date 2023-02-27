@@ -7,7 +7,10 @@ const getProducts = (req, res) => {
 const postProducts = (req, res) => {
   return services_1.ProductsService.postProducts(req, res);
 };
+const updateProducts = (req, res) => {
+  return services_1.ProductsService.updateProducts(req, res);
+};
 const deleteProduct = (req, res) => {
   return services_1.ProductsService.deleteProduct(req, res);
 };
-exports.default = { getProducts, postProducts, deleteProduct };
+exports.default = { getProducts, postProducts, deleteProduct, updateProducts };

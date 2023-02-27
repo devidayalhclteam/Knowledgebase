@@ -12,5 +12,6 @@ router
   .route("/productImages")
   .get(controllers_1.productImagesController.getProductImage)
   .post(controllers_1.productImagesController.postProductImage)
+  .put(controllers_1.productImagesController.updateProductImage)
   .delete(controllers_1.productImagesController.deleteProductImage);
 exports.default = router;

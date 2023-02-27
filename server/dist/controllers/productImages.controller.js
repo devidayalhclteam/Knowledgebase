@@ -7,7 +7,10 @@ const getProductImage = (req, res) => {
 const postProductImage = (req, res) => {
   return services_1.productImagesService.postProductImage(req, res);
 };
+const updateProductImage = (req, res) => {
+  return services_1.productImagesService.updateProductImage(req, res);
+};
 const deleteProductImage = (req, res) => {
   return services_1.productImagesService.deleteProductImage(req, res);
 };
-exports.default = { getProductImage, postProductImage, deleteProductImage };
+exports.default = { getProductImage, postProductImage, updateProductImage, deleteProductImage };

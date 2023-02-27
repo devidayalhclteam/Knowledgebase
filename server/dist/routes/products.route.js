@@ -12,6 +12,6 @@ router
   .route("/products")
   .get(controllers_1.ProductsController.getProducts)
   .post(controllers_1.ProductsController.postProducts)
-  .delete(controllers_1.ProductsController.deleteProduct);
-// .put(ProductsController.updateProducts)
+  .delete(controllers_1.ProductsController.deleteProduct)
+  .put(controllers_1.ProductsController.updateProducts);
 exports.default = router;
