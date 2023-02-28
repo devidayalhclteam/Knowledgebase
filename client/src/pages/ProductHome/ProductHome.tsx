@@ -44,9 +44,10 @@ export default function ProductHome() {
               return (
                 <Paper key={product.productId}>
                   <Grid container spacing={2} className="productHomeGrid">
-                    <Grid item xs={12} sm={5} md={5}>
+                    <Grid item xs={12} sm={7} md={7}>
                       <Grid container className="productHomeDesc" spacing={0}>
                         <Typography className="productHomeText">Find the best Product for you</Typography>
+                        <Typography className="productHomeName"> {product.productName} </Typography>
                         <Typography className="productHomeSubText">{product.shortDescription}</Typography>
                       </Grid>
                       <Button
@@ -58,7 +59,7 @@ export default function ProductHome() {
                         Know More...
                       </Button>
                     </Grid>
-                    <Grid item xs={12} sm={3} md={3}>
+                    <Grid item xs={12} sm={5} md={5}>
                       <img alt="heroImage" src={product.imageUrl1} className="productHomeImage" />
                     </Grid>
                   </Grid>
@@ -154,11 +155,11 @@ export default function ProductHome() {
             </Link>
           </Grid>
         </Grid>
-        <Grid container className="blogGrid">
-          {blogsPrimary.map((blog: any) => {
+        <Grid container className="blogGrid" spacing={2}>
+          {blogsPrimary.map((blog: any, index) => {
             return (
-              <Grid key={blog.productId} item xs={12} sm={4} md={4} className="blogGridItem">
-                <Card className="blogCard" key={blog.productId}>
+              <Grid key={`${blog.name}${index}`} item xs={12} sm={4} md={4} className="blogGridItem">
+                <Card className="blogCard">
                   <CardContent className="blogCardContent">
                     <img className="blogImage" src={blog.imageUrl} alt={blog.name} />
                   </CardContent>

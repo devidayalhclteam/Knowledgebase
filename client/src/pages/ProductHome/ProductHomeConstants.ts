@@ -139,51 +139,39 @@ const relatedProductsSettings = {
 
 const blogs = [
   {
-    name: "tolong letak gamber",
+    name: "How AI is being used to improve mental health",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet , Lorem ipsum dolor sit amet",
+      "As we think of the role technology, especially in addressing the disbalance between available healthcare providers and increased demand of those services, AI and AI algorithms could play a role in reducing that gap. ",
     imageUrl: ""
   },
   {
-    name: "tolong letak gamber",
+    name: "Making Mathematics Accessible",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+      "A number of access barriers contribute to the lack of accessible math education. Classroom material are not always adapted to formats such as braille, large print, materials suitable for a screen reader, auditory input, or a combination of these designs.",
     imageUrl: ""
   },
   {
-    name: "tolong letak gamber",
+    name: "Reinforcing our Commitment to Accessibility",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+      "Is it estimated that in Japan, over 360,000 people are Deaf or Hard of Hearing – 70,000 of them use sign language as their primary form of communication, while the rest prefer written Japanese as the primary way of accessing content. ",
     imageUrl: ""
   },
   {
-    name: "tolong letak gamber1",
+    name: "AI4Bharat’s research on resource scarcity in sign language",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet , Lorem ipsum dolor sit amet",
+      "There are more than 300 sign languages in use today around the world. A region’s sign language is linguistically different from its spoken language, for example American Sign Language (ASL) is different from spoken English, and signed English is not ASL.",
     imageUrl: ""
   },
   {
-    name: "tolong letak gamber1",
+    name: "Mentra is Reimagining Neurodiverse Employment",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+      "Mentra is addressing the bias in recruiting by creating a neurodiversity employment network built with universal design principles from the ground up.",
     imageUrl: ""
   },
   {
-    name: "tolong letak gamber1",
+    name: "Better Together",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
-    imageUrl: ""
-  },
-  {
-    name: "tolong letak gamber2",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in, Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
-    imageUrl: ""
-  },
-  {
-    name: "tolong letak gamber2",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor in,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet",
+      "Building accessibility into your company starts by building a culture that embraces accessibility and disability. ",
     imageUrl: ""
   }
 ];

@@ -52,6 +52,7 @@ export default function SearchBar() {
         onChange={(e: InputType) => handleSearch(e)}
         name="searchSelect"
         value={searchForm.searchSelect}
+        defaultValue="All Categories"
       >
         {(categories || []).map((category: any) => {
           return (

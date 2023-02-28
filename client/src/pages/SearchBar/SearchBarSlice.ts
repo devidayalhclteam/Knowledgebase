@@ -36,7 +36,7 @@ const initialState: Category = {
   },
   isLoading: false,
   searchForm: {
-    searchSelect: "",
+    searchSelect: "All Categories",
     searchInput: ""
   }
 };
