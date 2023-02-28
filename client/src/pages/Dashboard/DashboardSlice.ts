@@ -47,6 +47,13 @@ export interface Products {
         partitionKey: string;
         rowKey: string;
     },
+    productFormError: {
+        categoryIdError: string;
+        descriptionError: string;
+        externalProductLinkError: string;
+        productNameError: string;
+        ratingError: string
+    },
     productImageTable: {
         partitionKey: string,
         rowKey: string,
@@ -107,6 +114,13 @@ const initialState: Products = {
         rating: 0,
         partitionKey: "product",
         rowKey: "",
+    },
+    productFormError: {
+        categoryIdError: "",
+        descriptionError: "",
+        externalProductLinkError: "",
+        productNameError: "",
+        ratingError: ""
     },
     productImageTable: {
         partitionKey: "productImage",
@@ -307,6 +321,25 @@ const productsSlice = createSlice({
         setProductFormData: (state: any, action: PayloadAction<React.ChangeEvent<HTMLInputElement> | SelectChangeEvent>) => {
             const { name, value } = action.payload.target;
             state.productForm[name] = value;
+
+            switch (name) {
+                case 'productName':
+                    !value ? state.productFormError[name+'Error'] = 'Please Enter Valid Product Name' : state.productFormError[name+'Error'] = ''
+                    break;
+                case 'categoryId':
+                    !value ? state.productFormError[name+'Error'] = 'Please Select Category' : state.productFormError[name+'Error'] = ''
+                    break;
+                case 'description':
+                    !value ? state.productFormError[name+'Error'] = 'Please Enter Valid Description' : state.productFormError[name+'Error'] = ''
+                    break;
+                case 'externalProductLink':
+                    !value ? state.productFormError[name+'Error'] = 'Please Enter External Product Link' : state.productFormError[name+'Error'] = ''
+                    break;
+                case 'rating':
+                    !value ? state.productFormError[name+'Error'] = 'Please Select RatingF' : state.productFormError[name+'Error'] = ''
+                    break;
+
+            }
         },
         setProductFormImageData: (state: any, action: PayloadAction<any>) => {
             state.productImage["imageFile"] = action.payload;

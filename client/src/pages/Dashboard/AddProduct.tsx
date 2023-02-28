@@ -14,7 +14,7 @@ import "./Dashboard.scss";
 export default function AddProduct() {
     const dispatch = useDispatch<AppDispatch>();
     const [file, setFile] = useState<any>()
-    const { productForm, categories, productImage, productImageTable, isDisabledSubmitBtn, isAddProductSuccessful, modalViewName } = useSelector(dashboardSelector);
+    const { productForm, categories, productImage, productImageTable, isDisabledSubmitBtn, productFormError, isAddProductSuccessful, modalViewName } = useSelector(dashboardSelector);
     const { productName, categoryId, description, externalProductLink, rating } = productForm;
     const { imageFile } = productImage;
 
@@ -82,6 +82,8 @@ export default function AddProduct() {
         dispatch(updateProducts(productForm));
     }
 
+    console.log("productFormError", productFormError);
+
     return (
         <>
             <Grid className='addProductModal'>
@@ -104,6 +106,7 @@ export default function AddProduct() {
                                 return <MenuItem value={category.id} key={category.id}>{category.name}</MenuItem>
                             })}
                         </Select>
+                        <p className='error'>{productFormError.categoryIdError}</p>
 
                         <InputLabel className="formLabel">Product Name</InputLabel>
                         <TextField
@@ -116,6 +119,7 @@ export default function AddProduct() {
                             value={productName}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         />
+                        <p className='error'>{productFormError.productNameError}</p>
 
                         <InputLabel className="formLabel">Describe the Product</InputLabel>
                         <TextField
@@ -128,6 +132,7 @@ export default function AddProduct() {
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                             multiline
                         />
+                        <p className='error'>{productFormError.descriptionError}</p>
 
                         <InputLabel className="formLabel">External Website Link</InputLabel>
                         <TextField
@@ -139,6 +144,7 @@ export default function AddProduct() {
                             value={externalProductLink}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         />
+                        <p className='error'>{productFormError.externalProductLinkError}</p>
 
                         <InputLabel className="formLabel">
                             <span>Rate product</span>
@@ -149,6 +155,7 @@ export default function AddProduct() {
                             value={rating}
                             onChange={(e: any) => handleRating(e)}
                         />
+                        <p className='error'>{productFormError.ratingError}</p>
                     </Grid>
                     <Grid item xs={4} md={4} sm={4} className="modalRightSide">
                         <div className='uploadImage'>

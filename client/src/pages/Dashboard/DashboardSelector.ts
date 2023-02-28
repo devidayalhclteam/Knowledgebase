@@ -5,6 +5,7 @@ const dashboardState = (state: any) => state.dashboard.dashboard;
 const dashboardSelector = createSelector(dashboardState, (state: any) => {
 
     const { productName, rating, externalProductLink, description, categoryId } = state.productForm;
+    const { imageUrl1, isActive } = state.productImageTable;
     const { imageFile } = state.productImage;
     const modalViewName = state.modalViewName;
     const { productImageTable } = state.productImageTable;
@@ -19,6 +20,14 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
         return false;
     };
 
+    let productNameErrorTemp = {
+        productNameError: !productName.length ? 'Please Enter Valid Product Name' : '',
+        categoryIdError: !categoryId ? 'Please Select Category' : '',
+        descriptionError: !description ? 'Please Enter Valid Description' : '',
+        externalProductLinkError: !externalProductLink ? 'Please Enter External Product Link' : '',
+        ratingError: !rating ? 'Please Select Rating' : '',
+    }
+
     return {
         products: state.productResponse.data,
         categories: state.categoryResponse,
@@ -31,6 +40,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
         isDeleteProductSuccessful: state.isDeleteProductSuccessful,
         isUpdatedProductSuccessful: state.isUpdatedProductSuccessful,
         productForm: state.productForm,
+        productFormError: state.productFormError || productNameErrorTemp,
         isDisabledSubmitBtn: isEmpty(),
         isModalOpen: state.isModalOpen,
         modalViewName: state.modalViewName,
