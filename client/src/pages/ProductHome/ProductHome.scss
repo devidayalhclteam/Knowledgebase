@@ -211,6 +211,44 @@
             padding: 0 10px;
           }
 
+          .slick-dots {
+            width: auto;
+            bottom: -20px;
+            li {
+              width: 12px;
+              height: 12px;
+            }
+            li button {
+              width: inherit;
+              height: inherit;
+            }
+            li button:before {
+              font-size: 12px;
+              width: inherit;
+              height: inherit;
+            }
+
+            li:not(.slick-active) button:before {
+              width: inherit;
+              height: inherit;
+              color: transparent;
+              opacity: 1;
+              border: 1px #fff solid;
+              border-radius: 12px;
+            }
+
+            li.slick-active button:before {
+              width: inherit;
+              height: inherit;
+              color: transparent;
+              opacity: 1;
+              border: 1px #fff solid;
+              border-radius: 12px;
+              background: #fff;
+              opacity: 1;
+            }
+          }
+
           .listedProductCard {
             height: 350px;
             background: #ffffff;
