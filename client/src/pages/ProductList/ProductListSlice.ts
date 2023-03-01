@@ -13,7 +13,7 @@ export interface ProductList {
 
 const initialState: ProductList = {
   searchForm: {
-    searchSelect: "",
+    searchSelect: "All Categories",
     searchInput: ""
   },
   productIndex: 8,

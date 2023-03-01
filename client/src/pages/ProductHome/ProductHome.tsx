@@ -35,12 +35,16 @@ export default function ProductHome() {
     dispatch(setDisplayView("productDetails"));
   };
 
+  const handleSeeMore = () => {
+    dispatch(setDisplayView("productList"));
+  };
+
   return (
     <Box className="productHome">
       <Grid container className="productHomeContainer">
-        <Slider {...productHomeSettings} className="productHomeCarousel">
-          {!!products.length &&
-            products.map((product: any) => {
+        {!!products.length && (
+          <Slider {...productHomeSettings} className="productHomeCarousel">
+            {products.map((product: any) => {
               return (
                 <Paper key={product.productId}>
                   <Grid container spacing={2} className="productHomeGrid">
@@ -66,7 +70,8 @@ export default function ProductHome() {
                 </Paper>
               );
             })}
-        </Slider>
+          </Slider>
+        )}
       </Grid>
 
       <Grid className="topProductContainer">
@@ -80,9 +85,9 @@ export default function ProductHome() {
         </Grid>
         <Grid container className="topProductCarouselGrid">
           <Grid item xs={12} sm={9} md={9}>
-            <Slider {...topProductSettings} className="topProductCarousel">
-              {!!topRatedProducts.length &&
-                topRatedProducts.map((product: any) => {
+            {!!topRatedProducts.length && (
+              <Slider {...topProductSettings} className="topProductCarousel">
+                {topRatedProducts.map((product: any) => {
                   return (
                     <Card key={product.productId} className="topProductCard">
                       <CardContent className="topProductCardContent">
@@ -102,7 +107,8 @@ export default function ProductHome() {
                     </Card>
                   );
                 })}
-            </Slider>
+              </Slider>
+            )}
           </Grid>
         </Grid>
       </Grid>
@@ -114,14 +120,14 @@ export default function ProductHome() {
             <Typography className="listedProductSubText">
               All the products that been creating a buzz in the industry have got listed on this love month
             </Typography>
-            <Button variant="outlined" className="listedProductButton">
+            <Button variant="outlined" className="listedProductButton" onClick={handleSeeMore}>
               SEE MORE{" "}
             </Button>
           </Grid>
           <Grid item xs={12} sm={8} md={8} className="listedProductGridItem">
-            <Slider {...listedProductSettings} className="listedProductCarousel">
-              {!!newListedProducts.length &&
-                newListedProducts.map((product: any) => {
+            {!!newListedProducts.length && (
+              <Slider {...listedProductSettings} className="listedProductCarousel">
+                {newListedProducts.map((product: any) => {
                   return (
                     <Card key={product.productId} className="listedProductCard">
                       <CardContent className="listedProductCardContent">
@@ -132,13 +138,14 @@ export default function ProductHome() {
                         tabIndex={0}
                         onClick={() => handleCardAction(product.productId)}
                       >
-                        <Rating name="read-only" value={product.rating} />
+                        <Rating name="read-only" value={Number(product.rating)} />
                         <Typography className="listedProductName">{product.productName}</Typography>
                       </CardActions>
                     </Card>
                   );
                 })}
-            </Slider>
+              </Slider>
+            )}
           </Grid>
         </Grid>
       </Grid>
@@ -150,8 +157,7 @@ export default function ProductHome() {
           </Grid>
           <Grid item xs={12} sm={4} md={4} className="blogLinkGridItem">
             <Link className="blogLink" underline="none" onClick={handleSeeAll}>
-              {" "}
-              SEE ALL
+              {!seeAll ? "SEE ALL" : "SEE LESS"}
             </Link>
           </Grid>
         </Grid>
@@ -165,7 +171,7 @@ export default function ProductHome() {
                   </CardContent>
                   <CardActions className="blogCardActions">
                     <Typography className="blogName">{blog.name}</Typography>
-                    <Typography className="blogDesc">{blog.description.slice(0, 100)}</Typography>
+                    <Typography className="blogDesc">{blog.description.slice(0, 75)}</Typography>
                   </CardActions>
                 </Card>
               </Grid>
@@ -181,7 +187,7 @@ export default function ProductHome() {
                     </CardContent>
                     <CardActions className="blogCardActions">
                       <Typography className="blogName">{blog.name}</Typography>
-                      <Typography className="blogDesc">{blog.description.slice(0, 100)}</Typography>
+                      <Typography className="blogDesc">{blog.description.slice(0, 75)}</Typography>
                     </CardActions>
                   </Card>
                 </Grid>

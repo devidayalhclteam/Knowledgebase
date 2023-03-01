@@ -6,7 +6,7 @@ const searchBarSelector = createSelector(categoriesState, (state: any) => {
   const categoryArray = state.categoryResponse.data || [];
 
   return {
-    categories: [{ name: "All Categories", rowKey: "a", id: "1" }, ...categoryArray],
+    categories: [{ name: "All Categories", value: "All Categories", id: "All Categories" }, ...categoryArray],
     isLoading: state.isLoading,
     searchForm: state.searchForm
   };

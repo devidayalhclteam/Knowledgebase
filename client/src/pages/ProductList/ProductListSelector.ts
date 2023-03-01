@@ -43,20 +43,20 @@ const productListSelector = createSelector(
 
     let searchedProducts: Prod[] = [];
 
-    if (searchInput && !searchSelect) {
+    if (!searchInput && searchSelect === "All Categories") {
+      searchedProducts = products;
+    } else if (!searchInput && searchSelect !== "All Categories") {
+      searchedProducts = products.filter((product: Prod) => searchSelect === product.categoryId);
+    } else if (searchInput && searchSelect === "All Categories") {
       searchedProducts = products.filter(
         (product: Prod) => product.productName.toLowerCase().indexOf(searchInput.trim().toLowerCase()) >= 0
       );
-    } else if (!searchInput && searchSelect) {
-      searchedProducts = products.filter((product: Prod) => searchSelect === product.categoryId);
-    } else if (searchSelect && searchSelect) {
+    } else if (searchInput && searchSelect !== "All Categories") {
       searchedProducts = products.filter(
         (product: Prod) =>
           searchSelect === product.categoryId &&
           product.productName.toLowerCase().indexOf(searchInput.trim().toLowerCase()) >= 0
       );
-    } else {
-      searchedProducts = products;
     }
 
     let searchSelectName;

@@ -57,6 +57,9 @@ const categoriesSlice = createSlice({
     setSearchForm(state: any, action: PayloadAction<SelectChangeEvent | React.ChangeEvent<HTMLInputElement>>) {
       const { name, value } = action.payload.target;
       state.searchForm[name] = value;
+    },
+    clearSearchForm(state: any) {
+      state.searchForm = initialState.searchForm;
     }
   },
   extraReducers: (builder) => {
@@ -72,6 +75,6 @@ const categoriesSlice = createSlice({
   }
 });
 
-export const { setSearchForm } = categoriesSlice.actions;
+export const { setSearchForm, clearSearchForm } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

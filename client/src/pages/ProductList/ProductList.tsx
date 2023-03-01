@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Box, Grid, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
+import { Box, Grid, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
 import { Rating } from "@mui/material";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -12,6 +12,7 @@ import { getProductImages, getImagesTable } from "../ProductHome/ProductHomeSlic
 import { getProducts } from "../Dashboard/DashboardSlice";
 import { setPagination, setSortOrder } from "./ProductListSlice";
 import { setDisplayView, setProductView } from "../Home/HomeSlice";
+import { clearSearchForm } from "../SearchBar/SearchBarSlice";
 import type { AppDispatch } from "../../store";
 import { sortSettings } from "./ProductListConstants";
 import "./ProductList.scss";
@@ -37,6 +38,7 @@ export default function ProductList() {
   const handleCardAction = (productId: string) => {
     dispatch(setProductView(productId));
     dispatch(setDisplayView("productDetails"));
+    dispatch(clearSearchForm());
   };
 
   return (
@@ -81,9 +83,9 @@ export default function ProductList() {
         </Grid>
       </Grid>
 
-      <Grid container className="productListGrid" spacing={4}>
-        {!!products.length &&
-          products.slice(0, productIndex).map((product: any) => {
+      {!!products.length && (
+        <Grid container className="productListGrid" spacing={4}>
+          {products.slice(0, productIndex).map((product: any) => {
             return (
               <Grid item xs={12} sm={6} md={3} key={product.productId} className="productListGridItem">
                 <Card className="productListCard">
@@ -103,14 +105,15 @@ export default function ProductList() {
             );
           })}
 
-        <Grid item xs={10} sm={6} md={4} className="productListGridBtn">
-          {isLoadMoreDisabled && (
-            <Button variant="outlined" className="productLoadBtn" onClick={handlePagination} tabIndex={0}>
-              Load More Products
-            </Button>
-          )}
+          <Grid item xs={10} sm={6} md={4} className="productListGridBtn">
+            {isLoadMoreDisabled && (
+              <Button variant="outlined" className="productLoadBtn" onClick={handlePagination} tabIndex={0}>
+                Load More Products
+              </Button>
+            )}
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Box>
   );
 }

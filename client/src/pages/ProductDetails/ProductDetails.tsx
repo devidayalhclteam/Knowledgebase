@@ -59,14 +59,14 @@ export default function ProductDetails() {
         </Grid>
       </Grid>
 
-      <Grid container className="productRelatedGrid">
-        <Grid item xs={12} sm={10} md={10}>
-          <Typography className="productRelatedTitle">RELATED PRODUCTS</Typography>
-        </Grid>
-        <Grid item xs={12} sm={10} md={10}>
-          <Slider {...relatedProductsSettings} className="productRelatedCarousel">
-            {!!relatedProducts.length &&
-              relatedProducts.map((product: any) => {
+      {!!relatedProducts.length && (
+        <Grid container className="productRelatedGrid">
+          <Grid item xs={12} sm={10} md={10}>
+            <Typography className="productRelatedTitle">RELATED PRODUCTS</Typography>
+          </Grid>
+          <Grid item xs={12} sm={10} md={10}>
+            <Slider {...relatedProductsSettings} className="productRelatedCarousel">
+              {relatedProducts.map((product: any) => {
                 return (
                   <Card key={product.productId} className="productRelatedCard">
                     <CardContent className="productRelatedCardContent">
@@ -83,9 +83,10 @@ export default function ProductDetails() {
                   </Card>
                 );
               })}
-          </Slider>
+            </Slider>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Box>
   );
 }

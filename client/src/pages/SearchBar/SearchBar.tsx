@@ -56,7 +56,7 @@ export default function SearchBar() {
       >
         {(categories || []).map((category: any) => {
           return (
-            <MenuItem key={category.rowKey} value={category.id} className="searchBarMenu" tabIndex="0">
+            <MenuItem key={category.rowKey} value={category.id} className="searchBarMenu" tabIndex={0}>
               {category.name}
             </MenuItem>
           );
