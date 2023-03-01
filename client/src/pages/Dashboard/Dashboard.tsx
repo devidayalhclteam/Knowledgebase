@@ -118,6 +118,7 @@ export default function Dashboard() {
   };
 
   const handleModal = (data: boolean) => {
+    dispatch(resetProductForm());
     dispatch(toggleAddProductModal(data));
     dispatch(setStateValue(["modalViewName", "AddProduct"]));
   };

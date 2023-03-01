@@ -48,6 +48,12 @@ export interface Products {
     partitionKey: string;
     rowKey: string;
   };
+  productFormErrors: {
+    categoryIdError: string;
+    descriptionError: string;
+    productNameError: string;
+    ratingError: string;
+  },
   productImageTable: {
     partitionKey: string;
     rowKey: string;
@@ -58,6 +64,7 @@ export interface Products {
   };
   productImage: {
     imageFile: any;
+    tempImageUrl: string
   };
   currentIndex: number;
   selectedProducts: [];
@@ -109,6 +116,12 @@ const initialState: Products = {
     partitionKey: "product",
     rowKey: ""
   },
+  productFormErrors: {
+    categoryIdError: "",
+    descriptionError: "",
+    productNameError: "",
+    ratingError: ""
+  },
   productImageTable: {
     partitionKey: "productImage",
     rowKey: "",
@@ -118,7 +131,8 @@ const initialState: Products = {
     productId: ""
   },
   productImage: {
-    imageFile: {}
+    imageFile: {},
+    tempImageUrl: ''
   },
   currentIndex: 1,
   selectedProducts: [],
@@ -262,8 +276,6 @@ export const getCategories = createAsyncThunk("home/getCategories", async () => 
   }
 });
 
-// interface Products extends Request {    file: any;}
-
 const productsSlice = createSlice({
   name: "dashboard",
   initialState,
@@ -274,6 +286,10 @@ const productsSlice = createSlice({
     ) => {
       const { name, value } = action.payload.target;
       state.productForm[name] = value;
+      !value.length
+        ? state.productFormErrors[name + 'Error'] = 'This field is required'
+        : state.productFormErrors[name + 'Error'] = ''
+
     },
     setProductFormImageData: (state: any, action: PayloadAction<any>) => {
       const [file, imagePath] = action.payload;
@@ -335,6 +351,9 @@ const productsSlice = createSlice({
     },
     softDeleteImage: (state: any, action: PayloadAction<any>) => {
       state.productImageTable["isActive"] = action.payload;
+    },
+    setTempURL: (state: any, { payload }) => {
+      state.productImage["tempImageUrl"] = payload;
     },
     resetProductForm: (state: any) => {
       state.productForm = initialState.productForm;
@@ -454,6 +473,7 @@ export const {
   setProductFormDataOnEdit,
   setImageTableProductKey,
   toggleAddProductModal,
+  setTempURL,
   resetProductForm
 } = productsSlice.actions;
 
