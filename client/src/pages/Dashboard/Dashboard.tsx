@@ -93,6 +93,7 @@ export default function Dashboard() {
         })
       );
       dispatch(getProducts());
+      dispatch(getProductImages());
       dispatch(toggleAddProductModal(false));
       dispatch(setStateValue(["modalViewName", ""]));
       dispatch(setStateValue(["isUpdatedProductSuccessful", ""]));

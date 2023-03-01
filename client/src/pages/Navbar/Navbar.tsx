@@ -24,7 +24,7 @@ export default function Navbar() {
     <AppBar position="static" color="transparent" className="appBar">
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={4} md={4} sm={4} className="nav-link">
+          <Grid item xs={4} md={5} sm={5} className="nav-link">
             {NavbarList.map(({ name, path }) => {
               return (
                 <MenuItem key={name} onClick={() => handleNavigation(path)} tabIndex={0} arial-label={name}>
@@ -36,7 +36,7 @@ export default function Navbar() {
           <Grid item xs={6} md={6} sm={6} className="search-bar">
             <SearchBar />
           </Grid>
-          <Grid item xs={2} md={2} sm={2} className="profile"></Grid>
+          <Grid item xs={2} md={1} sm={1} className="profile"></Grid>
         </Grid>
       </Toolbar>
     </AppBar>
