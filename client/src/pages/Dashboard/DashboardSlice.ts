@@ -75,6 +75,7 @@ export interface Products {
   isAddProductSuccessful: string;
   isUpdatedProductSuccessful: string;
   isDeleteProductSuccessful: string;
+  NoDataFound: boolean;
 }
 
 const initialState: Products = {
@@ -142,7 +143,8 @@ const initialState: Products = {
   isLoading: false,
   isAddProductSuccessful: "",
   isUpdatedProductSuccessful: "",
-  isDeleteProductSuccessful: ""
+  isDeleteProductSuccessful: "",
+  NoDataFound: false
 };
 
 export const getProducts = createAsyncThunk("dashboard/getProducts", async () => {

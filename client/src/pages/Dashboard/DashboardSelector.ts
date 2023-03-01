@@ -32,6 +32,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
     isAddProductSuccessful: state.isAddProductSuccessful,
     isDeleteProductSuccessful: state.isDeleteProductSuccessful,
     isUpdatedProductSuccessful: state.isUpdatedProductSuccessful,
+    NoDataFound: state.NoDataFound,
     productForm: state.productForm,
     isDisabledSubmitBtn: isEmpty(),
     isModalOpen: state.isModalOpen,

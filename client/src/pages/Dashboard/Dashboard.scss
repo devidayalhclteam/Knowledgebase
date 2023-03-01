@@ -97,6 +97,14 @@
         }
       }
 
+      .noData {
+        padding: 10px;
+        margin: 10px 0;
+        background: #FFF;
+        text-align: center;
+        display: flow-root;
+      }
+
       .productList {
         background: #ffffff;
         display: flex;
@@ -106,6 +114,17 @@
 
         .cardContainer {
           padding: 5px;
+
+          .MuiRating-root {
+            background: #f7f8fa;
+            padding: 5px 15px;
+            border-radius: 15px;
+
+            .css-1vooibu-MuiSvgIcon-root {
+              width: 0.8em;
+              height: 0.8em;
+            }
+          }
 
           .prodCard {
             background: #ffffff;
@@ -134,8 +153,8 @@
 
             .imageContainer {
               position: absolute;
-              right: 0px;
-              top: 2px;
+              right: 5px;
+              top: 10px;
               z-index: 99;
               display: flex;
               flex-direction: column;
@@ -151,6 +170,12 @@
                 padding: 5px;
                 margin-bottom: 5px;
                 cursor: pointer;
+              }
+
+              button.editBtn,
+              button.deleteBtn {
+                min-width: 30px;
+                width: 30px;
               }
 
               button.editBtn img {
