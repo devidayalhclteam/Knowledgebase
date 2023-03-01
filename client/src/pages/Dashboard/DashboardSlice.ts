@@ -276,7 +276,9 @@ const productsSlice = createSlice({
       state.productForm[name] = value;
     },
     setProductFormImageData: (state: any, action: PayloadAction<any>) => {
-      state.productImage["imageFile"] = action.payload;
+      const [file, imagePath] = action.payload;
+      state.productImage["imageFile"] = file;
+      state.productImageTable["imageUrl1"] = imagePath;
     },
     setProductRating: (state: any, action: PayloadAction<any>) => {
       const { name, value } = action.payload.target;
@@ -289,10 +291,10 @@ const productsSlice = createSlice({
       state.productImageTable["productId"] = productKey;
     },
     setImageTableProductKey: (state: any, action: PayloadAction<any[]>) => {
-      const [productKey, imagePath] = action.payload;
+      const [productKey] = action.payload;
       state.productImageTable["imageId"] = productKey;
       state.productImageTable["rowKey"] = productKey;
-      state.productImageTable["imageUrl1"] = imagePath;
+      // state.productImageTable["imageUrl1"] = imagePath;
     },
     setProductFormDataOnEdit: (state: any, action: PayloadAction<any[]>) => {
       let formData = action.payload[0];

@@ -208,11 +208,6 @@ export default function Dashboard() {
                           </Button>
                         </div>
                         <div className="productImage">{!!imageUrl && <img src={imageUrl}></img>}</div>
-                        <CardMedia
-                          sx={{ height: 140 }}
-                          image="/static/images/cards/contemplative-reptile.jpg"
-                          title="green iguana"
-                        />
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="div" className="productHeading">
                             {product.productName}

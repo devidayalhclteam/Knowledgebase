@@ -59,6 +59,10 @@ export default function AddProduct() {
     }
   }, [isAddProductSuccessful]);
 
+  useEffect(()=>{
+    !productImageTable.isActive && dispatch(updateProductImages(productImageTable));
+  },[productImageTable])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
     dispatch(setProductFormData(e));
   };
@@ -77,12 +81,13 @@ export default function AddProduct() {
     reader.onloadend = function (e) {
       setFile(reader.result);
     };
-
-    dispatch(setProductFormImageData(files));
-    dispatch(softDeleteImage(true));
     let imagePath = imageURL + (files && files[0]?.name);
+    
+    dispatch(setProductFormImageData([files, imagePath]));
+    dispatch(softDeleteImage(true));
+    
     if (modalViewName === "AddProduct") {
-      dispatch(setImageTableProductKey([productKey, imagePath]));
+      dispatch(setImageTableProductKey([productKey]));
     }
   };
 
