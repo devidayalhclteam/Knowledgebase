@@ -165,8 +165,8 @@ export default function Dashboard() {
       });
     !!searchProduct && dispatch(setStateValue(["selectedProducts", searchProduct]));
     !searchProduct.length
-      ? dispatch(setStateValue(['NoDataFound', true]))
-      : dispatch(setStateValue(['NoDataFound', false]))
+      ? dispatch(setStateValue(["NoDataFound", true]))
+      : dispatch(setStateValue(["NoDataFound", false]));
     !searchValue.length && getSelectedProducts();
   };
 
@@ -199,7 +199,7 @@ export default function Dashboard() {
             </Grid>
             {NoDataFound && <Typography className="noData">No Data Found</Typography>}
 
-            {!NoDataFound &&
+            {!NoDataFound && (
               <>
                 <Grid item xs={12} md={12} sm={12} className="productList" spacing={2}>
                   {!!selectedProducts &&
@@ -237,7 +237,7 @@ export default function Dashboard() {
                   </Button>
                 </Grid>
               </>
-            }
+            )}
           </Grid>
           <Grid item xs={12} md={3} sm={3} className="dashboardRightContainer"></Grid>
         </Container>

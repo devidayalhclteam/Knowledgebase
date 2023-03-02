@@ -14,7 +14,8 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
       !externalProductLink ||
       !description ||
       !categoryId ||
-      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct")) {
+      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct")
+    ) {
       return true;
     }
     return false;

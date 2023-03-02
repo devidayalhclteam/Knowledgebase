@@ -53,7 +53,7 @@ export interface Products {
     descriptionError: string;
     productNameError: string;
     ratingError: string;
-  },
+  };
   productImageTable: {
     partitionKey: string;
     rowKey: string;
@@ -64,7 +64,7 @@ export interface Products {
   };
   productImage: {
     imageFile: any;
-    tempImageUrl: string
+    tempImageUrl: string;
   };
   currentIndex: number;
   selectedProducts: [];
@@ -133,7 +133,7 @@ const initialState: Products = {
   },
   productImage: {
     imageFile: {},
-    tempImageUrl: ''
+    tempImageUrl: ""
   },
   currentIndex: 1,
   selectedProducts: [],
@@ -289,9 +289,8 @@ const productsSlice = createSlice({
       const { name, value } = action.payload.target;
       state.productForm[name] = value;
       !value.length
-        ? state.productFormErrors[name + 'Error'] = 'This field is required'
-        : state.productFormErrors[name + 'Error'] = ''
-
+        ? (state.productFormErrors[name + "Error"] = "This field is required")
+        : (state.productFormErrors[name + "Error"] = "");
     },
     setProductFormImageData: (state: any, action: PayloadAction<any>) => {
       const [file, imagePath] = action.payload;
