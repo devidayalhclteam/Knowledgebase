@@ -18,7 +18,7 @@ const productHomeSettings = {
       }
     },
     {
-      breakpoint: 900,
+      breakpoint: 991,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -60,7 +60,7 @@ const topProductSettings = {
       }
     },
     {
-      breakpoint: 900,
+      breakpoint: 991,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,

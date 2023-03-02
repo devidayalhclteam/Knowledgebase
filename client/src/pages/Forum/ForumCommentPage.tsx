@@ -34,47 +34,13 @@ export default function Forum() {
               </Typography>
               <Divider />
               <List style={{ marginLeft: "15px" }}>
-                <ListItem
-                  style={{
-                    marginLeft: "20px",
-                    padding: 0,
-                    listStyleType: "disc",
-                    display: "list-item",
-                    color: "#1682fd"
-                  }}
-                >
-                  <Link
-                    component="button"
-                    variant="body2"
-                    style={{
-                      textAlign: "left",
-                      margin: "5px 0px",
-                      fontSize: "12px",
-                      color: "#1682fd"
-                    }}
-                  >
+                <ListItem className="forumComment-ListItem">
+                  <Link component="button" variant="body2" className="forumComment-Link">
                     Please read rules before you start working on a platform
                   </Link>
                 </ListItem>
-                <ListItem
-                  style={{
-                    marginLeft: "20px",
-                    padding: 0,
-                    listStyleType: "disc",
-                    display: "list-item",
-                    color: "#1682fd"
-                  }}
-                >
-                  <Link
-                    component="button"
-                    variant="body2"
-                    style={{
-                      textAlign: "left",
-                      margin: "5px 0px",
-                      fontSize: "12px",
-                      color: "#1682fd"
-                    }}
-                  >
+                <ListItem className="forumComment-ListItem">
+                  <Link component="button" variant="body2" className="forumComment-Link">
                     Vision & Strategy of Alemhelp
                   </Link>
                 </ListItem>
@@ -87,69 +53,18 @@ export default function Forum() {
               </Typography>
               <Divider />
               <List style={{ marginLeft: "15px" }}>
-                <ListItem
-                  style={{
-                    marginLeft: "20px",
-                    padding: 0,
-                    listStyleType: "disc",
-                    display: "list-item",
-                    color: "#1682fd"
-                  }}
-                >
-                  <Link
-                    component="button"
-                    variant="body2"
-                    style={{
-                      textAlign: "left",
-                      margin: "5px 0px",
-                      fontSize: "12px",
-                      color: "#1682fd"
-                    }}
-                  >
+                <ListItem className="forumComment-ListItem">
+                  <Link component="button" variant="body2" className="forumComment-Link">
                     Alemhelp source-code on GitHub
                   </Link>
                 </ListItem>
-                <ListItem
-                  style={{
-                    marginLeft: "20px",
-                    padding: 0,
-                    listStyleType: "disc",
-                    display: "list-item",
-                    color: "#1682fd"
-                  }}
-                >
-                  <Link
-                    component="button"
-                    variant="body2"
-                    style={{
-                      textAlign: "left",
-                      margin: "5px 0px",
-                      fontSize: "12px",
-                      color: "#1682fd"
-                    }}
-                  >
+                <ListItem className="forumComment-ListItem">
+                  <Link component="button" variant="body2" className="forumComment-Link">
                     Golang best-practices
                   </Link>
                 </ListItem>
-                <ListItem
-                  style={{
-                    marginLeft: "20px",
-                    padding: 0,
-                    listStyleType: "disc",
-                    display: "list-item",
-                    color: "#1682fd"
-                  }}
-                >
-                  <Link
-                    component="button"
-                    variant="body2"
-                    style={{
-                      textAlign: "left",
-                      margin: "5px 0px",
-                      fontSize: "12px",
-                      color: "#1682fd"
-                    }}
-                  >
+                <ListItem className="forumComment-ListItem">
+                  <Link component="button" variant="body2" className="forumComment-Link">
                     Alerm School dashboard
                   </Link>
                 </ListItem>
@@ -159,17 +74,7 @@ export default function Forum() {
         </Grid>
         <Grid xs={12} md={12} style={{ marginTop: "50px" }}>
           <Typography variant="body2">
-            <Button
-              startIcon={<AddCircleOutlineIcon />}
-              variant="contained"
-              style={{
-                color: "#000",
-                textTransform: "none",
-                marginRight: "20px",
-                backgroundColor: "#e3cbb3",
-                boxShadow: "none"
-              }}
-            >
+            <Button startIcon={<AddCircleOutlineIcon />} variant="contained" className="forumComment-AddQuestion">
               Add a question
             </Button>
           </Typography>

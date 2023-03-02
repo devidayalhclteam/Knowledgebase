@@ -44,7 +44,7 @@ export default function ProductHome() {
               return (
                 <Paper key={product.productId}>
                   <Grid container spacing={2} className="productHomeGrid">
-                    <Grid item xs={12} sm={5} md={5}>
+                    <Grid item xs={12} sm={7} md={7}>
                       <Grid container className="productHomeDesc" spacing={0}>
                         <Typography className="productHomeText">Find the best Product for you</Typography>
                         <Typography className="productHomeSubText">{product.shortDescription}</Typography>
@@ -58,7 +58,7 @@ export default function ProductHome() {
                         Know More...
                       </Button>
                     </Grid>
-                    <Grid item xs={12} sm={3} md={3}>
+                    <Grid item xs={12} sm={5} md={5}>
                       <img alt="heroImage" src={product.imageUrl1} className="productHomeImage" />
                     </Grid>
                   </Grid>
@@ -70,7 +70,7 @@ export default function ProductHome() {
 
       <Grid className="topProductContainer">
         <Grid container className="topProductGrid">
-          <Grid item xs={12} sm={9} md={9}>
+          <Grid item xs={12} sm={12} md={12}>
             <Typography className="topProductText">Top Products</Typography>
             <Typography className="topProductSubText">
               Some of the best featured categories on entire website include top rated products
@@ -78,7 +78,7 @@ export default function ProductHome() {
           </Grid>
         </Grid>
         <Grid container className="topProductCarouselGrid">
-          <Grid item xs={12} sm={9} md={9}>
+          <Grid item xs={12} sm={12} md={12}>
             <Slider {...topProductSettings} className="topProductCarousel">
               {!!topRatedProducts.length &&
                 topRatedProducts.map((product: any) => {
@@ -108,7 +108,7 @@ export default function ProductHome() {
 
       <Grid className="listedProductContainer">
         <Grid container className="listedProductGrid">
-          <Grid item xs={12} sm={3} md={3} className="listedProductGridItem">
+          <Grid item xs={12} sm={4} md={4} className="listedProductGridItem">
             <Typography className="listedProductText">Newly Listed Products</Typography>
             <Typography className="listedProductSubText">
               All the products that been creating a buzz in the industry have got listed on this love month
@@ -144,10 +144,10 @@ export default function ProductHome() {
 
       <Grid className="blogContainer">
         <Grid container className="blogTileGrid">
-          <Grid item xs={12} sm={4} md={4} className="blogTileGridItem">
+          <Grid item xs={12} sm={6} md={6} className="blogTileGridItem">
             <Typography className="blogTitle">LATEST FROM BLOG</Typography>
           </Grid>
-          <Grid item xs={12} sm={4} md={4} className="blogLinkGridItem">
+          <Grid item xs={12} sm={6} md={6} className="blogLinkGridItem">
             <Link className="blogLink" underline="none" onClick={handleSeeAll}>
               {" "}
               SEE ALL

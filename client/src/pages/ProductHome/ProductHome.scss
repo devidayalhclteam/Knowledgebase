@@ -1,3 +1,5 @@
+$Container-width: 1200px;
+
 .productHome {
   width: 100%;
 
@@ -22,12 +24,13 @@
       }
 
       .productHomeGrid {
-        width: 100%;
+        width: $Container-width;
         display: flex;
         height: fit-content;
         align-items: center;
         justify-content: center;
         flex-direction: row;
+        margin: 0px auto;
         padding: 20px 30px;
 
         .productHomeDesc {
@@ -39,11 +42,11 @@
             line-height: 4rem;
             text-transform: capitalize;
             color: #34251f;
-            width: 400px;
+            width: 460px;
           }
 
           .productHomeSubText {
-            width: 310px;
+            width: 430px;
             font-size: 1rem;
             padding: 10px;
           }
@@ -75,6 +78,9 @@
   }
 
   .topProductContainer {
+    width: 1180px;
+    padding: 0px 10px;
+    margin: 0px auto;
     min-height: 450px;
     height: fit-content;
     display: flex;
@@ -124,18 +130,20 @@
         }
 
         .topProductCard {
-          background: #c4c4c4;
+          background: #fff;
           display: flex;
           flex-direction: column !important;
 
           .topProductCardContent {
+            display: flex;
+            align-items: center;
             justify-content: center;
-            background: #c4c4c4;
+            background: in;
             height: 300px;
 
             .topProductImage {
-              height: 100%;
-              width: 100%;
+              height: 294px;
+              width: 294px;
             }
           }
 
@@ -174,13 +182,16 @@
   }
 
   .listedProductContainer {
+    width: 100%;
     background: #413531;
     min-height: 450px;
     height: fit-content;
     display: flex;
 
     .listedProductGrid {
-      justify-content: center;
+      width: $Container-width;
+      margin: 0px auto;
+      //justify-content: center;
       align-items: center;
 
       .listedProductGridItem {
@@ -257,8 +268,10 @@
 
             .listedProductCardContent {
               justify-content: center;
-              background: #c4c4c4;
-              height: 275px;
+              height: 225px;
+              margin: 25px auto;
+              display: flex;
+              align-items: center;
 
               .listedProductImage {
                 height: 100%;
@@ -303,6 +316,8 @@
   }
 
   .blogContainer {
+    width: $Container-width;
+    margin: 0px auto;
     min-height: 450px;
     height: fit-content;
     display: flex;
@@ -311,7 +326,7 @@
     align-items: center;
 
     .blogTileGrid {
-      padding: 30px 80px;
+      padding: 30px 0px 0px 0px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -323,12 +338,12 @@
           font-family: "Spartan";
           font-style: normal;
           font-weight: 600;
-          font-size: 1.375rem;
+          font-size: 1.175rem;
           line-height: 25px;
           letter-spacing: 0.06em;
-          text-transform: uppercase;
+          text-transform: none;
           color: #121212;
-          text-align: center;
+          text-align: left;
         }
       }
 
@@ -351,9 +366,9 @@
     }
 
     .blogGrid {
-      width: 80%;
+      width: 100%;
       justify-content: center;
-      padding: 30px 40px;
+      padding: 10px 0px;
 
       .blogGridItem {
         width: 300px;
