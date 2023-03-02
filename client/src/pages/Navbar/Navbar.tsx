@@ -2,16 +2,19 @@ import React from "react";
 import { AppBar, Typography, Toolbar, MenuItem } from "@material-ui/core";
 import Grid from "@mui/material/Grid";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import NavbarList from "./NavbarList";
 import { setDisplayView } from "../Home/HomeSlice";
 import type { AppDispatch } from "../../store";
+import DashboardSearchBar from "../Dashboard/DashboardSearchBar";
 import "./Navbar.scss";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();
 
   const handleNavigation = (path: string) => {
     if (path === "/") {
@@ -33,8 +36,8 @@ export default function Navbar() {
               );
             })}
           </Grid>
-          <Grid item xs={12} md={6} sm={12} className="search-bar">
-            <SearchBar />
+          <Grid item xs={6} md={6} sm={6} className="search-bar">
+            {location.pathname !== "/dashboard" ? <SearchBar /> : <DashboardSearchBar />}
           </Grid>
           <Grid item xs={2} md={1} sm={1} className="profile"></Grid>
         </Grid>

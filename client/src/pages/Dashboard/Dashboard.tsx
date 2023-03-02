@@ -20,7 +20,6 @@ import { v4 as uuidv4 } from "uuid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import Rating from "@mui/material/Rating";
 import AddProduct from "./AddProduct";
@@ -156,20 +155,6 @@ export default function Dashboard() {
     dispatch(setStateValue(["currentIndex", currentIndex + 1]));
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let searchValue = e.target.value.trim().toLowerCase();
-    let searchProduct =
-      !!products &&
-      products.filter((product: any) => {
-        return product.productName.trim().toLowerCase().match(new RegExp(searchValue, "g"));
-      });
-    !!searchProduct && dispatch(setStateValue(["selectedProducts", searchProduct]));
-    !searchProduct.length
-      ? dispatch(setStateValue(["NoDataFound", true]))
-      : dispatch(setStateValue(["NoDataFound", false]));
-    !searchValue.length && getSelectedProducts();
-  };
-
   return (
     <>
       <Grid item xs={12} md={12} sm={12} className="dashboard">
@@ -188,14 +173,6 @@ export default function Dashboard() {
               <Button variant="contained" className="addProductButton">
                 <img src={FilterImage} /> <span>Filter</span>
               </Button>
-              <div className="filterSearch">
-                <img src={SearchImage} />
-                <Input
-                  className="searchBarText"
-                  placeholder="Search..."
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e)}
-                />
-              </div>
             </Grid>
             {NoDataFound && <Typography className="noData">No Data Found</Typography>}
 
