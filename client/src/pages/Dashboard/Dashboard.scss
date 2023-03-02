@@ -1,3 +1,86 @@
+.appBar {
+  padding: 15px;
+  flex-grow: 1;
+  margin-bottom: 2px;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+
+  .MuiButtonBase-root {
+    float: left;
+    padding: 6px 10px;
+  }
+
+  .search-bar {
+    .filterSearch {
+      display: inline-block;
+      color: #6b7a99;
+      border: 2px solid #34251f;
+      padding: 0;
+      border-radius: 8px;
+
+      .MuiInput-root {
+        float: left;
+      }
+
+      img {
+        width: 17px;
+        margin: 8px 10px 0;
+        float: left;
+      }
+
+      input {
+        min-width: 390px;
+        height: 30px;
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: left;
+        padding: 5px 10px;
+      }
+
+      .MuiInputBase-root:after,
+      .MuiInputBase-root:before {
+        display: none !important;
+      }
+
+      .searchBarButton {
+        background: #34251f;
+        color: #ffffff;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        text-align: center;
+        height: 40px;
+        width: 100px;
+        border: none;
+        float: left;
+        border-radius: 0;
+        margin: 0;
+        text-transform: capitalize;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+    }
+  }
+
+  .nav-link {
+    padding-top: 19px !important;
+
+    .navLink {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: 0.115em;
+      text-transform: uppercase;
+      color: #34251f;
+    }
+  }
+}
+
 .dashboard {
   padding: 15px;
   display: flex;
@@ -71,36 +154,12 @@
             text-transform: capitalize;
           }
         }
-
-        .filterSearch {
-          display: inline-block;
-          color: #6b7a99;
-          border: 1px solid #f5f6f7;
-          padding: 5px;
-
-          img {
-            width: 17px;
-            margin: 8px 10px 0;
-            float: left;
-          }
-
-          input {
-            padding: 5px;
-            font-size: 14px;
-            border: none;
-          }
-
-          .MuiInputBase-root:after,
-          .MuiInputBase-root:before {
-            display: none !important;
-          }
-        }
       }
 
       .noData {
         padding: 10px;
         margin: 10px 0;
-        background: #FFF;
+        background: #fff;
         text-align: center;
         display: flow-root;
       }
