@@ -64,7 +64,7 @@ export default function AddProduct() {
 
   useEffect(() => {
     !productImageTable.isActive && dispatch(updateProductImages(productImageTable));
-  }, [productImageTable])
+  }, [productImageTable]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
     dispatch(setProductFormData(e));
@@ -95,16 +95,14 @@ export default function AddProduct() {
   };
 
   const isFormValid = () => {
-    const isMandoryDataField = [
-      productName, categoryId, description, rating
-    ].every(Boolean);
+    const isMandoryDataField = [productName, categoryId, description, rating].every(Boolean);
 
     if (modalViewName === "AddProduct") {
       return isMandoryDataField;
     } else if (modalViewName === "EditProduct") {
-      return isMandoryDataField && productImageTable.isActive
+      return isMandoryDataField && productImageTable.isActive;
     }
-  }
+  };
 
   const handleSubmit = () => {
     if (isFormValid()) {
@@ -123,7 +121,7 @@ export default function AddProduct() {
     if (tempImageUrl !== productImageTable.imageUrl1) {
       let deletedImageName = tempImageUrl.split("/");
       dispatch(deleteImage(deletedImageName.slice(-1)));
-      dispatch(setTempURL(''));
+      dispatch(setTempURL(""));
     }
     !!imageFile && dispatch(uploadImage(imageFile));
     dispatch(updateProductImages(productImageTable));
@@ -158,9 +156,7 @@ export default function AddProduct() {
                 })}
             </Select>
 
-            {!!categoryIdError && (
-              <FormHelperText>{categoryIdError}</FormHelperText>
-            )}
+            {!!categoryIdError && <FormHelperText>{categoryIdError}</FormHelperText>}
 
             <InputLabel className="formLabel">Product Name</InputLabel>
             <TextField
@@ -206,9 +202,7 @@ export default function AddProduct() {
               <span>Your overall rating of this product</span>
             </InputLabel>
             <Rating name="rating" value={rating} onChange={(e: any) => handleRating(e)} />
-            {!!ratingError && (
-              <FormHelperText>{ratingError}</FormHelperText>
-            )}
+            {!!ratingError && <FormHelperText>{ratingError}</FormHelperText>}
           </Grid>
           <Grid item xs={4} md={4} sm={4} className="modalRightSide">
             <div className="uploadImage">
@@ -248,7 +242,7 @@ export default function AddProduct() {
               <Button
                 variant="contained"
                 className="submit"
-                disabled={(isDisabledSubmitBtn || !productImageTable.isActive)}
+                disabled={isDisabledSubmitBtn || !productImageTable.isActive}
                 onClick={() => handleEditSubmit()}
               >
                 <span> Submit</span>

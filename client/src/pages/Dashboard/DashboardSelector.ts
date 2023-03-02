@@ -14,7 +14,8 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
       !externalProductLink ||
       !description ||
       !categoryId ||
-      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct")) {
+      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct")
+    ) {
       return true;
     }
     return false;
@@ -37,6 +38,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
     isDisabledSubmitBtn: isEmpty(),
     isModalOpen: state.isModalOpen,
     modalViewName: state.modalViewName,
+    searchKeyword: state.searchKeyword,
     isLoading: state.isLoading
   };
 });
