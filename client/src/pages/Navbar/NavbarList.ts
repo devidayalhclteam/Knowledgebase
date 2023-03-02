@@ -21,6 +21,10 @@ const NavbarList: Navbar[] = [
   {
     path: "/blogs",
     name: "Blogs"
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard"
   }
 ];
 
