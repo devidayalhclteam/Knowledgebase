@@ -22,16 +22,18 @@ const dashboardSelect = (state: any) => state.dashboard.dashboard;
 
 const productHomeSelector = createSelector(productImagesState, dashboardSelect, (state: any, dashboardState: any) => {
   const products: Prod[] =
-    dashboardState.productResponse.data?.map((productA: any) => {
-      let productB = state.imagesTableResponse.find((x: any) => x.productId === productA.productId);
+    dashboardState.productResponse.data
+      ?.map((productA: any) => {
+        let productB = state.imagesTableResponse.find((x: any) => x.productId === productA.productId);
 
-      if (productB) {
-        const { imageUrl1 } = productB;
-        return { ...productA, imageUrl1 };
-      } else {
-        return { ...productA };
-      }
-    }) || [];
+        if (productB) {
+          const { imageUrl1 } = productB;
+          return { ...productA, imageUrl1 };
+        } else {
+          return { ...productA };
+        }
+      })
+      .filter((x: any) => !!x.imageUrl1) || [];
 
   const categories = [...new Set(products.map((product: Prod) => product.categoryId))];
 
