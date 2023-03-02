@@ -75,6 +75,7 @@ export interface Products {
   isAddProductSuccessful: string;
   isUpdatedProductSuccessful: string;
   isDeleteProductSuccessful: string;
+  searchKeyword: string;
   NoDataFound: boolean;
 }
 
@@ -144,6 +145,7 @@ const initialState: Products = {
   isAddProductSuccessful: "",
   isUpdatedProductSuccessful: "",
   isDeleteProductSuccessful: "",
+  searchKeyword: "",
   NoDataFound: false
 };
 

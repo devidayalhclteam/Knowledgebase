@@ -38,6 +38,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
     isDisabledSubmitBtn: isEmpty(),
     isModalOpen: state.isModalOpen,
     modalViewName: state.modalViewName,
+    searchKeyword: state.searchKeyword,
     isLoading: state.isLoading
   };
 });
