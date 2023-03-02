@@ -24,7 +24,7 @@ export default function ProductHome() {
     dispatch(getProductImages());
     dispatch(getProducts());
     dispatch(getImagesTable());
-  }, []);
+  }, [dispatch]);
 
   const handleSeeAll = () => {
     setSeeAll(!seeAll);

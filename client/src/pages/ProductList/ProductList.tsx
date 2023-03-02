@@ -1,15 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Box, Grid, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
 import { Rating } from "@mui/material";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { useSelector, useDispatch } from "react-redux";
 import productListSelector from "./ProductListSelector";
-import { getProductImages, getImagesTable } from "../ProductHome/ProductHomeSlice";
-import { getProducts } from "../Dashboard/DashboardSlice";
 import { setPagination, setSortOrder } from "./ProductListSlice";
 import { setDisplayView, setProductView } from "../Home/HomeSlice";
 import { clearSearchForm } from "../SearchBar/SearchBarSlice";
@@ -20,12 +17,6 @@ import "./ProductList.scss";
 export default function ProductList() {
   const { products, searchSelect, isLoadMoreDisabled, productIndex, sortOrder } = useSelector(productListSelector);
   const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getProductImages());
-    dispatch(getImagesTable());
-  }, []);
 
   const handlePagination = () => {
     dispatch(setPagination());

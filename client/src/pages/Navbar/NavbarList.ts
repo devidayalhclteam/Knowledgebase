@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Navbar {
   path: string;
   name: string;

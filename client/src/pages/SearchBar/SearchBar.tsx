@@ -19,7 +19,7 @@ export default function SearchBar() {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
 
   const handleSearch = (e: InputType) => {
     dispatch(setSearchForm(e));
