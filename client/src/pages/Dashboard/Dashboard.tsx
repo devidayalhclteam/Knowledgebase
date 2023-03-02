@@ -44,7 +44,8 @@ export default function Dashboard() {
     selectedProducts,
     currentIndex,
     isDeleteProductSuccessful,
-    isUpdatedProductSuccessful
+    isUpdatedProductSuccessful,
+    NoDataFound
   } = useSelector(dashboardSelector);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -93,6 +94,7 @@ export default function Dashboard() {
         })
       );
       dispatch(getProducts());
+      dispatch(getProductImages());
       dispatch(toggleAddProductModal(false));
       dispatch(setStateValue(["modalViewName", ""]));
       dispatch(setStateValue(["isUpdatedProductSuccessful", ""]));
@@ -118,6 +120,7 @@ export default function Dashboard() {
   };
 
   const handleModal = (data: boolean) => {
+    dispatch(resetProductForm());
     dispatch(toggleAddProductModal(data));
     dispatch(setStateValue(["modalViewName", "AddProduct"]));
   };
@@ -161,6 +164,9 @@ export default function Dashboard() {
         return product.productName.trim().toLowerCase().match(new RegExp(searchValue, "g"));
       });
     !!searchProduct && dispatch(setStateValue(["selectedProducts", searchProduct]));
+    !searchProduct.length
+      ? dispatch(setStateValue(['NoDataFound', true]))
+      : dispatch(setStateValue(['NoDataFound', false]))
     !searchValue.length && getSelectedProducts();
   };
 
@@ -191,46 +197,47 @@ export default function Dashboard() {
                 />
               </div>
             </Grid>
-            <Grid item xs={12} md={12} sm={12} className="productList" spacing={2}>
-              {!!selectedProducts &&
-                selectedProducts.map((product: any, index: number) => {
-                  let rowkey = product.rowKey;
-                  let imageUrl = product?.productId && getImage(product.productId);
-                  return (
-                    <Grid item xs={3} md={3} sm={3} className="cardContainer" key={index}>
-                      <Card className="prodCard" key={index}>
-                        <div className="imageContainer">
-                          <Button variant="contained" className="editBtn" onClick={() => handleEdit(rowkey)}>
-                            <img src={Edit} alt="Edit" />
-                          </Button>
-                          <Button variant="contained" className="deleteBtn" onClick={() => handleDelete(rowkey)}>
-                            <img src={Delete} alt="Delete" />
-                          </Button>
-                        </div>
-                        <div className="productImage">{!!imageUrl && <img src={imageUrl}></img>}</div>
-                        <CardMedia
-                          sx={{ height: 140 }}
-                          image="/static/images/cards/contemplative-reptile.jpg"
-                          title="green iguana"
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant="h5" component="div" className="productHeading">
-                            {product.productName}
-                          </Typography>
-                        </CardContent>
-                        <CardActions className="cardContainer">
-                          <Rating name="simple-controlled" value={product.rating} />
-                        </CardActions>
-                      </Card>
-                    </Grid>
-                  );
-                })}
-            </Grid>
-            <Grid item xs={12} md={12} sm={12} className="loadMore">
-              <Button className="loadMoreBtn" onClick={() => loadMore()}>
-                Load More
-              </Button>
-            </Grid>
+            {NoDataFound && <Typography className="noData">No Data Found</Typography>}
+
+            {!NoDataFound &&
+              <>
+                <Grid item xs={12} md={12} sm={12} className="productList" spacing={2}>
+                  {!!selectedProducts &&
+                    selectedProducts.map((product: any, index: number) => {
+                      let rowkey = product.rowKey;
+                      let imageUrl = product?.productId && getImage(product.productId);
+                      return (
+                        <Grid item xs={3} md={3} sm={3} className="cardContainer" key={index}>
+                          <Card className="prodCard" key={index}>
+                            <div className="imageContainer">
+                              <Button variant="contained" className="editBtn" onClick={() => handleEdit(rowkey)}>
+                                <img src={Edit} alt="Edit" />
+                              </Button>
+                              <Button variant="contained" className="deleteBtn" onClick={() => handleDelete(rowkey)}>
+                                <img src={Delete} alt="Delete" />
+                              </Button>
+                            </div>
+                            <div className="productImage">{!!imageUrl && <img src={imageUrl}></img>}</div>
+                            <CardContent>
+                              <Typography gutterBottom variant="h5" component="div" className="productHeading">
+                                {product.productName}
+                              </Typography>
+                            </CardContent>
+                            <CardActions className="cardContainer">
+                              <Rating name="simple-controlled" value={product.rating} />
+                            </CardActions>
+                          </Card>
+                        </Grid>
+                      );
+                    })}
+                </Grid>
+                <Grid item xs={12} md={12} sm={12} className="loadMore">
+                  <Button className="loadMoreBtn" onClick={() => loadMore()}>
+                    Load More
+                  </Button>
+                </Grid>
+              </>
+            }
           </Grid>
           <Grid item xs={12} md={3} sm={3} className="dashboardRightContainer"></Grid>
         </Container>

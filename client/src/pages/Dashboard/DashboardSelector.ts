@@ -6,7 +6,6 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
   const { productName, rating, externalProductLink, description, categoryId } = state.productForm;
   const { imageFile } = state.productImage;
   const modalViewName = state.modalViewName;
-  const { productImageTable } = state.productImageTable;
 
   const isEmpty = () => {
     if (
@@ -15,11 +14,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
       !externalProductLink ||
       !description ||
       !categoryId ||
-      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct") ||
-      (!!productImageTable &&
-        modalViewName === "EditProduct" &&
-        (!productImageTable?.imageUrl1 || !productImageTable?.isActive))
-    ) {
+      (JSON.stringify(imageFile) === JSON.stringify({}) && modalViewName === "AddProduct")) {
       return true;
     }
     return false;
@@ -28,6 +23,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
   return {
     products: state.productResponse.data,
     categories: state.categoryResponse,
+    productFormErrors: state.productFormErrors,
     productImage: state.productImage,
     currentIndex: state.currentIndex,
     selectedProducts: state.selectedProducts,
@@ -36,6 +32,7 @@ const dashboardSelector = createSelector(dashboardState, (state: any) => {
     isAddProductSuccessful: state.isAddProductSuccessful,
     isDeleteProductSuccessful: state.isDeleteProductSuccessful,
     isUpdatedProductSuccessful: state.isUpdatedProductSuccessful,
+    NoDataFound: state.NoDataFound,
     productForm: state.productForm,
     isDisabledSubmitBtn: isEmpty(),
     isModalOpen: state.isModalOpen,

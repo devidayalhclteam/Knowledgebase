@@ -16,11 +16,12 @@ import {
   updateProductImages,
   setStateValue,
   softDeleteImage,
-  deleteImage
+  deleteImage,
+  setTempURL
 } from "./DashboardSlice";
 import dashboardSelector from "./DashboardSelector";
 import type { AppDispatch } from "../../store";
-import { Box, Grid, Typography, Button, TextField, MenuItem, InputLabel } from "@material-ui/core";
+import { Box, Grid, Typography, Button, TextField, MenuItem, InputLabel, FormHelperText } from "@material-ui/core";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Rating from "@mui/material/Rating";
 import { displayAlert } from "../../components/Alert/AlertSlice";
@@ -37,10 +38,12 @@ export default function AddProduct() {
     productImageTable,
     isDisabledSubmitBtn,
     isAddProductSuccessful,
-    modalViewName
+    modalViewName,
+    productFormErrors
   } = useSelector(dashboardSelector);
   const { productName, categoryId, description, externalProductLink, rating } = productForm;
-  const { imageFile } = productImage;
+  const { productNameError, categoryIdError, descriptionError, ratingError } = productFormErrors;
+  let { imageFile, tempImageUrl } = productImage;
 
   useEffect(() => {
     if (isAddProductSuccessful === "success") {
@@ -58,6 +61,10 @@ export default function AddProduct() {
       dispatch(setStateValue(["isAddProductSuccessful", ""]));
     }
   }, [isAddProductSuccessful]);
+
+  useEffect(() => {
+    !productImageTable.isActive && dispatch(updateProductImages(productImageTable));
+  }, [productImageTable])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | SelectChangeEvent) => {
     dispatch(setProductFormData(e));
@@ -77,29 +84,46 @@ export default function AddProduct() {
     reader.onloadend = function (e) {
       setFile(reader.result);
     };
-
-    dispatch(setProductFormImageData(files));
-    dispatch(softDeleteImage(true));
     let imagePath = imageURL + (files && files[0]?.name);
+
+    dispatch(setProductFormImageData([files, imagePath]));
+    dispatch(softDeleteImage(true));
+
     if (modalViewName === "AddProduct") {
-      dispatch(setImageTableProductKey([productKey, imagePath]));
+      dispatch(setImageTableProductKey([productKey]));
     }
   };
 
+  const isFormValid = () => {
+    const isMandoryDataField = [
+      productName, categoryId, description, rating
+    ].every(Boolean);
+
+    if (modalViewName === "AddProduct") {
+      return isMandoryDataField;
+    } else if (modalViewName === "EditProduct") {
+      return isMandoryDataField && productImageTable.isActive
+    }
+  }
+
   const handleSubmit = () => {
-    !!imageFile && dispatch(uploadImage(imageFile));
-    dispatch(addProductImages(productImageTable));
-    dispatch(addProducts(productForm));
+    if (isFormValid()) {
+      !!imageFile && dispatch(uploadImage(imageFile));
+      dispatch(addProductImages(productImageTable));
+      dispatch(addProducts(productForm));
+    }
   };
 
   const handleSoftDelete = () => {
+    dispatch(setTempURL(!!productImageTable && productImageTable.imageUrl1));
     dispatch(softDeleteImage(false));
   };
 
   const handleEditSubmit = () => {
-    if (!productImageTable.isActive) {
-      let imageName = productImageTable.imageUrl1.split("/");
-      dispatch(deleteImage(imageName.slice(-1)));
+    if (tempImageUrl !== productImageTable.imageUrl1) {
+      let deletedImageName = tempImageUrl.split("/");
+      dispatch(deleteImage(deletedImageName.slice(-1)));
+      dispatch(setTempURL(''));
     }
     !!imageFile && dispatch(uploadImage(imageFile));
     dispatch(updateProductImages(productImageTable));
@@ -134,6 +158,10 @@ export default function AddProduct() {
                 })}
             </Select>
 
+            {!!categoryIdError && (
+              <FormHelperText>{categoryIdError}</FormHelperText>
+            )}
+
             <InputLabel className="formLabel">Product Name</InputLabel>
             <TextField
               required
@@ -142,6 +170,8 @@ export default function AddProduct() {
               defaultValue="Hello World"
               variant="standard"
               name="productName"
+              error={!!productNameError}
+              helperText={productNameError}
               value={productName}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
             />
@@ -153,6 +183,8 @@ export default function AddProduct() {
               id="description"
               placeholder="Placeholder"
               name="description"
+              error={!!descriptionError}
+              helperText={descriptionError}
               value={description}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
               multiline
@@ -174,6 +206,9 @@ export default function AddProduct() {
               <span>Your overall rating of this product</span>
             </InputLabel>
             <Rating name="rating" value={rating} onChange={(e: any) => handleRating(e)} />
+            {!!ratingError && (
+              <FormHelperText>{ratingError}</FormHelperText>
+            )}
           </Grid>
           <Grid item xs={4} md={4} sm={4} className="modalRightSide">
             <div className="uploadImage">
@@ -213,7 +248,7 @@ export default function AddProduct() {
               <Button
                 variant="contained"
                 className="submit"
-                disabled={isDisabledSubmitBtn}
+                disabled={(isDisabledSubmitBtn || !productImageTable.isActive)}
                 onClick={() => handleEditSubmit()}
               >
                 <span> Submit</span>
