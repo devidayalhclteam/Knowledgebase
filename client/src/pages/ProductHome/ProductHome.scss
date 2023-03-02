@@ -38,63 +38,68 @@ body {
         flex-direction: row;
         padding: 20px 30px;
 
-        .productHomeDesc {
-          .productHomeText {
-            font-family: "Frank Ruhl Libre";
-            font-style: normal;
-            font-weight: 700;
-            font-size: 4rem;
-            line-height: 4rem;
-            text-transform: capitalize;
-            color: #34251f;
-            width: 450px;
+        .productHomeGrid1 {
+          .productHomeDesc {
+            .productHomeText {
+              font-family: "Frank Ruhl Libre";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 4rem;
+              line-height: 4rem;
+              text-transform: capitalize;
+              color: #34251f;
+              width: 450px;
+            }
+
+            .productHomeName {
+              width: 500px;
+              font-size: 1rem;
+              padding: 10px;
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 600;
+              font-size: 1.375;
+              line-height: 180%;
+              color: #34251f;
+            }
+
+            .productHomeSubText {
+              width: 500px;
+              font-size: 1rem;
+              padding: 10px;
+              font-family: "Lato";
+              font-style: normal;
+              font-weight: 400;
+              font-size: 1.375;
+              line-height: 180%;
+              color: #34251f;
+            }
           }
 
-          .productHomeName {
-            width: 500px;
-            font-size: 1rem;
-            padding: 10px;
+          .productHomeButton {
+            background: #34251f;
+            border-radius: 2px;
+            margin-top: 30px;
+            cursor: pointer;
+            width: 150px;
+          }
+
+          .MuiButton-label {
             font-family: "Lato";
             font-style: normal;
-            font-weight: 600;
-            font-size: 1.375;
-            line-height: 180%;
-            color: #34251f;
-          }
-
-          .productHomeSubText {
-            width: 500px;
-            font-size: 1rem;
-            padding: 10px;
-            font-family: "Lato";
-            font-style: normal;
-            font-weight: 400;
-            font-size: 1.375;
-            line-height: 180%;
-            color: #34251f;
+            font-weight: 900;
+            font-size: 0.875rem;
+            line-height: 2rem;
+            text-transform: uppercase;
+            color: #ffffff;
           }
         }
 
-        .productHomeButton {
-          background: #34251f;
-          border-radius: 2px;
-          margin-top: 30px;
-          cursor: pointer;
-        }
-
-        .MuiButton-label {
-          font-family: "Lato";
-          font-style: normal;
-          font-weight: 900;
-          font-size: 0.875rem;
-          line-height: 2rem;
-          text-transform: uppercase;
-          color: #ffffff;
-        }
-
-        .productHomeImage {
-          width: 250px;
-          height: 200px;
+        .productHomeGrid2 {
+          .productHomeImage {
+            width: 250px;
+            height: 200px;
+          }
         }
       }
     }
@@ -209,6 +214,10 @@ body {
                 }
               }
             }
+
+            .MuiButton-contained:hover {
+              color: #ffffff;
+            }
           }
         }
       }
@@ -258,6 +267,47 @@ body {
         .listedProductCarousel {
           .slick-slide {
             padding: 0 10px;
+          }
+
+          .slick-dots {
+            width: auto;
+            bottom: -20px;
+
+            li {
+              width: 12px;
+              height: 12px;
+            }
+
+            li button {
+              width: inherit;
+              height: inherit;
+            }
+
+            li button:before {
+              font-size: 12px;
+              width: inherit;
+              height: inherit;
+            }
+
+            li:not(.slick-active) button:before {
+              width: inherit;
+              height: inherit;
+              color: transparent;
+              opacity: 1;
+              border: 1px #fff solid;
+              border-radius: 12px;
+            }
+
+            li.slick-active button:before {
+              width: inherit;
+              height: inherit;
+              color: transparent;
+              opacity: 1;
+              border: 1px #fff solid;
+              border-radius: 12px;
+              background: #fff;
+              opacity: 1;
+            }
           }
 
           .listedProductCard {
@@ -322,7 +372,7 @@ body {
     align-items: center;
 
     .blogTileGrid {
-      width: 1280px;
+      width: 100%;
       padding: 0px;
       margin: 0px auto;
       display: flex;
@@ -341,12 +391,12 @@ body {
           letter-spacing: 0.06em;
           text-transform: uppercase;
           color: #121212;
-          text-align: left;
+          text-align: center;
         }
       }
 
       .blogLinkGridItem {
-        padding: 0 10px;
+        padding: 0;
 
         .blogLink {
           font-family: "Spartan";
@@ -356,8 +406,7 @@ body {
           line-height: 13px;
           letter-spacing: 0.06em;
           color: #121212;
-          text-align: right;
-          float: right;
+          text-align: center;
           cursor: pointer;
         }
       }
@@ -365,10 +414,73 @@ body {
 
     .blogGrid {
       width: 80%;
+      display: flex;
       justify-content: center;
-      padding: 30px 40px;
+      flex-direction: row;
 
-      .blogGridItem {
+      .MuiPaper-root.MuiPaper-elevation {
+        height: 100%;
+      }
+
+      .MuiGrid-root.MuiGrid-container {
+        padding: 2px;
+      }
+
+      .paper {
+        padding: 8px;
+        min-height: 150px;
+        height: 100%;
+        box-shadow: 0px 13px 19px rgba(0, 0, 0, 0.07);
+        background: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .blogGridItem1 {
+          height: 150px;
+
+          .blogImage {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .blogGridItem2 {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding: 10px 5px;
+          // margin-bottom: -50px;
+
+          .blogName {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #121212;
+            display: inline-block;
+          }
+
+          .blogDesc {
+            font-family: "Spartan";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 0.875rem;
+            color: #121212;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            margin-top: 10px;
+          }
+        }
+      }
+
+      .blogDesc .blogGridItem {
         width: 300px;
         flex-direction: row;
 

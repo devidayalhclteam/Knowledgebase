@@ -1,0 +1,45 @@
+@media screen and (max-width: $screen-lgl) {
+  //1280px;
+}
+
+@media screen and (max-width: $screen-lg) {
+  //1024px;
+}
+
+@media screen and (max-width: $screen-md) {
+  .productHome {
+    .productHomeContainer {
+      .productHomeCarousel {
+        .productHomeGrid {
+          .productHomeGrid1,
+          .productHomeGrid2 {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: 8px;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $screen-sm) {
+  .productHome {
+    .productHomeContainer {
+      .productHomeCarousel {
+        .productHomeGrid {
+          .productHomeGrid1,
+          .productHomeGrid2 {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            padding: 8px;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}

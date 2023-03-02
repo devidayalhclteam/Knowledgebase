@@ -1,0 +1,28 @@
+@import "./assets/scss/variables.scss";
+@import "./assets/scss/responsive.scss";
+
+html,
+.wrapper,
+#root {
+  height: 100% !important;
+  min-height: 100% !important;
+  overflow-y: overlay;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #05042f54;
+    opacity: 0.1;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
