@@ -1,0 +1,19 @@
+name: Knowledgebase/Knowledgebase_(1)
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3.5.0
+    - name: Install Node.js
+      uses: actions/setup-node@v3.7.0
+      with:
+        node-version: 10.x
+    - name: npm install and build
+      run: |-
+        npm install
+        npm run build
