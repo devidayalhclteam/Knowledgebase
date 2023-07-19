@@ -6,11 +6,11 @@ on:
       ado-org:
         description: 'ado-org'
         required: true
-        default: 'HCLGurukul'
+        default: 'POCHCLTEAM'
       ado-project:
         description: 'ado-project'
         required: true
-        default: 'Knowledgebase'
+        default: 'DemoHCLProject'
       ado_area_path:
         description: 'ADO area path to migrate - uses the UNDER operator'
         required: true
@@ -28,7 +28,7 @@ on:
       gh-org:
         description: 'devidayalhclteam'
         required: true
-        default: 'joshjohanning-org'
+        default: 'devidayalhclteam'
       gh-repo:
         description: 'Knowledgebase'
         required: true
